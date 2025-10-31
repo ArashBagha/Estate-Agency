@@ -1,11 +1,16 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter import filedialog
+from tkinter import filedialog,messagebox,font
 import subprocess
 import os
 
 #---#----#----#----#----#----------  توابع   ----------#----#----#----#-------------
-
+def close_window():#این تابع بعد از اتصال دیتابیس تکمیل مشود 
+    response=messagebox.askyesno("تایید خروج","آیا از خارج شدن اطمینان دارید؟")
+    if response:
+        root.destroy()
+    else:
+        return
 # تابع فراخوانی ادرس با دکمه 
 
 def open_file_folder():
@@ -26,15 +31,43 @@ def open_file():
 # پنجره اصلی (باکس مادر)
 
 root = tk.Tk()
-root.title("آژانس املاک")
+root.title("")
 root.geometry("1100x700")
 root.configure(bg="#0D4D34")
-#--------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------فریم مادر------------------------------------------------
+main_frame=tk.Frame(root)
+main_frame.pack(fill="both",expand=True)
+#------------------------فریم هدر --------------
+header=tk.Frame(main_frame,bg="#404040",height=60)
+header.pack(fill='x')
+title_font=font.Font(family="B Nazanin",size=22,weight="bold")
+title_label=tk.Label(header,text="آژانس املاک",fg="#FFFFFF",bg="#404040",font=title_font)
+title_label.pack(pady=10)
+
+#---------------------فریم منو----------------------
+#بخش مربوط به عماد لطفا لیست باکس ها رو پر کن
+menu_frame=tk.Frame(main_frame,bg="#ffffff", relief="ridge",height=1)#رنگ موقتی
+menu_frame.pack(padx=2, pady=2, fill="both", expand=True)
+listbox1=tk.Listbox(menu_frame,height=1,width=5,bg="#ffffff",border=0)
+listbox1.insert(tk.END,"فایل")
+listbox1.pack(padx=5,pady=5,side="left")
+
+listbox2=tk.Listbox(menu_frame,height=1,width=8,bg="#ffffff",border=0)
+listbox2.insert(tk.END,"قرارداد")
+listbox2.pack(padx=10,pady=5,side="left")
+
+listbox3=tk.Listbox(menu_frame,height=1,width=8,bg="#ffffff",border=0)
+listbox3.insert(tk.END,"گزارش ها")
+listbox3.pack(padx=10,pady=5,side="left")
+
+listbox4=tk.Listbox(menu_frame,height=1,width=12,bg="#ffffff",border=0)
+listbox4.insert(tk.END,"درخواست ها")
+listbox4.pack(padx=10,pady=5,side="left")
 
 # باکس سمت چپ - جستجو در فایل های ملک
 
 left_frame = tk.LabelFrame(root, text="جستجوی ملک", width=200, bg="#575353",fg="#F8F7F7", font=("Arial", 16))
-left_frame.pack(side="left", fill="y", padx=6, pady=4)
+left_frame.pack(side="left", fill="y", padx=6, pady=15)
 
 left_fields = ["کد ملک", "نوع ملک" ,"وضعیت", "محدوده قیمت", "منطقه / آدرس"]
 entries = {}
@@ -67,7 +100,7 @@ tree.pack(fill="both", expand=True)
 # باکس سمت راست - نمایش جزئیات فایل های موجود املاک
 
 right_frame = tk.LabelFrame(root, text="جزئیات ملک", width=200, bg="#ffffff", font=("Arial", 14))
-right_frame.pack(side="right", fill="y", padx=6, pady=4)
+right_frame.pack(side="right", fill="y", padx=6, pady=15)
 
 photo_lbl = tk.Label(right_frame, text="[تصویر ملک]", bg="gray", width=20, height=10)
 photo_lbl.pack(pady=10)
@@ -87,5 +120,6 @@ for field in right_fields:
 add_img_btn = tk.Button(right_frame, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file)
 add_img_btn.pack(pady=10)
 
+root.protocol("WM_DELETE_WINDOW",close_window)
 # اجرای برنامه
 root.mainloop()
