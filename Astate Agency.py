@@ -1,11 +1,16 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter import filedialog
+from tkinter import filedialog,messagebox
 import subprocess
 import os
 
 #---#----#----#----#----#----------  توابع   ----------#----#----#----#-------------
-
+def close_window():#این تابع بعد از اتصال دیتابیس تکمیل مشود 
+    response=messagebox.askyesno("تایید خروج","آیا از خارج شدن اطمینان دارید؟")
+    if response:
+        root.destroy()
+    else:
+        return
 # تابع فراخوانی ادرس با دکمه 
 
 def open_file_folder():
@@ -87,5 +92,6 @@ for field in right_fields:
 add_img_btn = tk.Button(right_frame, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file)
 add_img_btn.pack(pady=10)
 
+root.protocol("WM_DELETE_WINDOW",close_window)
 # اجرای برنامه
 root.mainloop()
