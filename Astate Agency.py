@@ -65,7 +65,6 @@ title_label=tk.Label(header,text="آژانس املاک",fg="#FFFFFF",bg="#40404
 title_label.pack(pady=10)
 
 #---------------------فریم منو----------------------
-#بخش مربوط به عماد لطفا لیست باکس ها رو پر کن
 menu_frame=tk.Frame(main_frame,bg="#ffffff", relief="flat",height=1)#رنگ موقتی
 menu_frame.pack(padx=2, pady=2, fill="both", expand=True)
 
@@ -76,7 +75,7 @@ file_button.pack(padx=5, pady=5, side="left")
 file_popup = tk.Menu(root, tearoff=0, font=("Arial", 12))
 file_popup.add_command(label="خرید", command=kharid)
 file_popup.add_command(label="فروش", command=forosh)
-file_popup.add_command(label="رهن", command=rahn)
+file_popup.add_command(label="رهن/اجاره", command=rahn)
 file_popup.add_command(label="مشارکت", command=mosharecat)
 
 def show_file_popup(event):
@@ -116,31 +115,40 @@ file_button.pack(padx=10, pady=5, side="left")
 left_frame = tk.LabelFrame(root, text="جستجوی ملک", width=200, bg="#575353",fg="#F8F7F7", font=("Arial", 16))
 left_frame.pack(side="left", fill="y", padx=6, pady=15)
 
-box = tk.Frame(left_frame,bg="#8BBEEE")
-box.pack(padx=6, pady=15)
+Box1 = tk.Frame(left_frame,bg="#0F6E6E")
+Box1.pack(padx=6, pady=15)
 
-melktypelable = tk.Label(box,text="نوع ملک",bg="#8BBEEE", fg="#000000",font=("Arial", 14))
+filetype = tk.Label(Box1,text="نوع فایل",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+filetype.pack(padx=15,pady=10, side="right")
+combo1= ttk.Combobox(Box1)
+combo1["values"] = ("رهن/اجاره","خرید","فروش","مشارکت",)
+combo1.pack(padx=10, pady=10) 
+
+Box3 = tk.Frame(left_frame,bg="#0F6E6E")
+Box3.pack(padx=6, pady=15)
+
+melktypelable = tk.Label(Box3,text="نوع ملک",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
 melktypelable.pack(padx=15,pady=10, side="right")
-combo= ttk.Combobox(box)
-combo["values"] = ("مسکونی","مغازه/ تجاری"," باغ / زمین","سوله / کارگاه")
-combo.pack(padx=10, pady=10) 
+combo2= ttk.Combobox(Box3)
+combo2["values"] = ("مسکونی","مغازه/ تجاری"," باغ / زمین","سوله / کارگاه")
+combo2.pack(padx=10, pady=10) 
 
-box1 = tk.Frame(left_frame,bg="#0F6E6E")
-box1.pack(padx=6, pady=5)
+Box3 = tk.Frame(left_frame,bg="#0F6E6E")
+Box3.pack(padx=6, pady=5)
 
-melk_Pricelimit_lable = tk.Label(box1,text="محدوده قیمت",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+melk_Pricelimit_lable = tk.Label(Box3,text="محدوده قیمت",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
 melk_Pricelimit_lable.pack(padx=5, pady=1)
-entry_melk_Pricelimit = tk.Entry(box1,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_Pricelimit = tk.Entry(Box3,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
 entry_melk_Pricelimit.pack(padx=20,pady=10)
 
-melk_Area_lable = tk.Label(box1,text=" متراژ",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+melk_Area_lable = tk.Label(Box3,text=" متراژ",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
 melk_Area_lable.pack(padx=5, pady=1)
-entry_melk_Area_lable = tk.Entry(box1,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_Area_lable = tk.Entry(Box3,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
 entry_melk_Area_lable.pack(padx=20,pady=10)
 
-melk_Area_lable = tk.Label(box1,text=" منطقه / آدرس",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+melk_Area_lable = tk.Label(Box3,text=" منطقه / آدرس",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
 melk_Area_lable.pack(padx=5, pady=1)
-entry_melk_Area_lable = tk.Entry(box1,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_Area_lable = tk.Entry(Box3,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
 entry_melk_Area_lable.pack(padx=20,pady=10)
 
 # دکمه جستجوی ملک
