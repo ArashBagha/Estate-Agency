@@ -187,3 +187,4 @@ for field in right_fields:
 root.protocol("WM_DELETE_WINDOW",close_window)
 # اجرای برنامه
 root.mainloop()
+
