@@ -26,12 +26,32 @@ def open_file():
     if file_path:
         os.startfile(file_path)
 
+# لیست کشویی فیلد فایل 
+def kharid():
+    pass
+def forosh():
+    pass
+def rahn():
+    pass
+def mosharecat():
+    pass
+
+# لیست کشویی فیلد گزارش ها
+def excel():
+    pass
+def gharardadeha():
+    pass
+
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
 
 # پنجره اصلی (باکس مادر)
 
 root = tk.Tk()
 root.title("")
+root.geometry("1100x700")#------------------------
+##----------------------------------------------------------------------------------------------##
+# root.attributes("-fullscreen", True) <<<-----  App فول اسکرین شدن
+##----------------------------------------------------------------------------------------------##
 root.geometry("1100x700")
 root.configure(bg="#0D4D34")
 #-----------------------------------------------------فریم مادر------------------------------------------------
@@ -46,38 +66,82 @@ title_label.pack(pady=10)
 
 #---------------------فریم منو----------------------
 #بخش مربوط به عماد لطفا لیست باکس ها رو پر کن
-menu_frame=tk.Frame(main_frame,bg="#ffffff", relief="ridge",height=1)#رنگ موقتی
+menu_frame=tk.Frame(main_frame,bg="#ffffff", relief="flat",height=1)#رنگ موقتی
 menu_frame.pack(padx=2, pady=2, fill="both", expand=True)
-listbox1=tk.Listbox(menu_frame,height=1,width=5,bg="#ffffff",border=0)
-listbox1.insert(tk.END,"فایل")
-listbox1.pack(padx=5,pady=5,side="left")
 
-listbox2=tk.Listbox(menu_frame,height=1,width=8,bg="#ffffff",border=0)
-listbox2.insert(tk.END,"قرارداد")
-listbox2.pack(padx=10,pady=5,side="left")
+# دکمه فایل با منوی کشویی 
+file_button = tk.Button(menu_frame, text="فایل", bg="#ffffff", relief="flat")
+file_button.pack(padx=5, pady=5, side="left")
 
-listbox3=tk.Listbox(menu_frame,height=1,width=8,bg="#ffffff",border=0)
-listbox3.insert(tk.END,"گزارش ها")
-listbox3.pack(padx=10,pady=5,side="left")
+file_popup = tk.Menu(root, tearoff=0, font=("Arial", 12))
+file_popup.add_command(label="خرید", command=kharid)
+file_popup.add_command(label="فروش", command=forosh)
+file_popup.add_command(label="رهن", command=rahn)
+file_popup.add_command(label="مشارکت", command=mosharecat)
 
-listbox4=tk.Listbox(menu_frame,height=1,width=12,bg="#ffffff",border=0)
-listbox4.insert(tk.END,"درخواست ها")
-listbox4.pack(padx=10,pady=5,side="left")
+def show_file_popup(event):
+    file_popup.tk_popup(event.x_root, event.y_root)
+
+file_button.bind("<Button-1>", show_file_popup)
+ 
+
+# اضافه کردن فیلد قرارداد 
+file_button = tk.Button(menu_frame, text="قرارداد ", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=5, side="left")
+
+# دکمه گزارش ها با منوی کشویی  
+file_button = tk.Button(menu_frame, text="گزارش ها", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=10, side="left")
+
+file_popup1 = tk.Menu(root, tearoff=0, font=("Arial", 12))
+file_popup1.add_command(label="خروجی اکسل", command=excel)
+file_popup1.add_command(label="قرارداد ها", command=gharardadeha)
+
+def show_file_popup(event):
+    file_popup1.tk_popup(event.x_root, event.y_root)
+
+file_button.bind("<Button-1>", show_file_popup)
+
+# اضافه کردن فیلد درخواست ها  
+file_button = tk.Button(menu_frame, text="درخواست ها", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=5, side="left")
+
+#اضافه کردن فیلد کاربران 
+file_button = tk.Button(menu_frame, text="کاربران ", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=5, side="left")
+#--------------------------------------------------------------------------------------------------------
 
 # باکس سمت چپ - جستجو در فایل های ملک
 
 left_frame = tk.LabelFrame(root, text="جستجوی ملک", width=200, bg="#575353",fg="#F8F7F7", font=("Arial", 16))
 left_frame.pack(side="left", fill="y", padx=6, pady=15)
 
-left_fields = ["کد ملک", "نوع ملک" ,"وضعیت", "محدوده قیمت", "منطقه / آدرس"]
-entries = {}
+box = tk.Frame(left_frame,bg="#8BBEEE")
+box.pack(padx=6, pady=15)
 
-for field in left_fields:
-    lbl = tk.Label(left_frame, text=field, bg="#A08D70", fg="#252527",font=("Arial", 14))
-    lbl.pack(fill="x", padx=10, pady=2)
-    entry = tk.Entry(left_frame)
-    entry.pack( padx=16, pady=5)
-    entries[field] = entry
+melktypelable = tk.Label(box,text="نوع ملک",bg="#8BBEEE", fg="#000000",font=("Arial", 14))
+melktypelable.pack(padx=15,pady=10, side="right")
+combo= ttk.Combobox(box)
+combo["values"] = ("مسکونی","مغازه/ تجاری"," باغ / زمین","سوله / کارگاه")
+combo.pack(padx=10, pady=10) 
+
+box1 = tk.Frame(left_frame,bg="#0F6E6E")
+box1.pack(padx=6, pady=5)
+
+melk_Pricelimit_lable = tk.Label(box1,text="محدوده قیمت",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+melk_Pricelimit_lable.pack(padx=5, pady=1)
+entry_melk_Pricelimit = tk.Entry(box1,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_Pricelimit.pack(padx=20,pady=10)
+
+melk_Area_lable = tk.Label(box1,text=" متراژ",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+melk_Area_lable.pack(padx=5, pady=1)
+entry_melk_Area_lable = tk.Entry(box1,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_Area_lable.pack(padx=20,pady=10)
+
+melk_Area_lable = tk.Label(box1,text=" منطقه / آدرس",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+melk_Area_lable.pack(padx=5, pady=1)
+entry_melk_Area_lable = tk.Entry(box1,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_Area_lable.pack(padx=20,pady=10)
 
 # دکمه جستجوی ملک
 search_btn = tk.Button(left_frame, text="    جستجو    " , bg="#94c6dd", fg="#201F1F", font=("Arial", 14), command=open_file)
@@ -89,7 +153,7 @@ search_btn.pack(pady=10)
 center_frame = tk.LabelFrame(root, text="لیست املاک", bg="#ffffff", font=("Arial", 14))
 center_frame.pack(side="left", fill="both", expand=True, padx=4, pady=15)
 
-columns = ["آدرس", "متراژ", "قیمت ", "نوع ملک ", "وضعیت"]
+columns = ["آدرس", "قیمت ", "نوع ملک ", "متراژ"]
 tree = ttk.Treeview(center_frame, columns=columns, show="headings")
 for textt in columns:
     tree.heading(textt,text=textt)
@@ -106,7 +170,7 @@ photo_lbl = tk.Label(right_frame, text="[تصویر ملک]", bg="gray", width=2
 photo_lbl.pack(pady=10)
 
 
-right_fields = [" مالک ", " متراژ " ," قیمت ", " وضعیت ملک ", " توضیحات "]
+right_fields = [" مالک ", " شماره تماس مالک "," متراژ " , " قیمت ", " توضیحات "]
 entries = {}
 
 for field in right_fields:
@@ -117,8 +181,8 @@ for field in right_fields:
     entries[field] = entry
 
 # دکمه برای افزودن عکس به ملک
-add_img_btn = tk.Button(right_frame, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file)
-add_img_btn.pack(pady=10)
+#add_img_btn = tk.Button(right_frame, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file)
+#add_img_btn.pack(pady=10)
 
 root.protocol("WM_DELETE_WINDOW",close_window)
 # اجرای برنامه
