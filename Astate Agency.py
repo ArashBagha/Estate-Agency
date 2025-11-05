@@ -69,7 +69,7 @@ menu_frame=tk.Frame(main_frame,bg="#ffffff", relief="flat",height=1)#رنگ مو
 menu_frame.pack(padx=2, pady=2, fill="both", expand=True)
 
 # دکمه فایل با منوی کشویی 
-file_button = tk.Button(menu_frame, text="فایل", bg="#ffffff", relief="flat")
+file_button = tk.Button(menu_frame, text="ثبت فایل ها", bg="#ffffff", relief="flat")
 file_button.pack(padx=5, pady=5, side="left")
 
 file_popup = tk.Menu(root, tearoff=0, font=("Arial", 12))
