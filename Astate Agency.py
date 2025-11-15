@@ -48,11 +48,9 @@ def gharardadeha():
 
 root = tk.Tk()
 root.title("")
-root.geometry("1100x700")#------------------------
+root.geometry("1100x700")
 ##----------------------------------------------------------------------------------------------##
 # root.attributes("-fullscreen", True) <<<-----  App فول اسکرین شدن
-##----------------------------------------------------------------------------------------------##
-root.geometry("1100x700")
 root.configure(bg="#0D4D34")
 #-----------------------------------------------------فریم مادر------------------------------------------------
 main_frame=tk.Frame(root)
@@ -96,8 +94,6 @@ file_popup1 = tk.Menu(root, tearoff=0, font=("Arial", 12))
 file_popup1.add_command(label="خروجی اکسل", command=excel)
 file_popup1.add_command(label="قرارداد ها", command=gharardadeha)
 
-def show_file_popup(event):
-    file_popup1.tk_popup(event.x_root, event.y_root)
 
 file_button.bind("<Button-1>", show_file_popup)
 
@@ -191,6 +187,62 @@ for field in right_fields:
 # دکمه برای افزودن عکس به ملک
 #add_img_btn = tk.Button(right_frame, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file)
 #add_img_btn.pack(pady=10)
+
+
+
+#پنجره های فرعی فایل
+buy_page = tk.Toplevel(root)
+buy_page.title("")
+buy_page.geometry("1000x700")
+buy_page.configure(bg="#0D4D34")
+ 
+
+buy_page_frme1=tk.Frame(buy_page,width=490,height=500,bg="#5d6059",border=2)
+buy_page_frme1.pack(padx=5,pady=1,side='right')
+
+
+melktype_buy=tk.Label(buy_page_frme1,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
+melktype_buy.grid(padx=5,pady=5,sticky="e",row=0,column=1)
+
+combo_melktype= ttk.Combobox(buy_page_frme1)
+combo_melktype["values"] = ("مسکونی","مغازه/ تجاری"," باغ / زمین","سوله / کارگاه")
+combo_melktype.grid(padx=5, pady=5,row=0,column=0,sticky="w") 
+
+year_buy=tk.Label(buy_page_frme1,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
+year_buy.grid(padx=5,pady=5,sticky="e",row=1,column=1)
+
+year_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2",  fg="#180202",font=("Arial", 10))
+year_buy_entry.grid(padx=5,pady=5,sticky="w",row=1,column=0)
+
+addrres_buy=tk.Label(buy_page_frme1,text="آدرس",bg="#0F6E6E",fg="#ffffff",width=10)
+addrres_buy.grid(padx=5,pady=5,sticky="e",row=2,column=1)
+
+addrres_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+addrres_buy_entry.grid(padx=5,pady=5,sticky="w",row=2,column=0)
+
+floor_buy=tk.Label(buy_page_frme1,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
+floor_buy.grid(padx=5,pady=5,sticky="e",row=3,column=1)
+
+floor_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+floor_buy_entry.grid(padx=5,pady=5,sticky="w",row=3,column=0)
+
+vahed_buy=tk.Label(buy_page_frme1,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
+vahed_buy.grid(padx=5,pady=5,sticky="e",row=4,column=1)
+
+vahed_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+vahed_buy_entry.grid(padx=5,pady=5,sticky="w",row=4,column=0)
+
+room_buy=tk.Label(buy_page_frme1,text="اتاق",bg="#0F6E6E",fg="#ffffff",width=10)
+room_buy.grid(padx=5,pady=5,sticky="e",row=5,column=1)
+
+room_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+room_buy_entry.grid(padx=5,pady=5,sticky="w",row=5,column=0)
+
+price_buy=tk.Label(buy_page_frme1,text="قیمت",bg="#0F6E6E",fg="#ffffff",width=10)
+price_buy.grid(padx=5,pady=5,sticky="e",row=6,column=1)
+
+price_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_buy_entry.grid(padx=5,pady=5,sticky="w",row=6,column=0)
 
 root.protocol("WM_DELETE_WINDOW",close_window)
 # اجرای برنامه
