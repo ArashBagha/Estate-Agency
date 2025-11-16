@@ -30,7 +30,8 @@ def open_option():
     option_file_frame.deiconify()
     buy_page.withdraw()
 def back_to_buy_page():
-    pass
+    option_file_frame.withdraw()
+    buy_page.deiconify()
 
 
 # لیست کشویی فیلد فایل 
@@ -59,6 +60,9 @@ root.title("")
 root.geometry("1100x700")
 #تصاویر پروژه
 plus=tk.PhotoImage(file="pluse.png")
+elvator_pic=tk.PhotoImage(file="elvator.png")
+parking_pic=tk.PhotoImage(file="parking.png")
+warehouse_pic=tk.PhotoImage(file="warehouse.png")#انبار
 ##----------------------------------------------------------------------------------------------##
 # root.attributes("-fullscreen", True) <<<-----  App فول اسکرین شدن
 root.configure(bg="#0D4D34")
@@ -209,7 +213,9 @@ buy_page.configure(bg="#0D4D34")#نیما رنگ بگراندشو خودت ان�
 #option_file
 option_file_frame=tk.Toplevel(buy_page)
 option_file_frame.title(" ")
-buy_page.geometry("700x700")
+option_file_frame.geometry("500x400")
+option_file_frame.pack_propagate(False)
+option_file_frame.withdraw()
 
 
 
@@ -275,10 +281,58 @@ option_label.pack(side="right",padx=1)
 
 button_label=tk.Label(option_frame)
 button_label.pack(side="left",padx=1)
-plus_button=tk.Button(option_frame,image=plus,command=option_file_frame,border=0)
+plus_button=tk.Button(option_frame,image=plus,command=open_option,border=0)
 plus_button.pack()
 
+option_frame1=tk.Frame(option_file_frame,width=400,height=100,background="#ffffff")
+option_frame1.pack(padx=10,pady=15)
+
+parking_ch_btn=tk.Checkbutton(option_frame1,image=parking_pic,background="#022578")
+parking_ch_btn.pack(padx=15,side="left")
+
+elvator_ch_btn=tk.Checkbutton(option_frame1,image=elvator_pic,background="#022578")
+elvator_ch_btn.pack(padx=15,side="left")
+
+warehouse_ch_btn=tk.Checkbutton(option_frame1,image=warehouse_pic,background="#022578")
+warehouse_ch_btn.pack(padx=15,side="right")
+
+option_frame2=tk.Frame(option_file_frame,width=400,height=400,background="#ffffff",border=1)
+option_frame2.pack(padx=10,pady=15)
+
+#balcon_ch_btn=tk.Checkbutton(option_frame2,text="بالکن")
+
+sarmaesh=tk.Label(option_frame2,text="سرمایش",background="#025578",fg="#ffffff")
+sarmaesh.grid(row=0,column=1,padx=15,pady=5)
+sarmaesh_combo=ttk.Combobox(option_frame2)
+sarmaesh_combo["values"] = ("ندارد","پنکه","کولر ابی","کولر گازی ","ابی/گازی")
+sarmaesh_combo.grid(row=0,column=0,padx=15,pady=5)
+
+garmaesh=tk.Label(option_frame2,text="گرمایش",background="#025578",fg="#ffffff")
+garmaesh.grid(row=1,column=1,padx=15,pady=5)
+garmaesh_combo=ttk.Combobox(option_frame2)
+garmaesh_combo["values"] = ("ندارد","بخاری"," شوفاژ","گرمایش از کف ")
+garmaesh_combo.grid(row=1,column=0,padx=15,pady=5)
+
+kaf=tk.Label(option_frame2,text="کف",background="#025578",fg="#ffffff")
+kaf.grid(row=2,column=1,padx=15,pady=5)
+kaf_combo=ttk.Combobox(option_frame2)
+kaf_combo["values"] = ("سرامیک","موزاییک","پارکت")
+kaf_combo.grid(row=2,column=0,padx=15,pady=5)
+
+toilet=tk.Label(option_frame2,text="سرویس بهداشتی",background="#025578",fg="#ffffff")
+toilet.grid(row=3,column=1,padx=5,pady=5)
+toilet_combo=ttk.Combobox(option_frame2)
+toilet_combo["values"] = ("ایرانی","فرنگی","هردو")
+toilet_combo.grid(row=3,column=0,padx=15,pady=5)
+
+#نیما بالکن رو خودت اضافه کن من ایکون مناسب براش پیدا نکردم
+
+back_to_buy=tk.Button(option_file_frame,text="بازگشت",command=back_to_buy_page,background="#079BDB",fg="#ffffff",width=8)
+back_to_buy.place(x=95,y=350)
+
+
 root.protocol("WM_DELETE_WINDOW",close_window)
+option_file_frame.mainloop()
 # اجرای برنامه
 root.mainloop()
 
