@@ -26,6 +26,13 @@ def open_file():
     if file_path:
         os.startfile(file_path)
 
+def open_option():
+    option_file_frame.deiconify()
+    buy_page.withdraw()
+def back_to_buy_page():
+    pass
+
+
 # لیست کشویی فیلد فایل 
 def kharid():
     pass
@@ -44,11 +51,14 @@ def gharardadeha():
 
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
 
+
 # پنجره اصلی (باکس مادر)
 
 root = tk.Tk()
 root.title("")
 root.geometry("1100x700")
+#تصاویر پروژه
+plus=tk.PhotoImage(file="pluse.png")
 ##----------------------------------------------------------------------------------------------##
 # root.attributes("-fullscreen", True) <<<-----  App فول اسکرین شدن
 root.configure(bg="#0D4D34")
@@ -196,6 +206,12 @@ buy_page.title("")
 buy_page.geometry("800x600")
 buy_page.configure(bg="#0D4D34")#نیما رنگ بگراندشو خودت انتخاب کن
  
+#option_file
+option_file_frame=tk.Toplevel(buy_page)
+option_file_frame.title(" ")
+buy_page.geometry("700x700")
+
+
 
 buy_page_frme1=tk.Frame(buy_page,width=490,height=800,bg="#5d6059",border=2)
 buy_page_frme1.place(x=500,y=50)
@@ -250,6 +266,17 @@ photo_lbl2 = tk.Label(photo_box, text="[تصویر ملک]", bg="gray", width=50
 photo_lbl2.place(x=30,y=45)
 add_img_btn = tk.Button(photo_box, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn.place(x=40,y=330)
+#ساخت پنجره امکانات
+option_frame=tk.Frame(buy_page,width=300,height=30,background="#d9d3d3")
+option_frame.place(x=520,y=460)
+
+option_label=tk.Label(option_frame,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label.pack(side="right",padx=1)
+
+button_label=tk.Label(option_frame)
+button_label.pack(side="left",padx=1)
+plus_button=tk.Button(option_frame,image=plus,command=option_file_frame,border=0)
+plus_button.pack()
 
 root.protocol("WM_DELETE_WINDOW",close_window)
 # اجرای برنامه
