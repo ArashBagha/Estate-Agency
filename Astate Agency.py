@@ -28,10 +28,10 @@ def open_file():
 
 def open_option():
     option_file_frame.deiconify()
-    buy_page.withdraw()
+    rehn_page.withdraw()
 def back_to_buy_page():
     option_file_frame.withdraw()
-    buy_page.deiconify()
+    rehn_page.deiconify()
 
 
 # لیست کشویی فیلد فایل 
@@ -40,7 +40,8 @@ def kharid():
 def forosh():
     pass
 def rahn():
-    pass
+    root.withdraw()
+    rehn_page.deiconify()
 def mosharecat():
     pass
 
@@ -50,6 +51,11 @@ def excel():
 def gharardadeha():
     pass
 
+#بازگشت های صفحات
+
+def back_home():
+    root.deiconify()
+    rehn_page.withdraw()
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
 
 
@@ -205,13 +211,14 @@ for field in right_fields:
 
 
 #پنجره های فرعی فایل
-buy_page = tk.Toplevel(root)
-buy_page.title("")
-buy_page.geometry("800x600")
-buy_page.configure(bg="#0D4D34")#نیما رنگ بگراندشو خودت انتخاب کن
+rehn_page = tk.Toplevel(root)
+rehn_page.title("رهن/اجاره")
+rehn_page.geometry("800x600")
+rehn_page.withdraw()
+rehn_page.configure(bg="#0D4D34")#نیما رنگ بگراندشو خودت انتخاب کن
  
 #option_file
-option_file_frame=tk.Toplevel(buy_page)
+option_file_frame=tk.Toplevel(rehn_page)
 option_file_frame.title(" ")
 option_file_frame.geometry("500x400")
 option_file_frame.pack_propagate(False)
@@ -219,7 +226,7 @@ option_file_frame.withdraw()
 
 
 
-buy_page_frme1=tk.Frame(buy_page,width=490,height=800,bg="#5d6059",border=2)
+buy_page_frme1=tk.Frame(rehn_page,width=490,height=800,bg="#5d6059",border=2)
 buy_page_frme1.place(x=500,y=50)
 
 
@@ -266,14 +273,17 @@ price_buy.grid(padx=8,pady=15,sticky="e",row=6,column=1)
 price_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 price_buy_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
 
-photo_box=tk.Frame(buy_page,width=410,height=450,background="#e4dde3")
+back_to_home=tk.Button(rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home)
+back_to_home.place(x=650,y=535)
+
+photo_box=tk.Frame(rehn_page,width=410,height=450,background="#e4dde3")
 photo_box.place(x=40,y=40)
 photo_lbl2 = tk.Label(photo_box, text="[تصویر ملک]", bg="gray", width=50, height=15)
 photo_lbl2.place(x=30,y=45)
 add_img_btn = tk.Button(photo_box, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn.place(x=40,y=330)
 #ساخت پنجره امکانات
-option_frame=tk.Frame(buy_page,width=300,height=30,background="#d9d3d3")
+option_frame=tk.Frame(rehn_page,width=300,height=30,background="#d9d3d3")
 option_frame.place(x=520,y=460)
 
 option_label=tk.Label(option_frame,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
