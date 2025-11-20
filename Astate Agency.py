@@ -154,17 +154,17 @@ Box3.pack(padx=6, pady=5)
 
 melk_Pricelimit_lable = tk.Label(Box3,text="محدوده قیمت",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
 melk_Pricelimit_lable.pack(padx=5, pady=1)
-entry_melk_Pricelimit = tk.Entry(Box3,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_Pricelimit = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
 entry_melk_Pricelimit.pack(padx=20,pady=10)
 
 melk_Area_lable = tk.Label(Box3,text=" متراژ",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
 melk_Area_lable.pack(padx=5, pady=1)
-entry_melk_Area_lable = tk.Entry(Box3,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_Area_lable = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
 entry_melk_Area_lable.pack(padx=20,pady=10)
 
 melk_Area_lable = tk.Label(Box3,text=" منطقه / آدرس",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
 melk_Area_lable.pack(padx=5, pady=1)
-entry_melk_Area_lable = tk.Entry(Box3,text=" ",bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_Area_lable = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
 entry_melk_Area_lable.pack(padx=20,pady=10)
 
 # دکمه جستجوی ملک
@@ -197,6 +197,7 @@ photo_lbl.pack(pady=10)
 right_fields = [" مالک ", " شماره تماس مالک "," متراژ " , " قیمت ", " توضیحات "]
 entries = {}
 
+#delete for
 for field in right_fields:
     lbl = tk.Label(right_frame, text=field, bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
     lbl.pack(fill="x", padx=6, pady=4)
@@ -204,18 +205,16 @@ for field in right_fields:
     entry.pack( padx=20, pady=5)
     entries[field] = entry
 
-# دکمه برای افزودن عکس به ملک
-#add_img_btn = tk.Button(right_frame, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file)
-#add_img_btn.pack(pady=10)
 
 
 
-#پنجره های فرعی فایل
+
+#win_rehn
 rehn_page = tk.Toplevel(root)
 rehn_page.title("رهن/اجاره")
 rehn_page.geometry("800x600")
 rehn_page.withdraw()
-rehn_page.configure(bg="#0D4D34")#نیما رنگ بگراندشو خودت انتخاب کن
+rehn_page.configure(bg="#0F6E6E")
  
 #option_file
 option_file_frame=tk.Toplevel(rehn_page)
@@ -226,51 +225,51 @@ option_file_frame.withdraw()
 
 
 
-buy_page_frme1=tk.Frame(rehn_page,width=490,height=800,bg="#5d6059",border=2)
-buy_page_frme1.place(x=500,y=50)
+rehn_page_frame1=tk.Frame(rehn_page,width=490,height=800,bg="#5d6059",border=2)
+rehn_page_frame1.place(x=500,y=50)
 
 
-melktype_buy=tk.Label(buy_page_frme1,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
+melktype_buy=tk.Label(rehn_page_frame1,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
 melktype_buy.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
-combo_melktype= ttk.Combobox(buy_page_frme1)
+combo_melktype= ttk.Combobox(rehn_page_frame1)
 combo_melktype["values"] = ("مسکونی","مغازه/ تجاری"," باغ / زمین","سوله / کارگاه")
 combo_melktype.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
 
-year_buy=tk.Label(buy_page_frme1,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
+year_buy=tk.Label(rehn_page_frame1,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
 year_buy.grid(padx=8,pady=10,sticky="e",row=1,column=1)
 
-year_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2",  fg="#180202",font=("Arial", 10))
+year_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
 year_buy_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
 
-addrres_buy=tk.Label(buy_page_frme1,text="آدرس",bg="#0F6E6E",fg="#ffffff",width=10)
+addrres_buy=tk.Label(rehn_page_frame1,text="آدرس",bg="#0F6E6E",fg="#ffffff",width=10)
 addrres_buy.grid(padx=8,pady=15,sticky="e",row=2,column=1)
 
-addrres_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+addrres_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 addrres_buy_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
 
-floor_buy=tk.Label(buy_page_frme1,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
+floor_buy=tk.Label(rehn_page_frame1,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
 floor_buy.grid(padx=8,pady=15,sticky="e",row=3,column=1)
 
-floor_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+floor_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 floor_buy_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
 
-vahed_buy=tk.Label(buy_page_frme1,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
+vahed_buy=tk.Label(rehn_page_frame1,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
 vahed_buy.grid(padx=8,pady=15,sticky="e",row=4,column=1)
 
-vahed_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+vahed_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 vahed_buy_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
 
-room_buy=tk.Label(buy_page_frme1,text="اتاق",bg="#0F6E6E",fg="#ffffff",width=10)
+room_buy=tk.Label(rehn_page_frame1,text="اتاق",bg="#0F6E6E",fg="#ffffff",width=10)
 room_buy.grid(padx=8,pady=15,sticky="e",row=5,column=1)
 
-room_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+room_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 room_buy_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
 
-price_buy=tk.Label(buy_page_frme1,text="قیمت",bg="#0F6E6E",fg="#ffffff",width=10)
+price_buy=tk.Label(rehn_page_frame1,text="قیمت",bg="#0F6E6E",fg="#ffffff",width=10)
 price_buy.grid(padx=8,pady=15,sticky="e",row=6,column=1)
 
-price_buy_entry=tk.Entry(buy_page_frme1,text=" ",bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 price_buy_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
 
 back_to_home=tk.Button(rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home)
@@ -309,12 +308,12 @@ warehouse_ch_btn.pack(padx=15,side="right")
 option_frame2=tk.Frame(option_file_frame,width=400,height=400,background="#ffffff",border=1)
 option_frame2.pack(padx=10,pady=15)
 
-#balcon_ch_btn=tk.Checkbutton(option_frame2,text="بالکن")
+#balcon_ch_btn=tk.Checkbutton(option_frame2,text="تراس")
 
 sarmaesh=tk.Label(option_frame2,text="سرمایش",background="#025578",fg="#ffffff")
 sarmaesh.grid(row=0,column=1,padx=15,pady=5)
 sarmaesh_combo=ttk.Combobox(option_frame2)
-sarmaesh_combo["values"] = ("ندارد","پنکه","کولر ابی","کولر گازی ","ابی/گازی")
+sarmaesh_combo["values"] = ("ندارد","پنکه سقفی","کولر ابی","کولر گازی ","ابی/گازی")
 sarmaesh_combo.grid(row=0,column=0,padx=15,pady=5)
 
 garmaesh=tk.Label(option_frame2,text="گرمایش",background="#025578",fg="#ffffff")
@@ -335,7 +334,7 @@ toilet_combo=ttk.Combobox(option_frame2)
 toilet_combo["values"] = ("ایرانی","فرنگی","هردو")
 toilet_combo.grid(row=3,column=0,padx=15,pady=5)
 
-#نیما بالکن رو خودت اضافه کن من ایکون مناسب براش پیدا نکردم
+
 
 back_to_buy=tk.Button(option_file_frame,text="بازگشت",command=back_to_buy_page,background="#079BDB",fg="#ffffff",width=8)
 back_to_buy.place(x=95,y=350)
