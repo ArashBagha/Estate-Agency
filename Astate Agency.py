@@ -56,6 +56,17 @@ def gharardadeha():
 def back_home():
     root.deiconify()
     rehn_page.withdraw()
+    entry_melk_Pricelimit.delete(0,tk.END)
+    entry_melk_width_lable.delete(0,tk.END)
+    entry_melk_area_lable.delete(0,tk.END)
+    year_buy_entry.delete(0,tk.END)
+    addrres_buy_entry.delete(0,tk.END)
+    floor_buy_entry.delete(0,tk.END)
+    vahed_buy_entry.delete(0,tk.END)
+    room_buy_entry.delete(0,tk.END)
+    price_buy_entry.delete(0,tk.END)
+    combo1.delete(0,tk.END)
+    combo2.delete(0,tk.END)
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
 
 
@@ -159,13 +170,13 @@ entry_melk_Pricelimit.pack(padx=20,pady=10)
 
 melk_Area_lable = tk.Label(Box3,text=" متراژ",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
 melk_Area_lable.pack(padx=5, pady=1)
-entry_melk_Area_lable = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
-entry_melk_Area_lable.pack(padx=20,pady=10)
+entry_melk_width_lable = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_width_lable.pack(padx=20,pady=10)
 
 melk_Area_lable = tk.Label(Box3,text=" منطقه / آدرس",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
 melk_Area_lable.pack(padx=5, pady=1)
-entry_melk_Area_lable = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
-entry_melk_Area_lable.pack(padx=20,pady=10)
+entry_melk_area_lable = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_area_lable.pack(padx=20,pady=10)
 
 # دکمه جستجوی ملک
 search_btn = tk.Button(left_frame, text="    جستجو    " , bg="#94c6dd", fg="#201F1F", font=("Arial", 14), command=open_file)
