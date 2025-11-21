@@ -79,7 +79,7 @@ root.geometry("1100x700")
 plus=tk.PhotoImage(file="pluse.png")
 elvator_pic=tk.PhotoImage(file="elvator.png")
 parking_pic=tk.PhotoImage(file="parking.png")
-warehouse_pic=tk.PhotoImage(file="warehouse.png")#انبار
+warehouse_pic=tk.PhotoImage(file="anbari.png")#انبار
 ##----------------------------------------------------------------------------------------------##
 # root.attributes("-fullscreen", True) <<<-----  App فول اسکرین شدن
 root.configure(bg="#0D4D34")
@@ -204,20 +204,35 @@ right_frame.pack(side="right", fill="y", padx=6, pady=15)
 photo_lbl = tk.Label(right_frame, text="[تصویر ملک]", bg="gray", width=20, height=10)
 photo_lbl.pack(pady=10)
 
+malek = tk.Label(right_frame,text="مالک ",bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
+malek.pack(padx=6,pady=4)
 
-right_fields = [" مالک ", " شماره تماس مالک "," متراژ " , " قیمت ", " توضیحات "]
-entries = {}
+entry_malek = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_malek.pack(padx=20,pady=4)
 
-#delete for
-for field in right_fields:
-    lbl = tk.Label(right_frame, text=field, bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
-    lbl.pack(fill="x", padx=6, pady=4)
-    entry = tk.Entry(right_frame)
-    entry.pack( padx=20, pady=5)
-    entries[field] = entry
+malek_phone_number = tk.Label(right_frame,text="شماره تماس مالک ",bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
+malek_phone_number.pack(padx=6,pady=4)
 
+entry_malek_phone_number = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_malek_phone_number.pack(padx=20,pady=4)
 
+metr = tk.Label(right_frame,text="متراژ ",bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
+metr.pack(padx=6,pady=4)
 
+entry_metr = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_metr.pack(padx=20,pady=4)
+
+melk_price = tk.Label(right_frame,text="قیمت ",bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
+melk_price.pack(padx=6,pady=4)
+
+entry_melk_price= tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_price.pack(padx=20,pady=4)
+
+extension = tk.Label(right_frame,text="توضیحات ",bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
+extension.pack(padx=6,pady=4)
+
+entry_extension = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_extension.pack(padx=20,pady=4)
 
 
 #win_rehn
@@ -228,9 +243,9 @@ rehn_page.withdraw()
 rehn_page.configure(bg="#0F6E6E")
  
 #option_file
-option_file_frame=tk.Toplevel(rehn_page)
+option_file_frame=tk.Toplevel(rehn_page,background="#bbfbd1" )
 option_file_frame.title(" ")
-option_file_frame.geometry("500x400")
+option_file_frame.geometry("500x370")
 option_file_frame.pack_propagate(False)
 option_file_frame.withdraw()
 
@@ -243,8 +258,9 @@ rehn_page_frame1.place(x=500,y=50)
 melktype_buy=tk.Label(rehn_page_frame1,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
 melktype_buy.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
-combo_melktype= ttk.Combobox(rehn_page_frame1)
-combo_melktype["values"] = ("مسکونی","مغازه/ تجاری"," باغ / زمین","سوله / کارگاه")
+combo_melktype= ttk.Combobox(rehn_page_frame1,state="readonly")
+combo_melktype["values"] = ("اجاره مسکونی","مغازه/ تجاری"," باغ / زمین","سوله / کارگاه")
+combo_melktype.set("اجاره مسکونی")
 combo_melktype.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
 
 year_buy=tk.Label(rehn_page_frame1,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
@@ -293,7 +309,7 @@ photo_lbl2.place(x=30,y=45)
 add_img_btn = tk.Button(photo_box, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn.place(x=40,y=330)
 #ساخت پنجره امکانات
-option_frame=tk.Frame(rehn_page,width=300,height=30,background="#d9d3d3")
+option_frame=tk.Frame(rehn_page,width=300,height=30,background="#bbfbd1")
 option_frame.place(x=520,y=460)
 
 option_label=tk.Label(option_frame,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
@@ -304,7 +320,7 @@ button_label.pack(side="left",padx=1)
 plus_button=tk.Button(option_frame,image=plus,command=open_option,border=0)
 plus_button.pack()
 
-option_frame1=tk.Frame(option_file_frame,width=400,height=100,background="#ffffff")
+option_frame1=tk.Frame(option_file_frame,width=400,height=100,background="#bbfbd1")
 option_frame1.pack(padx=10,pady=15)
 
 parking_ch_btn=tk.Checkbutton(option_frame1,image=parking_pic,background="#022578")
@@ -316,7 +332,7 @@ elvator_ch_btn.pack(padx=15,side="left")
 warehouse_ch_btn=tk.Checkbutton(option_frame1,image=warehouse_pic,background="#022578")
 warehouse_ch_btn.pack(padx=15,side="right")
 
-option_frame2=tk.Frame(option_file_frame,width=400,height=400,background="#ffffff",border=1)
+option_frame2=tk.Frame(option_file_frame,width=400,height=400,background="#bbfbd1",border=1)
 option_frame2.pack(padx=10,pady=15)
 
 #balcon_ch_btn=tk.Checkbutton(option_frame2,text="تراس")
@@ -345,11 +361,11 @@ toilet_combo=ttk.Combobox(option_frame2)
 toilet_combo["values"] = ("ایرانی","فرنگی","هردو")
 toilet_combo.grid(row=3,column=0,padx=15,pady=5)
 
-
+save_optoin1=tk.Button(option_file_frame,text="ذخیره",command=None,background="#079BDB",fg="#ffffff",width=8)
+save_optoin1.place(x=170,y=330)
 
 back_to_buy=tk.Button(option_file_frame,text="بازگشت",command=back_to_buy_page,background="#079BDB",fg="#ffffff",width=8)
-back_to_buy.place(x=95,y=350)
-
+back_to_buy.place(x=95,y=330)
 
 root.protocol("WM_DELETE_WINDOW",close_window)
 option_file_frame.mainloop()
