@@ -28,22 +28,51 @@ def open_file():
 
 def open_option():
     option_file_frame.deiconify()
-    rehn_page.withdraw()
+    ejareh_rehn_page.withdraw()
 def back_to_buy_page():
     option_file_frame.withdraw()
-    rehn_page.deiconify()
+    ejareh_rehn_page.deiconify()
 
 
 # لیست کشویی فیلد فایل 
 def kharid():
     pass
 def forosh():
-    pass
+    root.withdraw()
+    box_forosh.deiconify()
 def rahn():
     root.withdraw()
-    rehn_page.deiconify()
+    box_rehn_ejareh.deiconify()
 def mosharecat():
     pass
+
+def ejareh_rehn_page():
+    box_rehn_ejareh.withdraw()
+    ejareh_rehn_page.deiconify()
+
+def ejareh_et():
+    pass  #این صفحه با بقا
+
+def ejareh_bz():
+    pass
+
+def ejareh_sk():
+    pass
+
+def forosh_rehn_page():
+    pass   #این صفحه با سبحانه
+
+def forosh_et():
+    pass   #این صفحه با عماد
+
+def forosh_bz():
+    pass
+
+def forosh_sk():
+    pass
+
+
+
 
 # لیست کشویی فیلد گزارش ها
 def excel():
@@ -55,7 +84,7 @@ def gharardadeha():
 
 def back_home():
     root.deiconify()
-    rehn_page.withdraw()
+    ejareh_rehn_page.withdraw()
     entry_melk_Pricelimit.delete(0,tk.END)
     entry_melk_width_lable.delete(0,tk.END)
     entry_melk_area_lable.delete(0,tk.END)
@@ -234,16 +263,63 @@ extension.pack(padx=6,pady=4)
 entry_extension = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
 entry_extension.pack(padx=20,pady=4)
 
+#نوع انتخاب ثبتی فایل برای پنجره های رهن و اجاره
 
-#win_rehn
-rehn_page = tk.Toplevel(root)
-rehn_page.title("رهن/اجاره")
-rehn_page.geometry("800x600")
-rehn_page.withdraw()
-rehn_page.configure(bg="#0F6E6E")
+box_rehn_ejareh=tk.Toplevel(root)
+box_rehn_ejareh.title("انتخاب نوع ملک رهن و اجاره")
+box_rehn_ejareh.geometry("420x180")
+box_rehn_ejareh.withdraw()
+box_rehn_ejareh.configure(bg="#0F6E6E")
+label_box1=tk.Label(box_rehn_ejareh,text="لطفا نوع ملک رهن و اجاره را انتخاب کنید",font=("B Nazanin",17),bg="#0F6E6E",fg="#fff")
+label_box1.place(x=75,y=10)
+
+file_button2= tk.Button(box_rehn_ejareh, text="ثبت", bg="#ffffff", relief="flat",width=20)
+file_button2.place(x=140,y=60)
+
+file_list_box2 = tk.Menu(box_rehn_ejareh, tearoff=0, font=("Arial", 12))
+file_list_box2.add_command(label="اجاره مسکونی", command=ejareh_rehn_page)
+file_list_box2.add_command(label="اجاره اداری/تجاری", command=ejareh_et)  #پنجره بقا
+file_list_box2.add_command(label="اجاره باغ/زمین",command=ejareh_bz)
+file_list_box2.add_command(label="اجاره سوله/کارگاه",command=ejareh_sk)
+def show_file_list_box1(event):
+    file_list_box2.tk_popup(event.x_root, event.y_root)
+
+file_button2.bind("<Button-1>",show_file_list_box1)
+
+#نوع انتخاب ثبتی فایل برای پنجره های فروش
+
+box_forosh=tk.Toplevel(root)
+box_forosh.title("انتخاب نوع ملک فروش")
+box_forosh.geometry("420x180")
+box_forosh.withdraw()
+box_forosh.configure(bg="#0F6E6E")
+label_box2=tk.Label(box_forosh,text="لطفا نوع ملک فروش را انتخاب کنید",font=("B Nazanin",17),bg="#0F6E6E",fg="#fff")
+label_box2.place(x=100,y=10)
+
+file_button3= tk.Button(box_forosh, text="ثبت", bg="#ffffff", relief="flat",width=20)
+file_button3.place(x=140,y=60)
+
+file_list_box3 = tk.Menu(box_forosh, tearoff=0, font=("Arial", 12))
+file_list_box3.add_command(label="فروش مسکونی", command=forosh_rehn_page)  #پنجره سبحان
+file_list_box3.add_command(label="فروش اداری/تجاری", command=forosh_et)    #پنجره عماد
+file_list_box3.add_command(label="فروش باغ/زمین",command=forosh_bz)
+file_list_box3.add_command(label="فروش سوله/کارگاه",command=forosh_sk)
+def show_file_list_box3(event):
+    file_list_box3.tk_popup(event.x_root, event.y_root)
+
+file_button3.bind("<Button-1>",show_file_list_box3)
+
+#==========WINS_BOX1_REHN_EJAREH======================
+#win_ejareh_rehn
+ejareh_rehn_page = tk.Toplevel(root)
+ejareh_rehn_page.title("رهن و اجاره مسکونی")
+ejareh_rehn_page.geometry("800x600")
+ejareh_rehn_page.withdraw()
+ejareh_rehn_page.configure(bg="#0F6E6E")
+
  
 #option_file
-option_file_frame=tk.Toplevel(rehn_page,background="#bbfbd1" )
+option_file_frame=tk.Toplevel(ejareh_rehn_page,background="#bbfbd1" )
 option_file_frame.title(" ")
 option_file_frame.geometry("500x370")
 option_file_frame.pack_propagate(False)
@@ -251,17 +327,16 @@ option_file_frame.withdraw()
 
 
 
-rehn_page_frame1=tk.Frame(rehn_page,width=490,height=800,bg="#5d6059",border=2)
+rehn_page_frame1=tk.Frame(ejareh_rehn_page,width=490,height=800,bg="#5d6059",border=2)
 rehn_page_frame1.place(x=500,y=50)
 
 
 melktype_buy=tk.Label(rehn_page_frame1,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
 melktype_buy.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
-combo_melktype= ttk.Combobox(rehn_page_frame1,state="readonly")
-combo_melktype["values"] = ("اجاره مسکونی","مغازه/ تجاری"," باغ / زمین","سوله / کارگاه")
-combo_melktype.set("اجاره مسکونی")
-combo_melktype.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
+melk_type_rehn_maskoni=tk.Entry(rehn_page_frame1,text="اجاره مسکونی",bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+melk_type_rehn_maskoni.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
+
 
 year_buy=tk.Label(rehn_page_frame1,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
 year_buy.grid(padx=8,pady=10,sticky="e",row=1,column=1)
@@ -299,17 +374,17 @@ price_buy.grid(padx=8,pady=15,sticky="e",row=6,column=1)
 price_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 price_buy_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
 
-back_to_home=tk.Button(rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home)
+back_to_home=tk.Button(ejareh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home)
 back_to_home.place(x=650,y=535)
 
-photo_box=tk.Frame(rehn_page,width=410,height=450,background="#e4dde3")
+photo_box=tk.Frame(ejareh_rehn_page,width=410,height=450,background="#e4dde3")
 photo_box.place(x=40,y=40)
 photo_lbl2 = tk.Label(photo_box, text="[تصویر ملک]", bg="gray", width=50, height=15)
 photo_lbl2.place(x=30,y=45)
 add_img_btn = tk.Button(photo_box, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn.place(x=40,y=330)
 #ساخت پنجره امکانات
-option_frame=tk.Frame(rehn_page,width=300,height=30,background="#bbfbd1")
+option_frame=tk.Frame(ejareh_rehn_page,width=300,height=30,background="#bbfbd1")
 option_frame.place(x=520,y=460)
 
 option_label=tk.Label(option_frame,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
@@ -367,8 +442,36 @@ save_optoin1.place(x=170,y=330)
 back_to_buy=tk.Button(option_file_frame,text="بازگشت",command=back_to_buy_page,background="#079BDB",fg="#ffffff",width=8)
 back_to_buy.place(x=95,y=330)
 
+#win_ejareh_et===bagha
+
+
+
+
+
+
+
+
+#==========WINS_BOX2_FOROSH==================
+#win_forosh_rehn_page===sobhan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#win_forosh_et===emad
+
+
+# اجرای برنامه
 root.protocol("WM_DELETE_WINDOW",close_window)
 option_file_frame.mainloop()
-# اجرای برنامه
 root.mainloop()
 
