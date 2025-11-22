@@ -28,11 +28,18 @@ def open_file():
 
 def open_option():
     option_file_frame.deiconify()
+    forosh_rehn_page.withdraw()
+def open_option2():
+    option_file_frame_forosh_maskoni.deiconify()
     ejareh_rehn_page.withdraw()
+
 def back_to_buy_page():
     option_file_frame.withdraw()
     ejareh_rehn_page.deiconify()
 
+def back_to_forosh_maskoni_page():
+    option_file_frame_forosh_maskoni.withdraw()
+    forosh_rehn_page.deiconify()
 
 # لیست کشویی فیلد فایل 
 def kharid():
@@ -60,7 +67,8 @@ def ejareh_sk():
     pass
 
 def forosh_rehn_page():
-    pass   #این صفحه با سبحانه
+    box_forosh.withdraw()
+    forosh_rehn_page.deiconify()  #این صفحه با سبحانه
 
 def forosh_et():
     pass   #این صفحه با عماد
@@ -83,8 +91,11 @@ def gharardadeha():
 #بازگشت های صفحات
 
 def back_home():
+#ejare_rahn_page and home delete Entry
     root.deiconify()
     ejareh_rehn_page.withdraw()
+    root.deiconify()
+    forosh_rehn_page.withdraw()
     entry_melk_Pricelimit.delete(0,tk.END)
     entry_melk_width_lable.delete(0,tk.END)
     entry_melk_area_lable.delete(0,tk.END)
@@ -96,6 +107,14 @@ def back_home():
     price_buy_entry.delete(0,tk.END)
     combo1.delete(0,tk.END)
     combo2.delete(0,tk.END)
+#forosh_rehn_page delete Entry
+
+    year_forosh_maskoni_entry.delete(0,tk.END)
+    addrres_forosh_maskoni_entry.delete(0,tk.END)
+    floor_forosh_maskoni_entry.delete(0,tk.END)
+    vahed_forosh_maskoni_entry.delete(0,tk.END)
+    room_forosh_maskoni_entry.delete(0,tk.END)
+    price_forosh_maskoni_entry.delete(0,tk.END)
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
 
 
@@ -454,24 +473,144 @@ back_to_buy.place(x=95,y=330)
 #==========WINS_BOX2_FOROSH==================
 #win_forosh_rehn_page===sobhan
 
+forosh_rehn_page = tk.Toplevel(root)
+forosh_rehn_page.title("فروش مسکونی")
+forosh_rehn_page.geometry("800x600")
+forosh_rehn_page.withdraw()
+forosh_rehn_page.configure(bg="#0F6E6E")
+
+#option_file === (Forosh_rehn_page)Sobhan
+option_file_frame_forosh_maskoni=tk.Toplevel(forosh_rehn_page,background="#bbfbd1" )
+option_file_frame_forosh_maskoni.title(" ")
+option_file_frame_forosh_maskoni.geometry("500x370")
+option_file_frame_forosh_maskoni.pack_propagate(False)
+option_file_frame_forosh_maskoni.withdraw()
 
 
 
+rehn_page_frame2=tk.Frame(forosh_rehn_page,width=490,height=800,bg="#5d6059",border=2)
+rehn_page_frame2.place(x=500,y=50)
 
 
+melktype_forosh_maskoni=tk.Label(rehn_page_frame2,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
+melktype_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=0,column=1)
+
+melk_type_forosh_maskoni=tk.Entry(rehn_page_frame2,text="فروش مسکونی",bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+melk_type_forosh_maskoni.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
 
 
+year_buy_forosh_maskoni=tk.Label(rehn_page_frame2,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
+year_buy_forosh_maskoni.grid(padx=8,pady=10,sticky="e",row=1,column=1)
 
+year_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+year_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
 
+addrres_forosh_maskoni=tk.Label(rehn_page_frame2,text="آدرس",bg="#0F6E6E",fg="#ffffff",width=10)
+addrres_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=2,column=1)
 
+addrres_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+addrres_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
 
+floor_forosh_maskoni=tk.Label(rehn_page_frame2,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
+floor_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=3,column=1)
 
+floor_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+floor_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
+
+vahed_forosh_maskoni=tk.Label(rehn_page_frame2,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
+vahed_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=4,column=1)
+
+vahed_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+vahed_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
+
+room_forosh_maskoni=tk.Label(rehn_page_frame2,text="اتاق",bg="#0F6E6E",fg="#ffffff",width=10)
+room_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=5,column=1)
+
+room_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+room_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
+
+price_forosh_maskoni=tk.Label(rehn_page_frame2,text="قیمت",bg="#0F6E6E",fg="#ffffff",width=10)
+price_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=6,column=1)
+
+price_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
+
+back_to_home_forosh_maskoni=tk.Button(forosh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home)
+back_to_home_forosh_maskoni.place(x=650,y=535)
+
+photo_box_forosh_maskoni=tk.Frame(forosh_rehn_page,width=410,height=450,background="#e4dde3")
+photo_box_forosh_maskoni.place(x=40,y=40)
+photo_lbl2_forosh_maskoni = tk.Label(photo_box_forosh_maskoni, text="[تصویر ملک]", bg="gray", width=50, height=15)
+photo_lbl2_forosh_maskoni.place(x=30,y=45)
+add_img_btn_forosh_maskoni = tk.Button(photo_box_forosh_maskoni, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
+add_img_btn_forosh_maskoni.place(x=40,y=330)
+
+# (Forosh_rehn_page)Sobhan === ساخت پنجره امکانات 
+
+option_frame3=tk.Frame(forosh_rehn_page,width=300,height=30,background="#bbfbd1")
+option_frame3.place(x=520,y=460)
+
+option_label_forosh_maskoni=tk.Label(option_frame3,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_forosh_maskoni.pack(side="right",padx=1)
+
+button_label_forosh_maskoni=tk.Label(option_frame3)
+button_label_forosh_maskoni.pack(side="left",padx=1)
+plus_button_forosh_maskoni=tk.Button(option_frame3,image=plus,command=open_option2,border=0)
+plus_button_forosh_maskoni.pack()
+
+option_frame4=tk.Frame(option_file_frame_forosh_maskoni,width=400,height=100,background="#bbfbd1")
+option_frame4.pack(padx=10,pady=15)
+
+parking_ch_btn_forosh_maskoni=tk.Checkbutton(option_frame4,image=parking_pic,background="#022578")
+parking_ch_btn_forosh_maskoni.pack(padx=15,side="left")
+
+elvator_ch_btn_forosh_maskoni=tk.Checkbutton(option_frame4,image=elvator_pic,background="#022578")
+elvator_ch_btn_forosh_maskoni.pack(padx=15,side="left")
+
+warehouse_ch_btn_forosh_maskoni=tk.Checkbutton(option_frame4,image=warehouse_pic,background="#022578")
+warehouse_ch_btn_forosh_maskoni.pack(padx=15,side="right")
+
+option_frame5=tk.Frame(option_file_frame_forosh_maskoni,width=400,height=400,background="#bbfbd1",border=1)
+option_frame5.pack(padx=10,pady=15)
+
+#balcon_ch_btn=tk.Checkbutton === (Forosh_rehn_page)Sobhan(option_frame2,text="تراس")
+
+sarmaesh_forosh_maskoni=tk.Label(option_frame5,text="سرمایش",background="#025578",fg="#ffffff")
+sarmaesh_forosh_maskoni.grid(row=0,column=1,padx=15,pady=5)
+sarmaesh_combo_forosh_maskoni=ttk.Combobox(option_frame5)
+sarmaesh_combo_forosh_maskoni["values"] = ("ندارد","پنکه سقفی","کولر ابی","کولر گازی ","ابی/گازی")
+sarmaesh_combo_forosh_maskoni.grid(row=0,column=0,padx=15,pady=5)
+
+garmaesh_forosh_maskoni=tk.Label(option_frame5,text="گرمایش",background="#025578",fg="#ffffff")
+garmaesh_forosh_maskoni.grid(row=1,column=1,padx=15,pady=5)
+garmaesh_combo_forosh_maskoni=ttk.Combobox(option_frame5)
+garmaesh_combo_forosh_maskoni["values"] = ("ندارد","بخاری"," شوفاژ","گرمایش از کف ")
+garmaesh_combo_forosh_maskoni.grid(row=1,column=0,padx=15,pady=5)
+
+kaf_forosh_maskoni=tk.Label(option_frame5,text="کف",background="#025578",fg="#ffffff")
+kaf_forosh_maskoni.grid(row=2,column=1,padx=15,pady=5)
+kaf_combo_forosh_maskoni=ttk.Combobox(option_frame5)
+kaf_combo_forosh_maskoni["values"] = ("سرامیک","موزاییک","پارکت")
+kaf_combo_forosh_maskoni.grid(row=2,column=0,padx=15,pady=5)
+toilet_forosh_maskoni=tk.Label(option_frame5,text="سرویس بهداشتی",background="#025578",fg="#ffffff")
+toilet_forosh_maskoni.grid(row=3,column=1,padx=5,pady=5)
+toilet_combo_forosh_maskoni=ttk.Combobox(option_frame5)
+toilet_combo_forosh_maskoni["values"] = ("ایرانی","فرنگی","هردو")
+toilet_combo_forosh_maskoni.grid(row=3,column=0,padx=15,pady=5)
+
+save_optoin2=tk.Button(option_file_frame_forosh_maskoni,text="ذخیره",command=None,background="#079BDB",fg="#ffffff",width=8)
+save_optoin2.place(x=170,y=330)
+
+back_to_home_forosh_maskoni=tk.Button(option_file_frame_forosh_maskoni,text="بازگشت",command=back_to_forosh_maskoni_page,background="#079BDB",fg="#ffffff",width=8)
+back_to_home_forosh_maskoni.place(x=95,y=330)
 
 #win_forosh_et===emad
+
+
+
 
 
 # اجرای برنامه
 root.protocol("WM_DELETE_WINDOW",close_window)
 option_file_frame.mainloop()
 root.mainloop()
-
