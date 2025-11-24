@@ -28,10 +28,10 @@ def open_file():
 
 def open_option():
     option_file_frame.deiconify()
-    forosh_rehn_page.withdraw()
+    ejareh_rehn_page.withdraw()
 def open_option2():
     option_file_frame_forosh_maskoni.deiconify()
-    ejareh_rehn_page.withdraw()
+    forosh_rehn_page.withdraw()
 
 def back_to_buy_page():
     option_file_frame.withdraw()
@@ -90,25 +90,32 @@ def gharardadeha():
 
 #بازگشت های صفحات
 
-def back_home():
-#ejare_rahn_page and home delete Entry
-    root.deiconify()
-    ejareh_rehn_page.withdraw()
-    root.deiconify()
-    forosh_rehn_page.withdraw()
+def back_home_ejare_maskoni():
+#main_page delete Entry and Combo
     entry_melk_Pricelimit.delete(0,tk.END)
     entry_melk_width_lable.delete(0,tk.END)
     entry_melk_area_lable.delete(0,tk.END)
-    year_buy_entry.delete(0,tk.END)
-    addrres_buy_entry.delete(0,tk.END)
-    floor_buy_entry.delete(0,tk.END)
-    vahed_buy_entry.delete(0,tk.END)
-    room_buy_entry.delete(0,tk.END)
-    price_buy_entry.delete(0,tk.END)
-    combo1.delete(0,tk.END)
-    combo2.delete(0,tk.END)
+    combo1.set("")
+    combo2.set("")
+#ejare_rehn_page delete Entry
+    root.deiconify()
+    ejareh_rehn_page.withdraw()
+    year_ejare_maskoni_entry.delete(0,tk.END)
+    addrres_ejare_maskoni_entry.delete(0,tk.END)
+    floor_ejare_maskoni_entry.delete(0,tk.END)
+    vahed_ejare_maskoni_entry.delete(0,tk.END)
+    room_ejare_maskoni_entry.delete(0,tk.END)
+    price_ejare_maskoni_entry.delete(0,tk.END)
+def back_home_forosh_maskoni():
+#main_page delete Entry and Combo
+    entry_melk_Pricelimit.delete(0,tk.END)
+    entry_melk_width_lable.delete(0,tk.END)
+    entry_melk_area_lable.delete(0,tk.END)
+    combo1.set("")
+    combo2.set("")
 #forosh_rehn_page delete Entry
-
+    root.deiconify()
+    forosh_rehn_page.withdraw()
     year_forosh_maskoni_entry.delete(0,tk.END)
     addrres_forosh_maskoni_entry.delete(0,tk.END)
     floor_forosh_maskoni_entry.delete(0,tk.END)
@@ -350,116 +357,116 @@ rehn_page_frame1=tk.Frame(ejareh_rehn_page,width=490,height=800,bg="#5d6059",bor
 rehn_page_frame1.place(x=500,y=50)
 
 
-melktype_buy=tk.Label(rehn_page_frame1,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
-melktype_buy.grid(padx=8,pady=15,sticky="e",row=0,column=1)
+melktype_ejare_maskoni=tk.Label(rehn_page_frame1,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
+melktype_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
 melk_type_rehn_maskoni=tk.Entry(rehn_page_frame1,text="اجاره مسکونی",bg="#C2C2C2", fg="#180202",font=("Arial", 10))
 melk_type_rehn_maskoni.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
 
 
-year_buy=tk.Label(rehn_page_frame1,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
-year_buy.grid(padx=8,pady=10,sticky="e",row=1,column=1)
+year_ejare_maskoni=tk.Label(rehn_page_frame1,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
+year_ejare_maskoni.grid(padx=8,pady=10,sticky="e",row=1,column=1)
 
-year_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
-year_buy_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
+year_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+year_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
 
 addrres_buy=tk.Label(rehn_page_frame1,text="آدرس",bg="#0F6E6E",fg="#ffffff",width=10)
 addrres_buy.grid(padx=8,pady=15,sticky="e",row=2,column=1)
 
-addrres_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
-addrres_buy_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
+addrres_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+addrres_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
 
-floor_buy=tk.Label(rehn_page_frame1,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
-floor_buy.grid(padx=8,pady=15,sticky="e",row=3,column=1)
+floor_ejare_maskoni=tk.Label(rehn_page_frame1,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
+floor_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=3,column=1)
 
-floor_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
-floor_buy_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
+floor_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+floor_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
 
-vahed_buy=tk.Label(rehn_page_frame1,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
-vahed_buy.grid(padx=8,pady=15,sticky="e",row=4,column=1)
+vahed_ejare_maskoni=tk.Label(rehn_page_frame1,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
+vahed_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=4,column=1)
 
-vahed_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
-vahed_buy_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
+vahed_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+vahed_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
 
-room_buy=tk.Label(rehn_page_frame1,text="اتاق",bg="#0F6E6E",fg="#ffffff",width=10)
-room_buy.grid(padx=8,pady=15,sticky="e",row=5,column=1)
+room_ejare_maskoni=tk.Label(rehn_page_frame1,text="اتاق",bg="#0F6E6E",fg="#ffffff",width=10)
+room_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=5,column=1)
 
-room_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
-room_buy_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
+room_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+room_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
 
-price_buy=tk.Label(rehn_page_frame1,text="قیمت",bg="#0F6E6E",fg="#ffffff",width=10)
-price_buy.grid(padx=8,pady=15,sticky="e",row=6,column=1)
+price_ejare_maskoni=tk.Label(rehn_page_frame1,text="قیمت",bg="#0F6E6E",fg="#ffffff",width=10)
+price_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=6,column=1)
 
-price_buy_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
-price_buy_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
+price_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
 
-back_to_home=tk.Button(ejareh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home)
+back_to_home=tk.Button(ejareh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_ejare_maskoni)
 back_to_home.place(x=650,y=535)
 
-photo_box=tk.Frame(ejareh_rehn_page,width=410,height=450,background="#e4dde3")
-photo_box.place(x=40,y=40)
-photo_lbl2 = tk.Label(photo_box, text="[تصویر ملک]", bg="gray", width=50, height=15)
-photo_lbl2.place(x=30,y=45)
-add_img_btn = tk.Button(photo_box, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
-add_img_btn.place(x=40,y=330)
+photo_box_ejare_maskoni=tk.Frame(ejareh_rehn_page,width=410,height=450,background="#e4dde3")
+photo_box_ejare_maskoni.place(x=40,y=40)
+photo_lbl2_ejare_maskoni = tk.Label(photo_box_ejare_maskoni, text="[تصویر ملک]", bg="gray", width=50, height=15)
+photo_lbl2_ejare_maskoni.place(x=30,y=45)
+add_img_btn_ejare_maskoni = tk.Button(photo_box_ejare_maskoni, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
+add_img_btn_ejare_maskoni.place(x=40,y=330)
 #ساخت پنجره امکانات
-option_frame=tk.Frame(ejareh_rehn_page,width=300,height=30,background="#bbfbd1")
-option_frame.place(x=520,y=460)
+option_frame_ejare_maskoni=tk.Frame(ejareh_rehn_page,width=300,height=30,background="#bbfbd1")
+option_frame_ejare_maskoni.place(x=520,y=460)
 
-option_label=tk.Label(option_frame,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
-option_label.pack(side="right",padx=1)
+option_label_ejare_maskoni=tk.Label(option_frame_ejare_maskoni,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_ejare_maskoni.pack(side="right",padx=1)
 
-button_label=tk.Label(option_frame)
-button_label.pack(side="left",padx=1)
-plus_button=tk.Button(option_frame,image=plus,command=open_option,border=0)
-plus_button.pack()
+button_label_ejare_maskoni=tk.Label(option_frame_ejare_maskoni)
+button_label_ejare_maskoni.pack(side="left",padx=1)
+plus_button_ejare_maskoni=tk.Button(option_frame_ejare_maskoni,image=plus,command=open_option,border=0)
+plus_button_ejare_maskoni.pack()
 
 option_frame1=tk.Frame(option_file_frame,width=400,height=100,background="#bbfbd1")
 option_frame1.pack(padx=10,pady=15)
 
-parking_ch_btn=tk.Checkbutton(option_frame1,image=parking_pic,background="#022578")
-parking_ch_btn.pack(padx=15,side="left")
+parking_ch_btn_ejare_maskoni=tk.Checkbutton(option_frame1,image=parking_pic,background="#022578")
+parking_ch_btn_ejare_maskoni.pack(padx=15,side="left")
 
-elvator_ch_btn=tk.Checkbutton(option_frame1,image=elvator_pic,background="#022578")
-elvator_ch_btn.pack(padx=15,side="left")
+elvator_ch_btn_ejare_maskoni=tk.Checkbutton(option_frame1,image=elvator_pic,background="#022578")
+elvator_ch_btn_ejare_maskoni.pack(padx=15,side="left")
 
-warehouse_ch_btn=tk.Checkbutton(option_frame1,image=warehouse_pic,background="#022578")
-warehouse_ch_btn.pack(padx=15,side="right")
+warehouse_ch_btn_ejare_maskoni=tk.Checkbutton(option_frame1,image=warehouse_pic,background="#022578")
+warehouse_ch_btn_ejare_maskoni.pack(padx=15,side="right")
 
 option_frame2=tk.Frame(option_file_frame,width=400,height=400,background="#bbfbd1",border=1)
 option_frame2.pack(padx=10,pady=15)
 
 #balcon_ch_btn=tk.Checkbutton(option_frame2,text="تراس")
 
-sarmaesh=tk.Label(option_frame2,text="سرمایش",background="#025578",fg="#ffffff")
-sarmaesh.grid(row=0,column=1,padx=15,pady=5)
-sarmaesh_combo=ttk.Combobox(option_frame2)
-sarmaesh_combo["values"] = ("ندارد","پنکه سقفی","کولر ابی","کولر گازی ","ابی/گازی")
-sarmaesh_combo.grid(row=0,column=0,padx=15,pady=5)
+sarmaesh_ejare_maskoni=tk.Label(option_frame2,text="سرمایش",background="#025578",fg="#ffffff")
+sarmaesh_ejare_maskoni.grid(row=0,column=1,padx=15,pady=5)
+sarmaesh_ejare_maskoni_combo=ttk.Combobox(option_frame2)
+sarmaesh_ejare_maskoni_combo["values"] = ("ندارد","پنکه سقفی","کولر ابی","کولر گازی ","ابی/گازی")
+sarmaesh_ejare_maskoni_combo.grid(row=0,column=0,padx=15,pady=5)
 
-garmaesh=tk.Label(option_frame2,text="گرمایش",background="#025578",fg="#ffffff")
-garmaesh.grid(row=1,column=1,padx=15,pady=5)
-garmaesh_combo=ttk.Combobox(option_frame2)
-garmaesh_combo["values"] = ("ندارد","بخاری"," شوفاژ","گرمایش از کف ")
-garmaesh_combo.grid(row=1,column=0,padx=15,pady=5)
+garmaesh_ejare_maskoni=tk.Label(option_frame2,text="گرمایش",background="#025578",fg="#ffffff")
+garmaesh_ejare_maskoni.grid(row=1,column=1,padx=15,pady=5)
+garmaesh_ejare_maskoni_combo=ttk.Combobox(option_frame2)
+garmaesh_ejare_maskoni_combo["values"] = ("ندارد","بخاری"," شوفاژ","گرمایش از کف ")
+garmaesh_ejare_maskoni_combo.grid(row=1,column=0,padx=15,pady=5)
 
-kaf=tk.Label(option_frame2,text="کف",background="#025578",fg="#ffffff")
-kaf.grid(row=2,column=1,padx=15,pady=5)
-kaf_combo=ttk.Combobox(option_frame2)
-kaf_combo["values"] = ("سرامیک","موزاییک","پارکت")
-kaf_combo.grid(row=2,column=0,padx=15,pady=5)
+kaf_ejare_maskoni=tk.Label(option_frame2,text="کف",background="#025578",fg="#ffffff")
+kaf_ejare_maskoni.grid(row=2,column=1,padx=15,pady=5)
+kaf_ejare_maskoni_combo=ttk.Combobox(option_frame2)
+kaf_ejare_maskoni_combo["values"] = ("سرامیک","موزاییک","پارکت")
+kaf_ejare_maskoni_combo.grid(row=2,column=0,padx=15,pady=5)
 
-toilet=tk.Label(option_frame2,text="سرویس بهداشتی",background="#025578",fg="#ffffff")
-toilet.grid(row=3,column=1,padx=5,pady=5)
-toilet_combo=ttk.Combobox(option_frame2)
-toilet_combo["values"] = ("ایرانی","فرنگی","هردو")
-toilet_combo.grid(row=3,column=0,padx=15,pady=5)
+toilet_ejare_maskoni=tk.Label(option_frame2,text="سرویس بهداشتی",background="#025578",fg="#ffffff")
+toilet_ejare_maskoni.grid(row=3,column=1,padx=5,pady=5)
+toilet_ejare_maskoni_combo=ttk.Combobox(option_frame2)
+toilet_ejare_maskoni_combo["values"] = ("ایرانی","فرنگی","هردو")
+toilet_ejare_maskoni_combo.grid(row=3,column=0,padx=15,pady=5)
 
 save_optoin1=tk.Button(option_file_frame,text="ذخیره",command=None,background="#079BDB",fg="#ffffff",width=8)
 save_optoin1.place(x=170,y=330)
 
-back_to_buy=tk.Button(option_file_frame,text="بازگشت",command=back_to_buy_page,background="#079BDB",fg="#ffffff",width=8)
-back_to_buy.place(x=95,y=330)
+back_to_ejare_maskoni=tk.Button(option_file_frame,text="بازگشت",command=back_to_buy_page,background="#079BDB",fg="#ffffff",width=8)
+back_to_ejare_maskoni.place(x=95,y=330)
 
 #win_ejareh_et===bagha
 
@@ -535,7 +542,7 @@ price_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=6,column=1)
 price_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 price_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
 
-back_to_home_forosh_maskoni=tk.Button(forosh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home)
+back_to_home_forosh_maskoni=tk.Button(forosh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_forosh_maskoni)
 back_to_home_forosh_maskoni.place(x=650,y=535)
 
 photo_box_forosh_maskoni=tk.Frame(forosh_rehn_page,width=410,height=450,background="#e4dde3")
