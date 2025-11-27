@@ -82,21 +82,21 @@ def ejareh_rehn_page():
 
 def ejareh_et():
     box_rehn_ejareh.withdraw()
-    ejareh_et.deiconify()  #این صفحه با بقا
+    ejareh_et.deiconify()  
 
 def ejareh_bz():
-    pass
-
+    box_rehn_ejareh.withdraw()
+    ejareh_bz.deiconify()  
 def ejareh_sk():
     pass
 
 def forosh_rehn_page():
     box_forosh.withdraw()
-    forosh_rehn_page.deiconify()  #این صفحه با سبحانه
+    forosh_rehn_page.deiconify() 
 
 def forosh_et():
     box_forosh.withdraw()
-    forosh_et.deiconify()   #این صفحه با عماد
+    forosh_et.deiconify()
 
 def forosh_bz():
     pass
@@ -938,6 +938,13 @@ save_optoin4.place(x=170,y=330)
 
 back_to_home_forosh_et=tk.Button(option_file_frame_forosh_et,text="بازگشت",command=back_to_forosh_et,background="#079BDB",fg="#ffffff",width=8)
 back_to_home_forosh_et.place(x=95,y=330)
+
+#win_ejareh_bagh_zamin
+ejareh_bz = tk.Toplevel(root)
+ejareh_bz.title(" اجاره باغ و زمین")
+ejareh_bz.geometry("800x600")
+ejareh_bz.withdraw()
+ejareh_bz.configure(bg="#0F6E6E")
 
 # اجرای برنامه
 root.protocol("WM_DELETE_WINDOW",close_window)
