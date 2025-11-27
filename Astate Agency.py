@@ -57,6 +57,12 @@ def back_to_ejareh_et():
 def back_to_forosh_et():
     option_file_frame_forosh_et.withdraw()
     forosh_et.deiconify()
+def back_f_exit():
+    box_forosh.withdraw()
+    root.deiconify()
+def back_rehn_e_exit():
+    box_rehn_ejareh.withdraw()
+    root.deiconify()
 
 # لیست کشویی فیلد فایل 
 def kharid():
@@ -350,6 +356,9 @@ box_rehn_ejareh.withdraw()
 box_rehn_ejareh.configure(bg="#0F6E6E")
 label_box1=tk.Label(box_rehn_ejareh,text="لطفا نوع ملک رهن و اجاره را انتخاب کنید",font=("B Nazanin",17),bg="#0F6E6E",fg="#fff")
 label_box1.place(x=75,y=10)
+back_to_home_reh=tk.Button(box_rehn_ejareh,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_rehn_e_exit)
+back_to_home_reh.place(x=290,y=110)
+
 
 file_button2= tk.Button(box_rehn_ejareh, text="ثبت", bg="#ffffff", relief="flat",width=20)
 file_button2.place(x=140,y=60)
@@ -373,6 +382,10 @@ box_forosh.withdraw()
 box_forosh.configure(bg="#0F6E6E")
 label_box2=tk.Label(box_forosh,text="لطفا نوع ملک فروش را انتخاب کنید",font=("B Nazanin",17),bg="#0F6E6E",fg="#fff")
 label_box2.place(x=100,y=10)
+
+back_to_home_f=tk.Button(box_forosh,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_f_exit)
+back_to_home_f.place(x=290,y=110)
+
 
 file_button3= tk.Button(box_forosh, text="ثبت", bg="#ffffff", relief="flat",width=20)
 file_button3.place(x=140,y=60)
