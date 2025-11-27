@@ -63,6 +63,9 @@ def back_f_exit():
 def back_rehn_e_exit():
     box_rehn_ejareh.withdraw()
     root.deiconify()
+def back_home_ejareh_bagh():
+    ejareh_bz.withdraw()
+    root.deiconify()
 
 # لیست کشویی فیلد فایل 
 def kharid():
@@ -946,8 +949,76 @@ ejareh_bz.geometry("800x600")
 ejareh_bz.withdraw()
 ejareh_bz.configure(bg="#0F6E6E")
 
+ejareh_bagh_frame=tk.Frame(ejareh_bz,width=490,height=800,bg="#5d6059",border=2)
+ejareh_bagh_frame.place(x=540,y=90)
+
+metraj_zamin=tk.Label(ejareh_bagh_frame,text="متراژ",bg="#0F6E6E",fg="#ffffff",width=10)
+metraj_zamin.grid(padx=8,pady=15,sticky="e",row=0,column=1)
+
+metraj_zamin_entry=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10),textvariable="متر مربع")
+metraj_zamin_entry.grid(padx=8,pady=15,sticky="w",row=0,column=0)
+
+bagh_type=tk.Label(ejareh_bagh_frame,text="کاربری زمین",bg="#0F6E6E",fg="#ffffff",width=10)
+bagh_type.grid(padx=8,pady=15,sticky="e",row=1,column=1)
+
+bagh_type_combo=ttk.Combobox(ejareh_bagh_frame,state="readonly")
+bagh_type_combo["values"]=("باغ","زمین کشاورزی")
+bagh_type_combo.set("باغ")
+bagh_type_combo.grid(padx=8,pady=15,sticky="w",row=1,column=0)
+
+bagh_loctaion=tk.Label(ejareh_bagh_frame,text="منطقه و ادرس ",bg="#0F6E6E",fg="#ffffff",width=10)
+bagh_loctaion.grid(padx=8,pady=15,sticky="e",row=2,column=1)
+
+bagh_loctaion_entry=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_loctaion_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
+
+bagh_price_ejareh=tk.Label(ejareh_bagh_frame,text='ودیعه',bg="#0F6E6E",fg="#ffffff",width=10)
+bagh_price_ejareh.grid(padx=8,pady=15,sticky="e",row=3,column=1)
+
+bagh_price_ejareh_ent=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_price_ejareh_ent.grid(padx=8,pady=15,sticky="w",row=3,column=0)
+
+bagh_price_ejareh2=tk.Label(ejareh_bagh_frame,text='قیمت هر متر',bg="#0F6E6E",fg="#ffffff",width=10)
+bagh_price_ejareh2.grid(padx=8,pady=15,sticky="e",row=4,column=1)
+
+bagh_price_ejareh2_ent=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_price_ejareh2_ent.grid(padx=8,pady=15,sticky="w",row=4,column=0)
+
+time_bagh_ejareh=tk.Label(ejareh_bagh_frame,text="مدت اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
+time_bagh_ejareh.grid(padx=8,pady=15,sticky="e",row=5,column=1)
+
+bagh_time_combo=ttk.Combobox(ejareh_bagh_frame,state="readonly")
+bagh_time_combo["values"]=("بلندمدت","کوتاه مدت","فصلی","سالانه")
+bagh_time_combo.set("فصلی")
+bagh_time_combo.grid(padx=8,pady=15,sticky="w",row=5,column=0)
+
+photo_box_ejareh_bagh=tk.Frame(ejareh_bz,width=410,height=450,background="#e4dde3")
+photo_box_ejareh_bagh.place(x=50,y=50)
+photo_lbl2_ejareh_bagh = tk.Label(photo_box_ejareh_bagh, text="[تصویر ملک]", bg="gray", width=50, height=15)
+photo_lbl2_ejareh_bagh.place(x=30,y=45)
+add_img_btn_ejareh_bagh = tk.Button(photo_box_ejareh_bagh, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
+add_img_btn_ejareh_bagh.place(x=40,y=330)
+
+back_to_home_bagh=tk.Button(ejareh_bz,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_ejareh_bagh)
+back_to_home_bagh.place(x=650,y=500)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # اجرای برنامه
 root.protocol("WM_DELETE_WINDOW",close_window)
-root.resizable(False, False)
 option_file_frame.mainloop()
 root.mainloop()
