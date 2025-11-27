@@ -359,6 +359,8 @@ label_box1.place(x=75,y=10)
 back_to_home_reh=tk.Button(box_rehn_ejareh,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_rehn_e_exit)
 back_to_home_reh.place(x=290,y=110)
 
+box_rehn_ejareh.protocol("WM_DELETE_WINDOW", lambda: None)
+box_rehn_ejareh.resizable(False, False) 
 
 file_button2= tk.Button(box_rehn_ejareh, text="ثبت", bg="#ffffff", relief="flat",width=20)
 file_button2.place(x=140,y=60)
@@ -385,7 +387,8 @@ label_box2.place(x=100,y=10)
 
 back_to_home_f=tk.Button(box_forosh,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_f_exit)
 back_to_home_f.place(x=290,y=110)
-
+box_forosh.protocol("WM_DELETE_WINDOW", lambda: None)
+box_forosh.resizable(False, False) 
 
 file_button3= tk.Button(box_forosh, text="ثبت", bg="#ffffff", relief="flat",width=20)
 file_button3.place(x=140,y=60)
@@ -938,5 +941,6 @@ back_to_home_forosh_et.place(x=95,y=330)
 
 # اجرای برنامه
 root.protocol("WM_DELETE_WINDOW",close_window)
+root.resizable(False, False)
 option_file_frame.mainloop()
 root.mainloop()
