@@ -133,7 +133,9 @@ def back_home_ejare_maskoni():
     floor_ejare_maskoni_entry.delete(0,tk.END)
     vahed_ejare_maskoni_entry.delete(0,tk.END)
     room_ejare_maskoni_entry.delete(0,tk.END)
-    price_ejare_maskoni_entry.delete(0,tk.END)
+    price_kol_ejare_maskoni_entry.delete(0,tk.END)
+    price_ejare_ejare_maskoni_entry.delete(0,tk.END)
+    price_pish_ejare_maskoni_entry.delete(0,tk.END)
     
 def back_home_forosh_maskoni():
 #main_page delete Entry and Combo
@@ -183,6 +185,46 @@ def back_home_forosh_et():
     floor_forosh_et_entry.delete(0,tk.END)
     vahed_forosh_et_entry.delete(0,tk.END)
     price_forosh_et_entry.delete(0,tk.END)    
+#----------------------------- تابع های مبلغ کل و اجاره و پیش --------------------------------
+total = 0
+def set_kol(event=None):
+    global total
+    try:
+        total = int(price_kol_ejare_maskoni_entry.get())
+    except ValueError:
+        total = 0
+    scale_ejare_maskoni.config(to=total)
+
+def update_from_pish(event=None):
+    if total == 0:
+        return
+
+    try:
+        pish = int(price_pish_ejare_maskoni_entry.get())
+    except ValueError:
+        pish = 0
+
+    ejare = total - pish 
+    if ejare < 0:
+        ejare = 0
+
+    price_ejare_ejare_maskoni_entry.delete(0, tk.END)
+    price_ejare_ejare_maskoni_entry.insert(0, str(ejare))
+
+def update_from_ejare(value):
+    if total == 0:
+        return
+
+    ejare = int(value)
+    pish = total - ejare
+    if pish < 0:
+        pish = 0
+
+    price_pish_ejare_maskoni_entry.delete(0, tk.END)
+    price_pish_ejare_maskoni_entry.insert(0, str(pish))
+
+    price_ejare_ejare_maskoni_entry.delete(0, tk.END)
+    price_ejare_ejare_maskoni_entry.insert(0, str(ejare))
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
 
 
@@ -425,7 +467,7 @@ option_file_frame.withdraw()
 
 
 rehn_page_frame1=tk.Frame(ejareh_rehn_page,width=490,height=800,bg="#5d6059",border=2)
-rehn_page_frame1.place(x=500,y=50)
+rehn_page_frame1.place(x=450,y=40)
 
 
 melktype_ejare_maskoni=tk.Label(rehn_page_frame1,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
@@ -465,24 +507,44 @@ room_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=5,column=1)
 room_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 room_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
 
-price_ejare_maskoni=tk.Label(rehn_page_frame1,text="قیمت",bg="#0F6E6E",fg="#ffffff",width=10)
-price_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=6,column=1)
+price_kol_ejare_maskoni=tk.Label(rehn_page_frame1,text="قیمت کل",bg="#0F6E6E",fg="#ffffff",width=10)
+price_kol_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=6,column=1)
 
-price_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
-price_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
+
+price_ejare_ejare_maskoni=tk.Label(rehn_page_frame1,text="مبلغ اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
+price_ejare_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=7,column=0)
+
+price_pish_ejare_maskoni=tk.Label(rehn_page_frame1,text="مبلغ پیش",bg="#0F6E6E",fg="#ffffff",width=10)
+price_pish_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=7,column=1)
+
+
+price_kol_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_kol_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
+price_kol_ejare_maskoni_entry.bind("<KeyRelease>", set_kol)
+
+price_ejare_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_ejare_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=8,column=0)
+
+price_pish_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_pish_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=8,column=1)
+price_pish_ejare_maskoni_entry.bind("<KeyRelease>", update_from_pish)
+
+# اسکرول بار مبالغ کل و پیش و اجاره
+scale_ejare_maskoni=tk.Scale(rehn_page_frame1,from_=0,to=0,orient="horizontal",length=150,command=update_from_ejare)
+scale_ejare_maskoni.grid(padx=8,pady=15,sticky="we",row=9,column=0,columnspan=2)
 
 back_to_home=tk.Button(ejareh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_ejare_maskoni)
-back_to_home.place(x=650,y=535)
+back_to_home.place(x=320,y=520)
 
 photo_box_ejare_maskoni=tk.Frame(ejareh_rehn_page,width=410,height=450,background="#e4dde3")
-photo_box_ejare_maskoni.place(x=40,y=40)
+photo_box_ejare_maskoni.place(x=30,y=40)
 photo_lbl2_ejare_maskoni = tk.Label(photo_box_ejare_maskoni, text="[تصویر ملک]", bg="gray", width=50, height=15)
 photo_lbl2_ejare_maskoni.place(x=30,y=45)
 add_img_btn_ejare_maskoni = tk.Button(photo_box_ejare_maskoni, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn_ejare_maskoni.place(x=40,y=330)
 #ساخت پنجره امکانات
 option_frame_ejare_maskoni=tk.Frame(ejareh_rehn_page,width=300,height=30,background="#bbfbd1")
-option_frame_ejare_maskoni.place(x=520,y=460)
+option_frame_ejare_maskoni.place(x=110,y=523)
 
 option_label_ejare_maskoni=tk.Label(option_frame_ejare_maskoni,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
 option_label_ejare_maskoni.pack(side="right",padx=1)
@@ -704,8 +766,8 @@ melk_type_forosh_maskoni=tk.Entry(rehn_page_frame2,text="فروش مسکونی",
 melk_type_forosh_maskoni.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
 
 
-year_buy_forosh_maskoni=tk.Label(rehn_page_frame2,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
-year_buy_forosh_maskoni.grid(padx=8,pady=10,sticky="e",row=1,column=1)
+year_forosh_maskoni=tk.Label(rehn_page_frame2,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
+year_forosh_maskoni.grid(padx=8,pady=10,sticky="e",row=1,column=1)
 
 year_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
 year_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
@@ -1001,22 +1063,6 @@ add_img_btn_ejareh_bagh.place(x=40,y=330)
 
 back_to_home_bagh=tk.Button(ejareh_bz,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_ejareh_bagh)
 back_to_home_bagh.place(x=650,y=500)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # اجرای برنامه
 root.protocol("WM_DELETE_WINDOW",close_window)
