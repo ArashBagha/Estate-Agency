@@ -25,7 +25,14 @@ def open_file():
     file_path = filedialog.askopenfilename()
     if file_path:
         os.startfile(file_path)
+#توابع اصلی
 
+def save_rehn_maskkoni():#ذخیره پنجره راجاره مسکونی
+    pass
+def save_rehn_edari():#ذخیره پنجره راجاره اداری
+    pass
+def save_rehn_bagh():#ذخیره پنجره راجاره زمین و باغ
+    pass
 def open_option():
     option_file_frame.deiconify()
     ejareh_rehn_page.withdraw()
@@ -41,7 +48,9 @@ def open_option3():
 def open_option4():
     option_file_frame_forosh_et.deiconify()
     forosh_et.withdraw()    
-
+def open_option5():
+    option_file_frame_ejareh_bz.deiconify()
+    ejareh_bz.withdraw() 
 def back_to_buy_page():
     option_file_frame.withdraw()
     ejareh_rehn_page.deiconify()
@@ -536,6 +545,9 @@ scale_ejare_maskoni.grid(padx=8,pady=15,sticky="we",row=9,column=0,columnspan=2)
 back_to_home=tk.Button(ejareh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_ejare_maskoni)
 back_to_home.place(x=320,y=520)
 
+save_button_re_maskooni=tk.Button(ejareh_rehn_page,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_rehn_maskkoni)
+save_button_re_maskooni.place(x=220,y=520)
+
 photo_box_ejare_maskoni=tk.Frame(ejareh_rehn_page,width=410,height=450,background="#e4dde3")
 photo_box_ejare_maskoni.place(x=30,y=40)
 photo_lbl2_ejare_maskoni = tk.Label(photo_box_ejare_maskoni, text="[تصویر ملک]", bg="gray", width=50, height=15)
@@ -544,7 +556,7 @@ add_img_btn_ejare_maskoni = tk.Button(photo_box_ejare_maskoni, text="افزود�
 add_img_btn_ejare_maskoni.place(x=40,y=330)
 #ساخت پنجره امکانات
 option_frame_ejare_maskoni=tk.Frame(ejareh_rehn_page,width=300,height=30,background="#bbfbd1")
-option_frame_ejare_maskoni.place(x=110,y=523)
+option_frame_ejare_maskoni.place(x=50,y=523)
 
 option_label_ejare_maskoni=tk.Label(option_frame_ejare_maskoni,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
 option_label_ejare_maskoni.pack(side="right",padx=1)
@@ -672,6 +684,11 @@ Full_mortgage_ch_btn_ejareh_et.grid(padx=8,pady=15,sticky="w",row=7,column=0)
 back_to_home=tk.Button(ejareh_et,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_ejareh_et)
 back_to_home.place(x=650,y=535)
 
+save_button_re_edari=tk.Button(ejareh_et,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_rehn_edari)
+save_button_re_edari.place(x=550,y=532)
+
+
+
 photo_box_ejareh_et=tk.Frame(ejareh_et,width=410,height=450,background="#e4dde3")
 photo_box_ejareh_et.place(x=40,y=40)
 photo_lbl2_ejareh_et = tk.Label(photo_box_ejareh_et, text="[تصویر ملک]", bg="gray", width=50, height=15)
@@ -734,6 +751,103 @@ save_optoin3.place(x=170,y=330)
 
 back_to_home_ejareh_et=tk.Button(option_file_frame_ejareh_et,text="بازگشت",command=back_to_ejareh_et,background="#079BDB",fg="#ffffff",width=8)
 back_to_home_ejareh_et.place(x=95,y=330)
+
+
+#win_ejareh_bagh_zamin
+ejareh_bz = tk.Toplevel(root)
+ejareh_bz.title(" اجاره باغ و زمین")
+ejareh_bz.geometry("800x600")
+ejareh_bz.withdraw()
+ejareh_bz.configure(bg="#0F6E6E")
+
+ejareh_bagh_frame=tk.Frame(ejareh_bz,width=490,height=800,bg="#5d6059",border=2)
+ejareh_bagh_frame.place(x=540,y=90)
+
+metraj_zamin=tk.Label(ejareh_bagh_frame,text="متراژ",bg="#0F6E6E",fg="#ffffff",width=10)
+metraj_zamin.grid(padx=8,pady=15,sticky="e",row=0,column=1)
+
+metraj_zamin_entry=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10),textvariable="متر مربع")
+metraj_zamin_entry.grid(padx=8,pady=15,sticky="w",row=0,column=0)
+
+bagh_type=tk.Label(ejareh_bagh_frame,text="کاربری زمین",bg="#0F6E6E",fg="#ffffff",width=10)
+bagh_type.grid(padx=8,pady=15,sticky="e",row=1,column=1)
+
+bagh_type_combo=ttk.Combobox(ejareh_bagh_frame,state="readonly")
+bagh_type_combo["values"]=("باغ","زمین کشاورزی")
+bagh_type_combo.set("باغ")
+bagh_type_combo.grid(padx=8,pady=15,sticky="w",row=1,column=0)
+
+bagh_loctaion=tk.Label(ejareh_bagh_frame,text="منطقه و ادرس ",bg="#0F6E6E",fg="#ffffff",width=10)
+bagh_loctaion.grid(padx=8,pady=15,sticky="e",row=2,column=1)
+
+bagh_loctaion_entry=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_loctaion_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
+
+bagh_price_ejareh=tk.Label(ejareh_bagh_frame,text='ودیعه',bg="#0F6E6E",fg="#ffffff",width=10)
+bagh_price_ejareh.grid(padx=8,pady=15,sticky="e",row=3,column=1)
+
+bagh_price_ejareh_ent=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_price_ejareh_ent.grid(padx=8,pady=15,sticky="w",row=3,column=0)
+
+bagh_price_ejareh2=tk.Label(ejareh_bagh_frame,text='قیمت هر متر',bg="#0F6E6E",fg="#ffffff",width=10)
+bagh_price_ejareh2.grid(padx=8,pady=15,sticky="e",row=4,column=1)
+
+bagh_price_ejareh2_ent=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_price_ejareh2_ent.grid(padx=8,pady=15,sticky="w",row=4,column=0)
+
+time_bagh_ejareh=tk.Label(ejareh_bagh_frame,text="مدت اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
+time_bagh_ejareh.grid(padx=8,pady=15,sticky="e",row=5,column=1)
+
+bagh_time_combo=ttk.Combobox(ejareh_bagh_frame,state="readonly")
+bagh_time_combo["values"]=("بلندمدت","کوتاه مدت","فصلی","سالانه")
+bagh_time_combo.set("فصلی")
+bagh_time_combo.grid(padx=8,pady=15,sticky="w",row=5,column=0)
+
+photo_box_ejareh_bagh=tk.Frame(ejareh_bz,width=410,height=450,background="#e4dde3")
+photo_box_ejareh_bagh.place(x=50,y=50)
+photo_lbl2_ejareh_bagh = tk.Label(photo_box_ejareh_bagh, text="[تصویر ملک]", bg="gray", width=50, height=15)
+photo_lbl2_ejareh_bagh.place(x=30,y=45)
+add_img_btn_ejareh_bagh = tk.Button(photo_box_ejareh_bagh, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
+add_img_btn_ejareh_bagh.place(x=40,y=330)
+
+back_to_home_bagh=tk.Button(ejareh_bz,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_ejareh_bagh)
+back_to_home_bagh.place(x=650,y=500)
+
+save_button_re_bagh=tk.Button(ejareh_bz,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_rehn_bagh)
+save_button_re_bagh.place(x=550,y=500)
+
+# (ejareh_et)  ===>> ساخت پنجره امکانات (باغ)
+
+option_frame_ejareh_bz=tk.Frame(ejareh_bz,width=300,height=30,background="#bbfbd1")
+option_frame_ejareh_bz.place(x=520,y=465)
+
+option_label_ejareh_bz=tk.Label(option_frame_ejareh_bz,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_ejareh_bz.pack(side="right",padx=1)
+
+button_label_ejareh_bz=tk.Label(option_frame_ejareh_et)
+button_label_ejareh_bz.pack(side="left",padx=1)
+plus_button_ejareh_bz=tk.Button(option_frame_ejareh_bz,image=plus,command=open_option5,border=0)
+plus_button_ejareh_bz.pack()
+
+option_file_frame_ejareh_bz=tk.Toplevel(ejareh_bz,background="#bbfbd1")
+option_file_frame_ejareh_bz.title(" ")
+option_file_frame_ejareh_bz.geometry("550x400")
+option_file_frame_ejareh_bz.pack_propagate(False)
+option_file_frame_ejareh_bz.withdraw()
+mini_frame=tk.Frame(option_file_frame_ejareh_bz)
+mini_frame.place(x=290,y=20)
+bagh_type2=tk.Label(mini_frame,text="کاربری زمین",bg="#0F6E6E",fg="#ffffff",width=10)
+bagh_type2.pack(padx=5,pady=5,side="right")
+
+bagh_type2_combo=ttk.Combobox(mini_frame,state="readonly")
+bagh_type2_combo["values"]=("باغ","زمین کشاورزی")
+bagh_type2_combo.set("باغ")
+bagh_type2_combo.pack(padx=5,pady=5,side="left")
+
+fram_option1_bagh=tk.Frame(option_file_frame_ejareh_bz,width=430,height=290,background="#d1e0df")
+fram_option1_bagh.place(x=60,y=60)
+
+
 
 
 
@@ -1004,65 +1118,7 @@ save_optoin4.place(x=170,y=330)
 back_to_home_forosh_et=tk.Button(option_file_frame_forosh_et,text="بازگشت",command=back_to_forosh_et,background="#079BDB",fg="#ffffff",width=8)
 back_to_home_forosh_et.place(x=95,y=330)
 
-#win_ejareh_bagh_zamin
-ejareh_bz = tk.Toplevel(root)
-ejareh_bz.title(" اجاره باغ و زمین")
-ejareh_bz.geometry("800x600")
-ejareh_bz.withdraw()
-ejareh_bz.configure(bg="#0F6E6E")
 
-ejareh_bagh_frame=tk.Frame(ejareh_bz,width=490,height=800,bg="#5d6059",border=2)
-ejareh_bagh_frame.place(x=540,y=90)
-
-metraj_zamin=tk.Label(ejareh_bagh_frame,text="متراژ",bg="#0F6E6E",fg="#ffffff",width=10)
-metraj_zamin.grid(padx=8,pady=15,sticky="e",row=0,column=1)
-
-metraj_zamin_entry=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10),textvariable="متر مربع")
-metraj_zamin_entry.grid(padx=8,pady=15,sticky="w",row=0,column=0)
-
-bagh_type=tk.Label(ejareh_bagh_frame,text="کاربری زمین",bg="#0F6E6E",fg="#ffffff",width=10)
-bagh_type.grid(padx=8,pady=15,sticky="e",row=1,column=1)
-
-bagh_type_combo=ttk.Combobox(ejareh_bagh_frame,state="readonly")
-bagh_type_combo["values"]=("باغ","زمین کشاورزی")
-bagh_type_combo.set("باغ")
-bagh_type_combo.grid(padx=8,pady=15,sticky="w",row=1,column=0)
-
-bagh_loctaion=tk.Label(ejareh_bagh_frame,text="منطقه و ادرس ",bg="#0F6E6E",fg="#ffffff",width=10)
-bagh_loctaion.grid(padx=8,pady=15,sticky="e",row=2,column=1)
-
-bagh_loctaion_entry=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
-bagh_loctaion_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
-
-bagh_price_ejareh=tk.Label(ejareh_bagh_frame,text='ودیعه',bg="#0F6E6E",fg="#ffffff",width=10)
-bagh_price_ejareh.grid(padx=8,pady=15,sticky="e",row=3,column=1)
-
-bagh_price_ejareh_ent=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
-bagh_price_ejareh_ent.grid(padx=8,pady=15,sticky="w",row=3,column=0)
-
-bagh_price_ejareh2=tk.Label(ejareh_bagh_frame,text='قیمت هر متر',bg="#0F6E6E",fg="#ffffff",width=10)
-bagh_price_ejareh2.grid(padx=8,pady=15,sticky="e",row=4,column=1)
-
-bagh_price_ejareh2_ent=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
-bagh_price_ejareh2_ent.grid(padx=8,pady=15,sticky="w",row=4,column=0)
-
-time_bagh_ejareh=tk.Label(ejareh_bagh_frame,text="مدت اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
-time_bagh_ejareh.grid(padx=8,pady=15,sticky="e",row=5,column=1)
-
-bagh_time_combo=ttk.Combobox(ejareh_bagh_frame,state="readonly")
-bagh_time_combo["values"]=("بلندمدت","کوتاه مدت","فصلی","سالانه")
-bagh_time_combo.set("فصلی")
-bagh_time_combo.grid(padx=8,pady=15,sticky="w",row=5,column=0)
-
-photo_box_ejareh_bagh=tk.Frame(ejareh_bz,width=410,height=450,background="#e4dde3")
-photo_box_ejareh_bagh.place(x=50,y=50)
-photo_lbl2_ejareh_bagh = tk.Label(photo_box_ejareh_bagh, text="[تصویر ملک]", bg="gray", width=50, height=15)
-photo_lbl2_ejareh_bagh.place(x=30,y=45)
-add_img_btn_ejareh_bagh = tk.Button(photo_box_ejareh_bagh, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
-add_img_btn_ejareh_bagh.place(x=40,y=330)
-
-back_to_home_bagh=tk.Button(ejareh_bz,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_ejareh_bagh)
-back_to_home_bagh.place(x=650,y=500)
 
 # اجرای برنامه
 root.protocol("WM_DELETE_WINDOW",close_window)
