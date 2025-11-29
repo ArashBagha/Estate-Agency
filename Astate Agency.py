@@ -36,7 +36,41 @@ def save_rehn_bagh():#ذخیره پنجره راجاره زمین و باغ
 def open_option():
     option_file_frame.deiconify()
     ejareh_rehn_page.withdraw()
+selected_trees=[]
+def add_tree():# برای اضافه کردن درخت به صورت دستی
+    t=type_tree_combo.get()
+    if t and t not in selected_trees:
+        selected_trees.append(t)
+        label_result_add.config(text=''.join(selected_trees))
+def home_true_false():#برای فعال یا غیر فعال کردن ویجت های خونه باغ
+    if var0.get()==1:
+        metraj_vila_bagh_entry.config(state="normal")
+        year_vila_bagh_entry.config(state="normal")
+        type_vila_combo.config(state="normal")
+        toilet_bagh_combo.config(state="normal")
+        hamam_bagh_combo.config(state="normal")
+        sanad_bagh_combo.config(state="normal")
+        option_bagh_combo.config(state="normal")
+        javaz_bagh.config(state="normal")
+        mohavate_bagh.config(state="normal")
+    else:
+        metraj_vila_bagh_entry.config(state="disabled")
+        year_vila_bagh_entry.config(state="disabled")
+        type_vila_combo.config(state="disabled")
+        toilet_bagh_combo.config(state="disabled")
+        hamam_bagh_combo.config(state="disabled")
+        sanad_bagh_combo.config(state="disabled")
+        option_bagh_combo.config(state="disabled")
+        javaz_bagh.config(state="disabled")
+        mohavate_bagh.config(state="disabled")
+        
+        
 
+
+
+
+
+#--------------------------------------------------------------------
 def open_option2():
     option_file_frame_forosh_maskoni.deiconify()
     forosh_rehn_page.withdraw()
@@ -831,7 +865,7 @@ plus_button_ejareh_bz.pack()
 
 option_file_frame_ejareh_bz=tk.Toplevel(ejareh_bz,background="#bbfbd1")
 option_file_frame_ejareh_bz.title(" ")
-option_file_frame_ejareh_bz.geometry("550x400")
+option_file_frame_ejareh_bz.geometry("640x630")
 option_file_frame_ejareh_bz.pack_propagate(False)
 option_file_frame_ejareh_bz.withdraw()
 mini_frame=tk.Frame(option_file_frame_ejareh_bz)
@@ -847,9 +881,121 @@ bagh_type2_combo.pack(padx=5,pady=5,side="left")
 fram_option1_bagh=tk.Frame(option_file_frame_ejareh_bz,width=430,height=290,background="#d1e0df")
 fram_option1_bagh.place(x=60,y=60)
 
+metraj_tree=tk.Label(fram_option1_bagh,bg="#0F6E6E",fg="#ffffff",width=13,text="متراژ درخت کاری")
+metraj_tree.grid(padx=10,pady=5,row=0,column=4)
+
+metraj_tree_entry=tk.Entry(fram_option1_bagh,width=10,bg="#746f6f",fg="#ffffff")
+metraj_tree_entry.grid(padx=10,pady=5,row=0,column=3)
+
+tree_count=tk.Label(fram_option1_bagh,bg="#0F6E6E",fg="#ffffff",width=10,text="تعداد درخت")
+tree_count.grid(padx=10,pady=5,row=1,column=4)
+
+tree_count_entry=tk.Entry(fram_option1_bagh,width=10,bg="#746f6f",fg="#ffffff")
+tree_count_entry.grid(padx=10,pady=5,row=1,column=3)
+
+abyari=tk.Label(fram_option1_bagh,bg="#0F6E6E",fg="#ffffff",width=10,text="نوع ابیاری")
+abyari.grid(padx=10,pady=5,row=2,column=4)
+
+abyari_combo=ttk.Combobox(fram_option1_bagh)
+abyari_combo["values"]=("سطحی","بارانی","قطره ای","تحت فشار")
+abyari_combo.set("سطحی")
+abyari_combo.grid(padx=10,pady=5,row=2,column=3)
+
+type_tree=tk.Label(fram_option1_bagh,bg="#0F6E6E",fg="#ffffff",width=10,text="نوع درخت")
+type_tree.grid(padx=10,pady=5,row=3,column=4)
+
+type_tree_combo=ttk.Combobox(fram_option1_bagh)
+type_tree_combo["values"]=(" ","پسته","بادام","گردو","شلیل","هلو","سیب","انگور"
+                           ,"انجیر","زردالو","گیلاس","البالو")
+type_tree_combo.set("گردو")
+type_tree_combo.grid(padx=10,pady=5,row=3,column=3)
+add_tree_button=tk.Button(fram_option1_bagh,text="افزودن درخت",command=add_tree,bg="#007acc",width=10)
+add_tree_button.grid(padx=10,pady=5,row=4,column=4)
+
+label_result_add=tk.Label(fram_option1_bagh,text="")
+label_result_add.grid(padx=10,pady=5,row=4,column=3)
+
+chah_bagh=tk.Checkbutton(fram_option1_bagh,text="چاه",background="#d6d0d0")
+chah_bagh.grid(padx=0,pady=5,row=5,column=0)
+
+estakhr_bagh=tk.Checkbutton(fram_option1_bagh,text="استخر",background="#d6d0d0")
+estakhr_bagh.grid(padx=0,pady=5,row=5,column=1)
+
+loleh_bagh=tk.Checkbutton(fram_option1_bagh,text="اب لوله کشی",background="#d6d0d0")
+loleh_bagh.grid(padx=0,pady=5,row=5,column=2)
+
+bargh_bagh=tk.Checkbutton(fram_option1_bagh,text="برق کشی",background="#d6d0d0")
+bargh_bagh.grid(padx=0,pady=5,row=5,column=3)
+
+gas_bagh=tk.Checkbutton(fram_option1_bagh,text="گاز کشی",background="#d6d0d0")
+gas_bagh.grid(padx=0,pady=5,row=5,column=4)
+
+var0=tk.IntVar(value=0)#چک باتن پیش فرض تیک نخورده باشه
 
 
+room_bagh_ch=tk.Checkbutton(fram_option1_bagh,variable=var0,image=warehouse_pic,background="#022578",text="ساختمان",command=home_true_false)
+room_bagh_ch.grid(padx=10,pady=5,row=6,column=4)
 
+metraj_vila_bagh=tk.Label(fram_option1_bagh,bg="#0F6E6E",fg="#ffffff",width=13,text="متراژ سازه")
+metraj_vila_bagh.grid(padx=10,pady=5,row=7,column=4)
+
+metraj_vila_bagh_entry=tk.Entry(fram_option1_bagh,width=10,bg="#746f6f",fg="#ffffff",state="disabled")
+metraj_vila_bagh_entry.grid(padx=10,pady=5,row=7,column=3)
+
+year_vila_bagh=tk.Label(fram_option1_bagh,bg="#0F6E6E",fg="#ffffff",width=13,text="سال ساخت")
+year_vila_bagh.grid(padx=10,pady=5,row=8,column=4)
+
+year_vila_bagh_entry=tk.Entry(fram_option1_bagh,width=10,bg="#746f6f",fg="#ffffff",state="disabled")
+year_vila_bagh_entry.grid(padx=10,pady=5,row=8,column=3)
+
+type_vila_bagh=tk.Label(fram_option1_bagh,bg="#0F6E6E",fg="#ffffff",width=13,text="نوع سازه")
+type_vila_bagh.grid(padx=10,pady=5,row=9,column=4)
+
+type_vila_combo=ttk.Combobox(fram_option1_bagh,state="disabled")
+type_vila_combo["values"]=("آجری","بلوکی","کانکس","چوبی")
+type_vila_combo.set("آجری")
+type_vila_combo.grid(padx=10,pady=5,row=9,column=3)
+
+toilet_bagh=tk.Label(fram_option1_bagh,bg="#0F6E6E",fg="#ffffff",width=13,text="سرویس بهداشتی")
+toilet_bagh.grid(padx=10,pady=5,row=10,column=4)
+
+toilet_bagh_combo=ttk.Combobox(fram_option1_bagh,state="disabled")
+toilet_bagh_combo["values"]=(" ","ندارد","فرنگی","ایرانی","هردو")
+toilet_bagh_combo.set("")
+toilet_bagh_combo.grid(padx=10,pady=5,row=10,column=3)
+
+hamam_bagh=tk.Label(fram_option1_bagh,bg="#0F6E6E",fg="#ffffff",width=13,text="حمام")
+hamam_bagh.grid(padx=10,pady=5,row=11,column=4)
+
+hamam_bagh_combo=ttk.Combobox(fram_option1_bagh,state="disabled")
+hamam_bagh_combo["values"]=(" ","ندارد","دارد")
+hamam_bagh_combo.set(" ")
+hamam_bagh_combo.grid(padx=10,pady=5,row=11,column=3)
+
+sanad_bagh=tk.Label(fram_option1_bagh,bg="#0F6E6E",fg="#ffffff",width=13,text="سند")
+sanad_bagh.grid(padx=10,pady=5,row=12,column=4)
+
+sanad_bagh_combo=ttk.Combobox(fram_option1_bagh,state="disabled")
+sanad_bagh_combo["values"]=(" ","ندارد","تک برگ","قولنامه ای","مشاع")
+sanad_bagh_combo.set(" ")
+sanad_bagh_combo.grid(padx=10,pady=5,row=12,column=3)
+
+option_bagh=tk.Label(fram_option1_bagh,bg="#0F6E6E",fg="#ffffff",width=13,text="امکانات تفریحی")
+option_bagh.grid(padx=10,pady=5,row=13,column=4)
+
+option_bagh_combo=ttk.Combobox(fram_option1_bagh,state="disabled")
+option_bagh_combo["values"]=(" ","استخر","جکوزی","باربیکیو")
+option_bagh_combo.set(" ")
+option_bagh_combo.grid(padx=10,pady=5,row=13,column=3)
+
+javaz_bagh=tk.Checkbutton(fram_option1_bagh,text="مجوز ساختن",background="#d6d0d0",state="disabled")
+javaz_bagh.grid(padx=10,pady=5,row=14,column=4)
+
+mohavate_bagh=tk.Checkbutton(fram_option1_bagh,text="محوطه سازی",background="#d6d0d0",state="disabled")
+mohavate_bagh.grid(padx=10,pady=5,row=14,column=3)
+
+divar_bagh=tk.Checkbutton(fram_option1_bagh,text="دیوار کشی",background="#d6d0d0")
+divar_bagh.grid(padx=10,pady=5,row=14,column=2)
 
 #==========WINS_BOX2_FOROSH==================
 #win_forosh_rehn_page
