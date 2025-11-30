@@ -33,6 +33,8 @@ def save_rehn_edari():#ذخیره پنجره راجاره اداری
     pass
 def save_rehn_bagh():#ذخیره پنجره راجاره زمین و باغ
     pass
+def save_bz_option():
+   pass
 def open_option():
     option_file_frame.deiconify()
     ejareh_rehn_page.withdraw()
@@ -41,7 +43,14 @@ def add_tree():# برای اضافه کردن درخت به صورت دستی
     t=type_tree_combo.get()
     if t and t not in selected_trees:
         selected_trees.append(t)
-        label_result_add.config(text=''.join(selected_trees))
+        label_result_add.config(text=','.join(selected_trees))
+selected_option=[]
+def add_option():
+    op=option_bagh_combo.get()
+    if op and op not in selected_option:
+        selected_option.append(op)
+        label_result2_add.config(text=','.join(selected_option))
+
 def home_true_false():#برای فعال یا غیر فعال کردن ویجت های خونه باغ
     if var0.get()==1:
         metraj_vila_bagh_entry.config(state="normal")
@@ -110,6 +119,10 @@ def back_home_ejareh_bagh():
     ejareh_bz.withdraw()
     root.deiconify()
 
+def  back_to_ejareh_bz():
+     option_file_frame_ejareh_bz.withdraw()
+     ejareh_bz.deiconify()
+
 # لیست کشویی فیلد فایل 
 def kharid():
     pass
@@ -150,7 +163,16 @@ def forosh_bz():
 def forosh_sk():
     pass
 
-
+def change_bagh_zamin1(event):
+    co=bagh_type2_combo.get()
+    if co=="باغ":
+        fram_option1_zamin.place_forget()
+        fram_option1_bagh.place(x=60,y=60)
+    else:
+        fram_option1_bagh.place_forget()
+        fram_option1_zamin.place(x=60,y=60)
+        
+        
 
 
 # لیست کشویی فیلد گزارش ها
@@ -838,7 +860,8 @@ bagh_time_combo.set("فصلی")
 bagh_time_combo.grid(padx=8,pady=15,sticky="w",row=5,column=0)
 
 photo_box_ejareh_bagh=tk.Frame(ejareh_bz,width=410,height=450,background="#e4dde3")
-photo_box_ejareh_bagh.place(x=50,y=50)
+photo_box_ejareh_bagh.place(x=50,y=40)
+
 photo_lbl2_ejareh_bagh = tk.Label(photo_box_ejareh_bagh, text="[تصویر ملک]", bg="gray", width=50, height=15)
 photo_lbl2_ejareh_bagh.place(x=30,y=45)
 add_img_btn_ejareh_bagh = tk.Button(photo_box_ejareh_bagh, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
@@ -853,7 +876,7 @@ save_button_re_bagh.place(x=550,y=500)
 # (ejareh_et)  ===>> ساخت پنجره امکانات (باغ)
 
 option_frame_ejareh_bz=tk.Frame(ejareh_bz,width=300,height=30,background="#bbfbd1")
-option_frame_ejareh_bz.place(x=520,y=465)
+option_frame_ejareh_bz.place(x=240,y=500)
 
 option_label_ejareh_bz=tk.Label(option_frame_ejareh_bz,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
 option_label_ejareh_bz.pack(side="right",padx=1)
@@ -877,6 +900,8 @@ bagh_type2_combo=ttk.Combobox(mini_frame,state="readonly")
 bagh_type2_combo["values"]=("باغ","زمین کشاورزی")
 bagh_type2_combo.set("باغ")
 bagh_type2_combo.pack(padx=5,pady=5,side="left")
+
+bagh_type2_combo.bind("<<ComboboxSelected>>",change_bagh_zamin1)
 
 fram_option1_bagh=tk.Frame(option_file_frame_ejareh_bz,width=430,height=290,background="#d1e0df")
 fram_option1_bagh.place(x=60,y=60)
@@ -987,6 +1012,10 @@ option_bagh_combo=ttk.Combobox(fram_option1_bagh,state="disabled")
 option_bagh_combo["values"]=(" ","استخر","جکوزی","باربیکیو")
 option_bagh_combo.set(" ")
 option_bagh_combo.grid(padx=10,pady=5,row=13,column=3)
+add_option_button=tk.Button(fram_option1_bagh,text="افزودن امکانات",command=add_option,bg="#007acc",width=10)
+add_option_button.grid(padx=10,pady=5,row=13,column=2)
+label_result2_add=tk.Label(fram_option1_bagh,text="")
+label_result2_add.grid(padx=10,pady=5,row=13,column=1)
 
 javaz_bagh=tk.Checkbutton(fram_option1_bagh,text="مجوز ساختن",background="#d6d0d0",state="disabled")
 javaz_bagh.grid(padx=10,pady=5,row=14,column=4)
@@ -996,6 +1025,18 @@ mohavate_bagh.grid(padx=10,pady=5,row=14,column=3)
 
 divar_bagh=tk.Checkbutton(fram_option1_bagh,text="دیوار کشی",background="#d6d0d0")
 divar_bagh.grid(padx=10,pady=5,row=14,column=2)
+
+save_button_bz_option=tk.Button(option_file_frame_ejareh_bz,text="ذخیره",command=save_bz_option,background="#079BDB",fg="#ffffff",width=8)
+save_button_bz_option.place(x=120,y=580)
+
+back_to_ejareh_bz=tk.Button(option_file_frame_ejareh_bz,text="بازگشت",command=back_to_ejareh_bz,background="#079BDB",fg="#ffffff",width=8)
+back_to_ejareh_bz.place(x=95,y=580)
+
+#zamin_frame_option_ejareh
+
+fram_option1_zamin=tk.Frame(option_file_frame_ejareh_bz,width=430,height=290,background="#d1e0df")
+fram_option1_zamin.place_forget()
+
 
 #==========WINS_BOX2_FOROSH==================
 #win_forosh_rehn_page
