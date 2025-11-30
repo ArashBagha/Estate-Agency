@@ -176,7 +176,6 @@ def back_home_ejare_maskoni():
     floor_ejare_maskoni_entry.delete(0,tk.END)
     vahed_ejare_maskoni_entry.delete(0,tk.END)
     room_ejare_maskoni_entry.delete(0,tk.END)
-    price_kol_ejare_maskoni_entry.delete(0,tk.END)
     price_ejare_ejare_maskoni_entry.delete(0,tk.END)
     price_pish_ejare_maskoni_entry.delete(0,tk.END)
     
@@ -228,46 +227,6 @@ def back_home_forosh_et():
     floor_forosh_et_entry.delete(0,tk.END)
     vahed_forosh_et_entry.delete(0,tk.END)
     price_forosh_et_entry.delete(0,tk.END)    
-#----------------------------- تابع های مبلغ کل و اجاره و پیش --------------------------------
-total = 0
-def set_kol(event=None):
-    global total
-    try:
-        total = int(price_kol_ejare_maskoni_entry.get())
-    except ValueError:
-        total = 0
-    scale_ejare_maskoni.config(to=total)
-
-def update_from_pish(event=None):
-    if total == 0:
-        return
-
-    try:
-        pish = int(price_pish_ejare_maskoni_entry.get())
-    except ValueError:
-        pish = 0
-
-    ejare = total - pish 
-    if ejare < 0:
-        ejare = 0
-
-    price_ejare_ejare_maskoni_entry.delete(0, tk.END)
-    price_ejare_ejare_maskoni_entry.insert(0, str(ejare))
-
-def update_from_ejare(value):
-    if total == 0:
-        return
-
-    ejare = int(value)
-    pish = total - ejare
-    if pish < 0:
-        pish = 0
-
-    price_pish_ejare_maskoni_entry.delete(0, tk.END)
-    price_pish_ejare_maskoni_entry.insert(0, str(pish))
-
-    price_ejare_ejare_maskoni_entry.delete(0, tk.END)
-    price_ejare_ejare_maskoni_entry.insert(0, str(ejare))
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
 
 
@@ -550,9 +509,6 @@ room_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=5,column=1)
 room_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 room_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
 
-price_kol_ejare_maskoni=tk.Label(rehn_page_frame1,text="قیمت کل",bg="#0F6E6E",fg="#ffffff",width=10)
-price_kol_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=6,column=1)
-
 
 price_ejare_ejare_maskoni=tk.Label(rehn_page_frame1,text="مبلغ اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
 price_ejare_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=7,column=0)
@@ -560,21 +516,11 @@ price_ejare_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=7,column=0)
 price_pish_ejare_maskoni=tk.Label(rehn_page_frame1,text="مبلغ پیش",bg="#0F6E6E",fg="#ffffff",width=10)
 price_pish_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=7,column=1)
 
-
-price_kol_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
-price_kol_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
-price_kol_ejare_maskoni_entry.bind("<KeyRelease>", set_kol)
-
 price_ejare_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 price_ejare_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=8,column=0)
 
 price_pish_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 price_pish_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=8,column=1)
-price_pish_ejare_maskoni_entry.bind("<KeyRelease>", update_from_pish)
-
-# اسکرول بار مبالغ کل و پیش و اجاره
-scale_ejare_maskoni=tk.Scale(rehn_page_frame1,from_=0,to=0,orient="horizontal",length=150,command=update_from_ejare)
-scale_ejare_maskoni.grid(padx=8,pady=15,sticky="we",row=9,column=0,columnspan=2)
 
 back_to_home=tk.Button(ejareh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_ejare_maskoni)
 back_to_home.place(x=320,y=520)
@@ -590,7 +536,7 @@ add_img_btn_ejare_maskoni = tk.Button(photo_box_ejare_maskoni, text="افزود�
 add_img_btn_ejare_maskoni.place(x=40,y=330)
 #ساخت پنجره امکانات
 option_frame_ejare_maskoni=tk.Frame(ejareh_rehn_page,width=300,height=30,background="#bbfbd1")
-option_frame_ejare_maskoni.place(x=50,y=523)
+option_frame_ejare_maskoni.place(x=525,y=500)
 
 option_label_ejare_maskoni=tk.Label(option_frame_ejare_maskoni,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
 option_label_ejare_maskoni.pack(side="right",padx=1)
