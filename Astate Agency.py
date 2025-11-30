@@ -973,7 +973,7 @@ divar_bagh=tk.Checkbutton(fram_option1_bagh,text="دیوار کشی",background=
 divar_bagh.grid(padx=10,pady=5,row=14,column=2)
 
 save_button_bz_option=tk.Button(option_file_frame_ejareh_bz,text="ذخیره",command=save_bz_option,background="#079BDB",fg="#ffffff",width=8)
-save_button_bz_option.place(x=120,y=580)
+save_button_bz_option.place(x=170,y=580)
 
 back_to_ejareh_bz=tk.Button(option_file_frame_ejareh_bz,text="بازگشت",command=back_to_ejareh_bz,background="#079BDB",fg="#ffffff",width=8)
 back_to_ejareh_bz.place(x=95,y=580)
