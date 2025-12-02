@@ -52,6 +52,20 @@ def add_option():
     if op and op not in selected_option:
         selected_option.append(op)
         label_result2_add.config(text=','.join(selected_option))
+selected_topo1=[]
+def add_topo1():
+    topo=zamin_shape_ejareh_combo.get()
+    if topo and topo not in selected_topo1:
+        selected_topo1.append(topo)
+        label_result_topo1_add.config(text=','.join(selected_topo1))
+
+selected_topo2=[]
+def add_topo2():
+    topo2=zamin_shape_forosh_combo.get()
+    if topo2 and topo2 not in selected_topo2:
+        selected_topo2.append(topo2)
+        label_result_topo2_add.config(text=','.join(selected_topo2))
+
 
 def home_true_false1(): # برای فعال یا غیر فعال کردن ویجت های خونه باغ در اجاره
     if var0.get()==1:
@@ -96,6 +110,19 @@ def home_true_false2(): #برای فعال یا غیر فعال کردن ویج�
         option_forosh_bagh_combo.config(state="disabled")
         javaz_forosh_bagh.config(state="disabled")
         mohavate_forosh_bagh.config(state="disabled")
+def choos_kesht(event):
+    a=kesht_ejareh_combo.get()
+    if a=="بدون کشت":
+        kesht_ejareh_entry.config(state="disabled")
+    else:
+        kesht_ejareh_entry.config(state="normal")
+def choos_kesht2(event):
+    b=kesht_forosh_combo.get()
+    if b=="بدون کشت":
+        kesht_forosh_entry.config(state="disabled")
+    else:
+        kesht_forosh_entry.config(state="normal")
+
 
 
 def add_tree2():
@@ -913,7 +940,7 @@ plus_button_ejareh_bz.pack()
 
 option_file_frame_ejareh_bz=tk.Toplevel(ejareh_bz,background="#bbfbd1")
 option_file_frame_ejareh_bz.title(" ")
-option_file_frame_ejareh_bz.geometry("640x630")
+option_file_frame_ejareh_bz.geometry("690x630")
 option_file_frame_ejareh_bz.pack_propagate(False)
 option_file_frame_ejareh_bz.withdraw()
 mini_frame=tk.Frame(option_file_frame_ejareh_bz)
@@ -1059,8 +1086,106 @@ back_to_ejareh_bz.place(x=95,y=580)
 
 #zamin_frame_option_ejareh
 
-fram_option1_zamin=tk.Frame(option_file_frame_ejareh_bz,width=430,height=290,background="#d1e0df")
+fram_option1_zamin=tk.Frame(option_file_frame_ejareh_bz,width=445,height=290,background="#d1e0df")
 fram_option1_zamin.place_forget()
+
+metraj_zamin1=tk.Label(fram_option1_zamin,bg="#0F6E6E",fg="#ffffff",width=13,text="متراژ زمین")
+metraj_zamin1.grid(padx=10,pady=5,row=0,column=4)
+
+metraj_zamin1_entry=tk.Entry(fram_option1_zamin,width=10,bg="#746f6f",fg="#ffffff")
+metraj_zamin1_entry.grid(padx=10,pady=5,row=0,column=3)
+
+karbari_ejareh_z=tk.Label(fram_option1_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="نوع کاربری")
+karbari_ejareh_z.grid(padx=10,pady=5,row=1,column=4)
+
+karbari_ejareh_z_combo=ttk.Combobox(fram_option1_zamin)
+karbari_ejareh_z_combo["values"]=(" ","زراعی","باغی","گلخانه ای","دامداری ","مرغداری",
+                               "دامداری و مرغداری","آیش")                             
+karbari_ejareh_z_combo.set(" ")
+karbari_ejareh_z_combo.grid(padx=10,pady=5,row=1,column=3)
+
+khak_ejareh_z=tk.Label(fram_option1_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="نوع خاک")
+khak_ejareh_z.grid(padx=10,pady=5,row=2,column=4)
+
+khak_ejareh_z_combo=ttk.Combobox(fram_option1_zamin)
+khak_ejareh_z_combo["values"]=(" ","رسی","شنی","لومی","رسی_شنی","شنی_لومی",
+                               "رسی_لومی")                             
+khak_ejareh_z_combo.set(" ")
+khak_ejareh_z_combo.grid(padx=10,pady=5,row=2,column=3)
+
+ab_ejareh_z=tk.Label(fram_option1_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="منبع اب")
+ab_ejareh_z.grid(padx=10,pady=5,row=3,column=4)
+
+ab_ejareh_z_combo=ttk.Combobox(fram_option1_zamin)
+ab_ejareh_z_combo["values"]=(" ","چاه","قنات","رودخانه","کانال ابیاری","چشمه",
+                               "آب لوله کشی کشاورزی","تانکر","استخر")                             
+ab_ejareh_z_combo.set(" ")
+ab_ejareh_z_combo.grid(padx=10,pady=5,row=3,column=3)
+
+zamin_shape_ejareh=tk.Label(fram_option1_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="توپوگرافی")
+zamin_shape_ejareh.grid(padx=10,pady=5,row=4,column=4)
+
+zamin_shape_ejareh_combo=ttk.Combobox(fram_option1_zamin)
+zamin_shape_ejareh_combo["values"]=(" "," صاف و یکدست"," شیب دار"," باتلاقی","سنگی ")                             
+zamin_shape_ejareh_combo.set(" ")
+zamin_shape_ejareh_combo.grid(padx=10,pady=5,row=4,column=3)
+
+add_topo1_button=tk.Button(fram_option1_zamin,text=" مورد دلخواه",command=add_topo1,bg="#007acc",width=10)
+add_topo1_button.grid(padx=10,pady=5,row=4,column=2)
+label_result_topo1_add=tk.Label(fram_option1_zamin,text="")
+label_result_topo1_add.grid(padx=10,pady=5,row=4,column=1)
+
+kesht_ejareh=tk.Label(fram_option1_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="سطح زیر کشت")
+kesht_ejareh.grid(padx=10,pady=5,row=5,column=4)
+
+kesht_ejareh_combo=ttk.Combobox(fram_option1_zamin)
+kesht_ejareh_combo["values"]=("بدون کشت"," زیر کشت")                             
+kesht_ejareh_combo.set("بدون کشت ")
+kesht_ejareh_combo.grid(padx=10,pady=5,row=5,column=3)
+kesht_ejareh_combo.bind("<<ComboboxSelected>>",choos_kesht)
+
+kesht_ejareh_label=tk.Label(fram_option1_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="محصول زیرکشت")
+kesht_ejareh_label.grid(padx=10,pady=5,row=5,column=2)
+
+kesht_ejareh_entry=tk.Entry(fram_option1_zamin,width=10,bg="#746f6f",fg="#ffffff",state="disabled")
+kesht_ejareh_entry.grid(padx=10,pady=5,row=5,column=1)
+
+security_room_zamin_ejareh=tk.Checkbutton(fram_option1_zamin,text="اتاق نگهبان",background="#d6d0d0")
+security_room_zamin_ejareh.grid(padx=10,pady=6,row=6,column=0)
+
+bargh_zamin_ejareh1=tk.Checkbutton(fram_option1_zamin,text="برق تک فاز",background="#d6d0d0")
+bargh_zamin_ejareh1.grid(padx=10,pady=6,row=6,column=1)
+
+bargh_zamin_ejareh2=tk.Checkbutton(fram_option1_zamin,text="برق سه فاز",background="#d6d0d0")
+bargh_zamin_ejareh2.grid(padx=10,pady=6,row=6,column=2)
+
+anbar_zamin_ejareh=tk.Checkbutton(fram_option1_zamin,text="انبار/سوله",background="#d6d0d0")
+anbar_zamin_ejareh.grid(padx=10,pady=6,row=6,column=3)
+
+fans_zamin_ejareh=tk.Checkbutton(fram_option1_zamin,text="فنس/دیوار",background="#d6d0d0")
+fans_zamin_ejareh.grid(padx=10,pady=6,row=6,column=4)
+
+javaz_golkhane_zamin_ejareh=tk.Checkbutton(fram_option1_zamin,text="اجازه ساخت گلخانه",background="#d6d0d0")
+javaz_golkhane_zamin_ejareh.grid(padx=10,pady=6,row=7,column=0)
+
+javaz_chah_zamin_ejareh=tk.Checkbutton(fram_option1_zamin,text="اجازه حفر چاه",background="#d6d0d0")
+javaz_chah_zamin_ejareh.grid(padx=10,pady=6,row=7,column=1)
+
+bardasht_zamin_ejareh=tk.Checkbutton(fram_option1_zamin,text="حق برداشت ",background="#d6d0d0")
+bardasht_zamin_ejareh.grid(padx=10,pady=6,row=7,column=2)
+
+dam_zamin_ejareh=tk.Checkbutton(fram_option1_zamin,text="اجازه ورود دام",background="#d6d0d0")
+dam_zamin_ejareh.grid(padx=10,pady=6,row=7,column=3)
+
+
+
+
+
+
+
+
+
+
 
 
 #==========WINS_BOX2_FOROSH==================
@@ -1409,7 +1534,7 @@ plus_button_forosh_bz.pack()
 
 option_file_frame_forosh_bz=tk.Toplevel(forosh_bz,background="#bbfbd1")
 option_file_frame_forosh_bz.title(" ")
-option_file_frame_forosh_bz.geometry("640x630")
+option_file_frame_forosh_bz.geometry("690x630")
 option_file_frame_forosh_bz.pack_propagate(False)
 option_file_frame_forosh_bz.withdraw()
 mini_frame_forosh_bagh=tk.Frame(option_file_frame_forosh_bz)
@@ -1555,8 +1680,97 @@ back_to_forosh_bz.place(x=95,y=580)
 
 #zamin_frame_option_forosh
 
-fram_option_forosh_zamin=tk.Frame(option_file_frame_forosh_bz,width=430,height=290,background="#d1e0df")
+fram_option_forosh_zamin=tk.Frame(option_file_frame_forosh_bz,width=445,height=290,background="#d1e0df")
 fram_option_forosh_zamin.place_forget()
+
+
+metraj_zamin2_forosh=tk.Label(fram_option_forosh_zamin,bg="#0F6E6E",fg="#ffffff",width=13,text="متراژ زمین")
+metraj_zamin2_forosh.grid(padx=10,pady=5,row=0,column=4)
+
+metraj_zamin2_forosh_entry=tk.Entry(fram_option_forosh_zamin,width=10,bg="#746f6f",fg="#ffffff")
+metraj_zamin2_forosh_entry.grid(padx=10,pady=5,row=0,column=3)
+
+karbari_forosh_z=tk.Label(fram_option_forosh_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="نوع کاربری")
+karbari_forosh_z.grid(padx=10,pady=5,row=1,column=4)
+
+karbari_forosh_z_combo=ttk.Combobox(fram_option_forosh_zamin)
+karbari_forosh_z_combo["values"]=(" ","زراعی","باغی","گلخانه ای","دامداری ","مرغداری",
+                               "دامداری و مرغداری","آیش")                             
+karbari_forosh_z_combo.set(" ")
+karbari_forosh_z_combo.grid(padx=10,pady=5,row=1,column=3)
+
+khak_forosh_z=tk.Label(fram_option_forosh_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="نوع خاک")
+khak_forosh_z.grid(padx=10,pady=5,row=2,column=4)
+
+khak_forosh_z_combo=ttk.Combobox(fram_option_forosh_zamin)
+khak_forosh_z_combo["values"]=(" ","رسی","شنی","لومی","رسی_شنی","شنی_لومی",
+                               "رسی_لومی")                             
+khak_forosh_z_combo.set(" ")
+khak_forosh_z_combo.grid(padx=10,pady=5,row=2,column=3)
+
+ab_forosh_z=tk.Label(fram_option_forosh_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="منبع اب")
+ab_forosh_z.grid(padx=10,pady=5,row=3,column=4)
+
+ab_forosh_z_combo=ttk.Combobox(fram_option_forosh_zamin)
+ab_forosh_z_combo["values"]=(" ","چاه","قنات","رودخانه","کانال ابیاری","چشمه",
+                               "آب لوله کشی کشاورزی","تانکر","استخر")                             
+ab_forosh_z_combo.set(" ")
+ab_forosh_z_combo.grid(padx=10,pady=5,row=3,column=3)
+
+zamin_shape_forosh=tk.Label(fram_option_forosh_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="توپوگرافی")
+zamin_shape_forosh.grid(padx=10,pady=5,row=4,column=4)
+
+zamin_shape_forosh_combo=ttk.Combobox(fram_option_forosh_zamin)
+zamin_shape_forosh_combo["values"]=(" "," صاف و یکدست"," شیب دار"," باتلاقی","سنگی ")                             
+zamin_shape_forosh_combo.set(" ")
+zamin_shape_forosh_combo.grid(padx=10,pady=5,row=4,column=3)
+
+add_topo2_button=tk.Button(fram_option_forosh_zamin,text=" مورد دلخواه",command=add_topo2,bg="#007acc",width=10)
+add_topo2_button.grid(padx=10,pady=5,row=4,column=2)
+label_result_topo2_add=tk.Label(fram_option_forosh_zamin,text="")
+label_result_topo2_add.grid(padx=10,pady=5,row=4,column=1)
+
+kesht_forosh=tk.Label(fram_option_forosh_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="سطح زیر کشت")
+kesht_forosh.grid(padx=10,pady=5,row=5,column=4)
+
+kesht_forosh_combo=ttk.Combobox(fram_option_forosh_zamin)
+kesht_forosh_combo["values"]=("بدون کشت"," زیر کشت")                             
+kesht_forosh_combo.set("بدون کشت ")
+kesht_forosh_combo.grid(padx=10,pady=5,row=5,column=3)
+kesht_forosh_combo.bind("<<ComboboxSelected>>",choos_kesht2)
+
+kesht_forosh_label=tk.Label(fram_option_forosh_zamin,bg="#0F6E6E",fg="#ffffff",width=10,text="محصول زیرکشت")
+kesht_forosh_label.grid(padx=10,pady=5,row=5,column=2)
+
+kesht_forosh_entry=tk.Entry(fram_option_forosh_zamin,width=10,bg="#746f6f",fg="#ffffff",state="disabled")
+kesht_forosh_entry.grid(padx=10,pady=5,row=5,column=1)
+
+security_room_zamin_forosh=tk.Checkbutton(fram_option_forosh_zamin,text="اتاق نگهبان",background="#d6d0d0")
+security_room_zamin_forosh.grid(padx=10,pady=6,row=6,column=0)
+
+bargh_zamin_forosh1=tk.Checkbutton(fram_option_forosh_zamin,text="برق تک فاز",background="#d6d0d0")
+bargh_zamin_forosh1.grid(padx=10,pady=6,row=6,column=1)
+
+bargh_zamin_forosh2=tk.Checkbutton(fram_option_forosh_zamin,text="برق سه فاز",background="#d6d0d0")
+bargh_zamin_forosh2.grid(padx=10,pady=6,row=6,column=2)
+
+anbar_zamin_forosh=tk.Checkbutton(fram_option_forosh_zamin,text="انبار/سوله",background="#d6d0d0")
+anbar_zamin_forosh.grid(padx=10,pady=6,row=6,column=3)
+
+fans_zamin_forosh=tk.Checkbutton(fram_option_forosh_zamin,text="فنس/دیوار",background="#d6d0d0")
+fans_zamin_forosh.grid(padx=10,pady=6,row=6,column=4)
+
+javaz_golkhane_zamin_forosh=tk.Checkbutton(fram_option_forosh_zamin,text="اجازه ساخت گلخانه",background="#d6d0d0")
+javaz_golkhane_zamin_forosh.grid(padx=10,pady=6,row=7,column=0)
+
+javaz_chah_zamin_forosh=tk.Checkbutton(fram_option_forosh_zamin,text="اجازه حفر چاه",background="#d6d0d0")
+javaz_chah_zamin_forosh.grid(padx=10,pady=6,row=7,column=1)
+
+bardasht_zamin_forosh=tk.Checkbutton(fram_option_forosh_zamin,text="حق برداشت ",background="#d6d0d0")
+bardasht_zamin_forosh.grid(padx=10,pady=6,row=7,column=2)
+
+dam_zamin_forosh=tk.Checkbutton(fram_option_forosh_zamin,text="اجازه ورود دام",background="#d6d0d0")
+dam_zamin_forosh.grid(padx=10,pady=6,row=7,column=3)
 
 
 # اجرای برنامه
