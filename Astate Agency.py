@@ -1,3 +1,4 @@
+#صدازدن کتابخانه ها
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog,messagebox,font
@@ -5,6 +6,7 @@ import subprocess
 import os
 
 #---#----#----#----#----#----------  توابع   ----------#----#----#----#-------------
+#تابع بستن پروژه
 def close_window():#این تابع بعد از اتصال دیتابیس تکمیل مشود 
     response=messagebox.askyesno("تایید خروج","آیا از خارج شدن اطمینان دارید؟")
     if response:
@@ -19,13 +21,22 @@ def open_file_folder():
         folder_path = os.path.dirname(file_path)
         subprocess.run(['explorer', '/select,', file_path])
 
-# تابع انتخاب فایل
+#  تابع انتخاب فایل عکس
 
 def open_file():
     file_path = filedialog.askopenfilename()
     if file_path:
         os.startfile(file_path)
-#توابع اصلی
+
+#---------تابع پاک کردن فرم اصلی----------------
+def delete_root():
+    entry_melk_Pricelimit.delete(0,tk.END) 
+    entry_melk_width_lable.delete(0,tk.END)
+    entry_melk_area_lable.delete(0,tk.END)
+    combo1.set("")
+    combo2.set("")
+#===================================================
+#------------توابع اصلی ذخیره----------------------
 
 def save_rehn_maskkoni():#ذخیره پنجره راجاره مسکونی
     pass
@@ -35,111 +46,90 @@ def save_rehn_bagh():#ذخیره پنجره راجاره زمین و باغ
     pass
 def save_forosh_bagh():# ذخیره پنجره فروش باغ و زمین 
     pass
-def save_bz_option():
-   pass
-def open_option():
+#===================================================
+#----------توابع نگه داری امکانات فایل ها-----------
+
+
+
+
+
+#========================================================
+# ------------پنجره اصلی--------
+
+root = tk.Tk()
+root.title("")
+root.geometry("1100x700")
+#تصاویر پروژه
+plus=tk.PhotoImage(file="pluse.png")
+elvator_pic=tk.PhotoImage(file="elvator.png")
+parking_pic=tk.PhotoImage(file="parking.png")
+warehouse_pic=tk.PhotoImage(file="anbari.png")
+# root.attributes("-fullscreen", True) <<<-----  App فول اسکرین شدن
+root.configure(bg="#0D4D34")
+main_frame=tk.Frame(root)
+main_frame.pack(fill="both",expand=True)
+#------------------------فریم هدر --------------
+header=tk.Frame(main_frame,bg="#404040",height=60)
+header.pack(fill='x')
+title_font=font.Font(family="B Nazanin",size=22,weight="bold")
+title_label=tk.Label(header,text="آژانس املاک",fg="#FFFFFF",bg="#404040",font=title_font)
+title_label.pack(pady=10)
+#-----------قسمت منوبار پروژه------------------------
+#----تابع لیست بندی در دکمه ها------------------
+def show_file_popup(event):
+    file_popup.tk_popup(event.x_root, event.y_root)
+#---------------------فریم منو----------------------
+menu_frame=tk.Frame(main_frame,bg="#ffffff", relief="flat",height=1)#رنگ موقتی
+menu_frame.pack(padx=2, pady=2, fill="both", expand=True)
+
+# ------------- لیست کشویی فیلد فایل های ثبتی-----------
+def kharid():
+    pass
+
+def forosh():
+    root.withdraw()
+    box_forosh.deiconify()
+
+def rahn():
+    root.withdraw()
+    box_rehn_ejareh.deiconify()
+
+def mosharecat():
+    pass
+
+# ----------لیست کشویی فیلد گزارش ها-----------------
+def excel():
+    pass
+def gharardadeha():
+    pass
+# ---------------اضافه کردن فیلد قرارداد ---------------
+file_button = tk.Button(menu_frame, text="قرارداد ", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=5, side="left")
+
+# ---------دکمه گزارش ها با منوی کشویی ---------------------- 
+file_button = tk.Button(menu_frame, text="گزارش ها", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=10, side="left")
+
+file_popup1 = tk.Menu(root, tearoff=0, font=("Arial", 12))
+file_popup1.add_command(label="خروجی اکسل", command=excel)
+file_popup1.add_command(label="قرارداد ها", command=gharardadeha)
+
+
+file_button.bind("<Button-1>", show_file_popup)
+
+# اضافه کردن فیلد درخواست ها  
+file_button = tk.Button(menu_frame, text="درخواست ها", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=5, side="left")
+
+#اضافه کردن فیلد کاربران 
+file_button = tk.Button(menu_frame, text="کاربران ", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=5, side="left")
+#---------------------------توابع باز و بستن کردن امکانات فایل ها---------------------------
+
+def open_option1():
     option_file_frame.deiconify()
     ejareh_rehn_page.withdraw()
-selected_trees=[]
-def add_tree():# برای اضافه کردن درخت به صورت دستی
-    t=type_tree_combo.get()
-    if t and t not in selected_trees:
-        selected_trees.append(t)
-        label_result_add.config(text=','.join(selected_trees))
-selected_option=[]
-def add_option():
-    op=option_bagh_combo.get()
-    if op and op not in selected_option:
-        selected_option.append(op)
-        label_result2_add.config(text=','.join(selected_option))
-selected_topo1=[]
-def add_topo1():
-    topo=zamin_shape_ejareh_combo.get()
-    if topo and topo not in selected_topo1:
-        selected_topo1.append(topo)
-        label_result_topo1_add.config(text=','.join(selected_topo1))
 
-selected_topo2=[]
-def add_topo2():
-    topo2=zamin_shape_forosh_combo.get()
-    if topo2 and topo2 not in selected_topo2:
-        selected_topo2.append(topo2)
-        label_result_topo2_add.config(text=','.join(selected_topo2))
-
-
-def home_true_false1(): # برای فعال یا غیر فعال کردن ویجت های خونه باغ در اجاره
-    if var0.get()==1:
-        metraj_vila_bagh_entry.config(state="normal")
-        year_vila_bagh_entry.config(state="normal")
-        type_vila_combo.config(state="normal")
-        toilet_bagh_combo.config(state="normal")
-        hamam_bagh_combo.config(state="normal")
-        sanad_bagh_combo.config(state="normal")
-        option_bagh_combo.config(state="normal")
-        javaz_bagh.config(state="normal")
-        mohavate_bagh.config(state="normal")
-    else:
-        metraj_vila_bagh_entry.config(state="disabled")
-        year_vila_bagh_entry.config(state="disabled")
-        type_vila_combo.config(state="disabled")
-        toilet_bagh_combo.config(state="disabled")
-        hamam_bagh_combo.config(state="disabled")
-        sanad_bagh_combo.config(state="disabled")
-        option_bagh_combo.config(state="disabled")
-        javaz_bagh.config(state="disabled")
-        mohavate_bagh.config(state="disabled")
-        
-def home_true_false2(): #برای فعال یا غیر فعال کردن ویجت های خونه باغ در فروش
-    if var0.get()==1:
-        metraj_vila_forosh_bagh_entry.config(state="normal")
-        year_vila_forosh_bagh_entry.config(state="normal")
-        type_vila_forosh_bagh_combo.config(state="normal")
-        toilet_forosh_bagh_combo.config(state="normal")
-        hamam_forosh_bagh_combo.config(state="normal")
-        sanad_forosh_bagh_combo.config(state="normal")
-        option_forosh_bagh_combo.config(state="normal")
-        javaz_forosh_bagh.config(state="normal")
-        mohavate_forosh_bagh.config(state="normal")
-    else:
-        metraj_vila_forosh_bagh_entry.config(state="disabled")
-        year_vila_forosh_bagh_entry.config(state="disabled")
-        type_vila_forosh_bagh_combo.config(state="disabled")
-        toilet_forosh_bagh_combo.config(state="disabled")
-        hamam_forosh_bagh_combo.config(state="disabled")
-        sanad_forosh_bagh_combo.config(state="disabled")
-        option_forosh_bagh_combo.config(state="disabled")
-        javaz_forosh_bagh.config(state="disabled")
-        mohavate_forosh_bagh.config(state="disabled")
-def choos_kesht(event):
-    a=kesht_ejareh_combo.get()
-    if a=="بدون کشت":
-        kesht_ejareh_entry.config(state="disabled")
-    else:
-        kesht_ejareh_entry.config(state="normal")
-def choos_kesht2(event):
-    b=kesht_forosh_combo.get()
-    if b=="بدون کشت":
-        kesht_forosh_entry.config(state="disabled")
-    else:
-        kesht_forosh_entry.config(state="normal")
-
-
-
-def add_tree2():
-    # برای اضافه کردن درخت به صورت دستی در فروش
-    pass
-def add_option2():
-    pass
-    #برای اضافه کردن امکانات تفریحی به صورت دستی در فروش
-
-
-        
-
-
-
-
-
-#--------------------------------------------------------------------
 def open_option2():
     option_file_frame_forosh_maskoni.deiconify()
     forosh_rehn_page.withdraw()
@@ -159,86 +149,137 @@ def open_option5():
 def open_option6():
     option_file_frame_forosh_bz.deiconify()
     forosh_bz.withdraw() 
+#=======================================================
+#-----------توابع برگشت صفحات ثبتی به فرم اصلی----------
+#-----برگشت از صفحه اجاره مسکونی-------------------------
+def back_home_ejare_maskoni():
+    root.deiconify()
+    ejareh_rehn_page.withdraw()
+    #خالی کردن  باکس های اجاره مسکونی
+    year_ejare_maskoni_entry.delete(0,tk.END)
+    addrres_ejare_maskoni_entry.delete(0,tk.END)
+    floor_ejare_maskoni_entry.delete(0,tk.END)
+    vahed_ejare_maskoni_entry.delete(0,tk.END)
+    room_ejare_maskoni_entry.delete(0,tk.END)
+    price_ejare_ejare_maskoni_entry.delete(0,tk.END)
+    price_pish_ejare_maskoni_entry.delete(0,tk.END)
+    delete_root()
+#-----برگشت از صفحه فروش مسکونی-------------------------
+def back_home_forosh_maskoni():
+    root.deiconify()
+    forosh_rehn_page.withdraw()
+    year_forosh_maskoni_entry.delete(0,tk.END)
+    addrres_forosh_maskoni_entry.delete(0,tk.END)
+    floor_forosh_maskoni_entry.delete(0,tk.END)
+    vahed_forosh_maskoni_entry.delete(0,tk.END)
+    room_forosh_maskoni_entry.delete(0,tk.END)
+    price_forosh_maskoni_entry.delete(0,tk.END)
+    delete_root()
+#-----برگشت از صفحه اجاره اداری/تجاری------------------------
+def back_home_ejareh_et():
+    root.deiconify()
+    ejareh_et.withdraw()
+    year_ejareh_et_entry.delete(0,tk.END)
+    addrres_ejareh_et_entry.delete(0,tk.END)
+    floor_ejareh_et_entry.delete(0,tk.END)
+    vahed_ejareh_et_entry.delete(0,tk.END)
+    price_ejareh_et_entry.delete(0,tk.END) 
+    delete_root()
+#-----برگشت از صفحه فروش اداری/تجاری--------------------
+def back_home_forosh_et():
+    root.deiconify()
+    forosh_et.withdraw()
+    year_forosh_et_entry.delete(0,tk.END)
+    addrres_forosh_et_entry.delete(0,tk.END)
+    floor_forosh_et_entry.delete(0,tk.END)
+    vahed_forosh_et_entry.delete(0,tk.END)
+    price_forosh_et_entry.delete(0,tk.END)
+    delete_root()
+#-------برگشت از صفحه اجاره باغ / زمین------------------
 
+#-------برگشت از صفحه فروش باغ / زمین------------------
+def back_home_forosh_bagh():
+    forosh_bz.withdraw()
+    root.deiconify()    
+    metraj_zamin_forosh_bagh_entry.delete(0,tk.END)
+    bagh_loctaion_forosh_bagh_entry.delete(0,tk.END)
+    bagh_price_forosh_bagh_entry.delete(0,tk.END)
+    bagh_price_forosh_bagh2_entry.delete(0,tk.END)
+    metraj_tree_forosh_bagh_entry.delete(0,tk.END)
+    tree_count_forosh_bagh_entry.delete(0,tk.END)
+    metraj_vila_forosh_bagh_entry.delete(0,tk.END)
+    year_vila_forosh_bagh_entry.delete(0,tk.END)
+    delete_root()
+#=========================================================
+#--------برگشت از امکانات فایل ها به صفحه اصلی ثبتی-------
+#-------برگشت اجاره مسکونی------------------
 def back_to_buy_page():
     option_file_frame.withdraw()
     ejareh_rehn_page.deiconify()
-
+#-------برگشت فروش مسکونی------------------    
 def back_to_forosh_maskoni_page():
     option_file_frame_forosh_maskoni.withdraw()
     forosh_rehn_page.deiconify()
-
+#--------برگشت اجاره اداری/تجاری----------------- 
 def back_to_ejareh_et():
     option_file_frame_ejareh_et.withdraw()
     ejareh_et.deiconify()
-
+#--------برگشت فروش اداری/تجاری----------------- 
 def back_to_forosh_et():
     option_file_frame_forosh_et.withdraw()
     forosh_et.deiconify()
-
-def back_f_exit():
-    box_forosh.withdraw()
-    root.deiconify()
-
-def back_rehn_e_exit():
-    box_rehn_ejareh.withdraw()
-    root.deiconify()
-
+#-------برگشت اجاره باغ و زمین------------------
 def back_home_ejareh_bagh():
     ejareh_bz.withdraw()
     root.deiconify()
-
-def  back_to_ejareh_bz():
-     option_file_frame_ejareh_bz.withdraw()
-     ejareh_bz.deiconify()
-
+#--------------------برگشت فروش باغ و زمین------------------------------------------------
 def  back_to_forosh_bz():
      option_file_frame_forosh_bz.withdraw()
      forosh_bz.deiconify()
-# لیست کشویی فیلد فایل 
-def kharid():
-    pass
 
-def forosh():
-    root.withdraw()
-    box_forosh.deiconify()
+#----------برگشت باکس ها(نوع ملک)-------------
+def back_forosh_exit():
+    box_forosh.withdraw()
+    root.deiconify()
 
-def rahn():
-    root.withdraw()
-    box_rehn_ejareh.deiconify()
-
-def mosharecat():
-    pass
-
+def back_rehn_ejareh_exit():
+    box_rehn_ejareh.withdraw()
+    root.deiconify()
+#============================================
+#--------باز و بسته کردن بین باکس ها----------------
+#-----بستن باکس و باز کردن صفحه اجاره مسکونی-----------
 def ejareh_rehn_page():
     box_rehn_ejareh.withdraw()
     ejareh_rehn_page.deiconify()
-
+#-----بستن باکس و باز کردن صفحه اجاره اداری/تجاری-----------
 def ejareh_et():
     box_rehn_ejareh.withdraw()
     ejareh_et.deiconify()  
-
+#-----بستن باکس و باز کردن صفحه اجاره باغ/زمین---------
 def ejareh_bz():
     box_rehn_ejareh.withdraw()
-    ejareh_bz.deiconify()  
+    ejareh_bz.deiconify()
+#-----بستن باکس و باز کردن صفحه اجاره سوله/کارگاه---------
 def ejareh_sk():
     pass
-
+#-----بستن باکس و باز کردن صفحه فروش مسکونی-----------
 def forosh_rehn_page():
     box_forosh.withdraw()
     forosh_rehn_page.deiconify() 
-
+#-----بستن باکس و باز کردن صفحه فروش اداری/تجاری-----------
 def forosh_et():
     box_forosh.withdraw()
     forosh_et.deiconify()
-
+#-----بستن باکس و باز کردن صفحه فروش باغ/زمین---------
 def forosh_bz():
     box_forosh.withdraw()
     forosh_bz.deiconify()  
-
+#-----بستن باکس و باز کردن صفحه فروش اجاره سوله/کارگاه---------
 def forosh_sk():
     pass
 
+#=======================================================
+#---------جابه جایی کاربری باغ و زمین در قسمت های فروش/اجاره
 def change_bagh_zamin1(event):
     co=bagh_type2_combo.get()
     if co=="باغ":
@@ -256,136 +297,9 @@ def change_bagh_zamin_forosh_bagh(event):
     else:
         fram_option_forosh_bagh.place_forget()
         fram_option_forosh_zamin.place(x=60,y=60)       
-        
-
-
-# لیست کشویی فیلد گزارش ها
-def excel():
-    pass
-def gharardadeha():
-    pass
-
-#بازگشت های صفحات
-
-def back_home_ejare_maskoni():
-#main_page delete Entry and Combo
-    entry_melk_Pricelimit.delete(0,tk.END)
-    entry_melk_width_lable.delete(0,tk.END)
-    entry_melk_area_lable.delete(0,tk.END)
-    combo1.set("")
-    combo2.set("")
-#ejare_rehn_page delete Entry
-    root.deiconify()
-    ejareh_rehn_page.withdraw()
-    year_ejare_maskoni_entry.delete(0,tk.END)
-    addrres_ejare_maskoni_entry.delete(0,tk.END)
-    floor_ejare_maskoni_entry.delete(0,tk.END)
-    vahed_ejare_maskoni_entry.delete(0,tk.END)
-    room_ejare_maskoni_entry.delete(0,tk.END)
-    price_ejare_ejare_maskoni_entry.delete(0,tk.END)
-    price_pish_ejare_maskoni_entry.delete(0,tk.END)
     
-def back_home_forosh_maskoni():
-#main_page delete Entry and Combo
-    entry_melk_Pricelimit.delete(0,tk.END)
-    entry_melk_width_lable.delete(0,tk.END)
-    entry_melk_area_lable.delete(0,tk.END)
-    combo1.set("")
-    combo2.set("")
-#forosh_rehn_page delete Entry
-    root.deiconify()
-    forosh_rehn_page.withdraw()
-    year_forosh_maskoni_entry.delete(0,tk.END)
-    addrres_forosh_maskoni_entry.delete(0,tk.END)
-    floor_forosh_maskoni_entry.delete(0,tk.END)
-    vahed_forosh_maskoni_entry.delete(0,tk.END)
-    room_forosh_maskoni_entry.delete(0,tk.END)
-    price_forosh_maskoni_entry.delete(0,tk.END)
-
-def back_home_ejareh_et():
-#main_page delete Entry and Combo
-    entry_melk_Pricelimit.delete(0,tk.END)
-    entry_melk_width_lable.delete(0,tk.END)
-    entry_melk_area_lable.delete(0,tk.END)
-    combo1.set("")
-    combo2.set("")
-    #ejareh_et_page delete Entry
-    root.deiconify()
-    ejareh_et.withdraw()
-    year_ejareh_et_entry.delete(0,tk.END)
-    addrres_ejareh_et_entry.delete(0,tk.END)
-    floor_ejareh_et_entry.delete(0,tk.END)
-    vahed_ejareh_et_entry.delete(0,tk.END)
-    price_ejareh_et_entry.delete(0,tk.END) 
-
-def back_home_forosh_et():
-#main_page delete Entry and Combo
-    entry_melk_Pricelimit.delete(0,tk.END)
-    entry_melk_width_lable.delete(0,tk.END)
-    entry_melk_area_lable.delete(0,tk.END)
-    combo1.set("")
-    combo2.set("")
-#ejareh_et_page delete Entry
-    root.deiconify()
-    forosh_et.withdraw()
-    year_forosh_et_entry.delete(0,tk.END)
-    addrres_forosh_et_entry.delete(0,tk.END)
-    floor_forosh_et_entry.delete(0,tk.END)
-    vahed_forosh_et_entry.delete(0,tk.END)
-    price_forosh_et_entry.delete(0,tk.END)
-
-def back_home_forosh_bagh():
-#main_page delete Entry and Combo
-    entry_melk_Pricelimit.delete(0,tk.END)
-    entry_melk_width_lable.delete(0,tk.END)
-    entry_melk_area_lable.delete(0,tk.END)
-    combo1.set("")
-    combo2.set("")
-#forosh_bz_page delete Entry
-    forosh_bz.withdraw()
-    root.deiconify()    
-    metraj_zamin_forosh_bagh_entry.delete(0,tk.END)
-    bagh_loctaion_forosh_bagh_entry.delete(0,tk.END)
-    bagh_price_forosh_bagh_entry.delete(0,tk.END)
-    bagh_price_forosh_bagh2_entry.delete(0,tk.END)
-    metraj_tree_forosh_bagh_entry.delete(0,tk.END)
-    tree_count_forosh_bagh_entry.delete(0,tk.END)
-    metraj_vila_forosh_bagh_entry.delete(0,tk.END)
-    year_vila_forosh_bagh_entry.delete(0,tk.END)
-
-
-
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
-
-
-# پنجره اصلی (باکس مادر)
-
-root = tk.Tk()
-root.title("")
-root.geometry("1100x700")
-#تصاویر پروژه
-plus=tk.PhotoImage(file="pluse.png")
-elvator_pic=tk.PhotoImage(file="elvator.png")
-parking_pic=tk.PhotoImage(file="parking.png")
-warehouse_pic=tk.PhotoImage(file="anbari.png")#انبار
-##----------------------------------------------------------------------------------------------##
-# root.attributes("-fullscreen", True) <<<-----  App فول اسکرین شدن
-root.configure(bg="#0D4D34")
-#-----------------------------------------------------فریم مادر------------------------------------------------
-main_frame=tk.Frame(root)
-main_frame.pack(fill="both",expand=True)
-#------------------------فریم هدر --------------
-header=tk.Frame(main_frame,bg="#404040",height=60)
-header.pack(fill='x')
-title_font=font.Font(family="B Nazanin",size=22,weight="bold")
-title_label=tk.Label(header,text="آژانس املاک",fg="#FFFFFF",bg="#404040",font=title_font)
-title_label.pack(pady=10)
-
-#---------------------فریم منو----------------------
-menu_frame=tk.Frame(main_frame,bg="#ffffff", relief="flat",height=1)#رنگ موقتی
-menu_frame.pack(padx=2, pady=2, fill="both", expand=True)
-
-# دکمه فایل با منوی کشویی 
+# ---------دکمه فایل با منوی کشویی ------------------
 file_button = tk.Button(menu_frame, text="ثبت فایل ها", bg="#ffffff", relief="flat")
 file_button.pack(padx=5, pady=5, side="left")
 
@@ -394,36 +308,9 @@ file_popup.add_command(label="خرید", command=kharid)
 file_popup.add_command(label="فروش", command=forosh)
 file_popup.add_command(label="رهن/اجاره", command=rahn)
 file_popup.add_command(label="مشارکت", command=mosharecat)
-
-def show_file_popup(event):
-    file_popup.tk_popup(event.x_root, event.y_root)
-
-file_button.bind("<Button-1>", show_file_popup)
- 
-
-# اضافه کردن فیلد قرارداد 
-file_button = tk.Button(menu_frame, text="قرارداد ", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=5, side="left")
-
-# دکمه گزارش ها با منوی کشویی  
-file_button = tk.Button(menu_frame, text="گزارش ها", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=10, side="left")
-
-file_popup1 = tk.Menu(root, tearoff=0, font=("Arial", 12))
-file_popup1.add_command(label="خروجی اکسل", command=excel)
-file_popup1.add_command(label="قرارداد ها", command=gharardadeha)
-
-
 file_button.bind("<Button-1>", show_file_popup)
 
-# اضافه کردن فیلد درخواست ها  
-file_button = tk.Button(menu_frame, text="درخواست ها", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=5, side="left")
-
-#اضافه کردن فیلد کاربران 
-file_button = tk.Button(menu_frame, text="کاربران ", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=5, side="left")
-#--------------------------------------------------------------------------------------------------------
+#===========================================================
 
 # باکس سمت چپ - جستجو در فایل های ملک
 
@@ -531,7 +418,7 @@ box_rehn_ejareh.withdraw()
 box_rehn_ejareh.configure(bg="#0F6E6E")
 label_box1=tk.Label(box_rehn_ejareh,text="لطفا نوع ملک رهن و اجاره را انتخاب کنید",font=("B Nazanin",17),bg="#0F6E6E",fg="#fff")
 label_box1.place(x=75,y=10)
-back_to_home_reh=tk.Button(box_rehn_ejareh,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_rehn_e_exit)
+back_to_home_reh=tk.Button(box_rehn_ejareh,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_rehn_ejareh_exit)
 back_to_home_reh.place(x=290,y=110)
 
 box_rehn_ejareh.protocol("WM_DELETE_WINDOW", lambda: None)
@@ -560,7 +447,7 @@ box_forosh.configure(bg="#0F6E6E")
 label_box2=tk.Label(box_forosh,text="لطفا نوع ملک فروش را انتخاب کنید",font=("B Nazanin",17),bg="#0F6E6E",fg="#fff")
 label_box2.place(x=100,y=10)
 
-back_to_home_f=tk.Button(box_forosh,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_f_exit)
+back_to_home_f=tk.Button(box_forosh,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_forosh_exit)
 back_to_home_f.place(x=290,y=110)
 box_forosh.protocol("WM_DELETE_WINDOW", lambda: None)
 box_forosh.resizable(False, False) 
@@ -671,7 +558,7 @@ option_label_ejare_maskoni.pack(side="right",padx=1)
 
 button_label_ejare_maskoni=tk.Label(option_frame_ejare_maskoni)
 button_label_ejare_maskoni.pack(side="left",padx=1)
-plus_button_ejare_maskoni=tk.Button(option_frame_ejare_maskoni,image=plus,command=open_option,border=0)
+plus_button_ejare_maskoni=tk.Button(option_frame_ejare_maskoni,image=plus,command=open_option1,border=0)
 plus_button_ejare_maskoni.pack()
 
 option_frame1=tk.Frame(option_file_frame,width=400,height=100,background="#bbfbd1")
@@ -1078,7 +965,7 @@ mohavate_bagh.grid(padx=10,pady=5,row=14,column=3)
 divar_bagh=tk.Checkbutton(fram_option1_bagh,text="دیوار کشی",background="#d6d0d0")
 divar_bagh.grid(padx=10,pady=5,row=14,column=2)
 
-save_button_bz_option=tk.Button(option_file_frame_ejareh_bz,text="ذخیره",command=save_bz_option,background="#079BDB",fg="#ffffff",width=8)
+save_button_bz_option=tk.Button(option_file_frame_ejareh_bz,text="ذخیره",background="#079BDB",fg="#ffffff",width=8)
 save_button_bz_option.place(x=170,y=580)
 
 back_to_ejareh_bz=tk.Button(option_file_frame_ejareh_bz,text="بازگشت",command=back_to_ejareh_bz,background="#079BDB",fg="#ffffff",width=8)
@@ -1672,7 +1559,7 @@ mohavate_forosh_bagh.grid(padx=10,pady=5,row=14,column=3)
 divar_forosh_bagh=tk.Checkbutton(fram_option_forosh_bagh,text="دیوار کشی",background="#d6d0d0")
 divar_forosh_bagh.grid(padx=10,pady=5,row=14,column=2)
 
-save_button_bz_option_forosh_bagh=tk.Button(option_file_frame_forosh_bz,text="ذخیره",command=save_bz_option,background="#079BDB",fg="#ffffff",width=8)
+save_button_bz_option_forosh_bagh=tk.Button(option_file_frame_forosh_bz,text="ذخیره",background="#079BDB",fg="#ffffff",width=8)
 save_button_bz_option_forosh_bagh.place(x=170,y=580)
 
 back_to_forosh_bz=tk.Button(option_file_frame_forosh_bz,text="بازگشت",command=back_to_forosh_bz,background="#079BDB",fg="#ffffff",width=8)
