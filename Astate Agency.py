@@ -13,7 +13,7 @@ def close_window():#این تابع بعد از اتصال دیتابیس تکم
         root.destroy()
     else:
         return
-# تابع فراخوانی ادرس با دکمه 
+# -------------------------------------تابع فراخوانی ادرس با دکمه-----------
 
 def open_file_folder():
     file_path = filedialog.askopenfilename()
@@ -57,7 +57,7 @@ def save_forosh_bagh():# ذخیره پنجره فروش باغ و زمین
 # ------------پنجره اصلی--------
 
 root = tk.Tk()
-root.title("")
+root.title("Astate Agency")
 root.geometry("1100x700")
 #تصاویر پروژه
 plus=tk.PhotoImage(file="pluse.png")
@@ -79,7 +79,7 @@ title_label.pack(pady=10)
 def show_file_popup(event):
     file_popup.tk_popup(event.x_root, event.y_root)
 #---------------------فریم منو----------------------
-menu_frame=tk.Frame(main_frame,bg="#ffffff", relief="flat",height=1)#رنگ موقتی
+menu_frame=tk.Frame(main_frame,bg="#ffffff", relief="flat",height=1)
 menu_frame.pack(padx=2, pady=2, fill="both", expand=True)
 
 # ------------- لیست کشویی فیلد فایل های ثبتی-----------
@@ -97,33 +97,7 @@ def rahn():
 def mosharecat():
     pass
 
-# ----------لیست کشویی فیلد گزارش ها-----------------
-def excel():
-    pass
-def gharardadeha():
-    pass
-# ---------------اضافه کردن فیلد قرارداد ---------------
-file_button = tk.Button(menu_frame, text="قرارداد ", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=5, side="left")
 
-# ---------دکمه گزارش ها با منوی کشویی ---------------------- 
-file_button = tk.Button(menu_frame, text="گزارش ها", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=10, side="left")
-
-file_popup1 = tk.Menu(root, tearoff=0, font=("Arial", 12))
-file_popup1.add_command(label="خروجی اکسل", command=excel)
-file_popup1.add_command(label="قرارداد ها", command=gharardadeha)
-
-
-file_button.bind("<Button-1>", show_file_popup)
-
-# اضافه کردن فیلد درخواست ها  
-file_button = tk.Button(menu_frame, text="درخواست ها", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=5, side="left")
-
-#اضافه کردن فیلد کاربران 
-file_button = tk.Button(menu_frame, text="کاربران ", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=5, side="left")
 #---------------------------توابع باز و بستن کردن امکانات فایل ها---------------------------
 
 def open_option1():
@@ -175,7 +149,7 @@ def back_home_forosh_maskoni():
     room_forosh_maskoni_entry.delete(0,tk.END)
     price_forosh_maskoni_entry.delete(0,tk.END)
     delete_root()
-#-----برگشت از صفحه اجاره اداری/تجاری------------------------
+#------------------------برگشت از صفحه اجاره اداری/تجاری---------------------
 def back_home_ejareh_et():
     root.deiconify()
     ejareh_et.withdraw()
@@ -185,7 +159,7 @@ def back_home_ejareh_et():
     vahed_ejareh_et_entry.delete(0,tk.END)
     price_ejareh_et_entry.delete(0,tk.END) 
     delete_root()
-#-----برگشت از صفحه فروش اداری/تجاری--------------------
+#---------------------------برگشت از صفحه فروش اداری/تجاری--------------------
 def back_home_forosh_et():
     root.deiconify()
     forosh_et.withdraw()
@@ -195,9 +169,10 @@ def back_home_forosh_et():
     vahed_forosh_et_entry.delete(0,tk.END)
     price_forosh_et_entry.delete(0,tk.END)
     delete_root()
-#-------برگشت از صفحه اجاره باغ / زمین------------------
-
-#-------برگشت از صفحه فروش باغ / زمین------------------
+#----------------------------برگشت از صفحه اجاره باغ / زمین------------------
+def back_to_ejareh_bz():
+    pass
+#-----------------------------برگشت از صفحه فروش باغ / زمین------------------
 def back_home_forosh_bagh():
     forosh_bz.withdraw()
     root.deiconify()    
@@ -279,7 +254,7 @@ def forosh_sk():
     pass
 
 #=======================================================
-#---------جابه جایی کاربری باغ و زمین در قسمت های فروش/اجاره
+#---------------جابه جایی کاربری باغ و زمین در قسمت های فروش/اجاره-------------
 def change_bagh_zamin1(event):
     co=bagh_type2_combo.get()
     if co=="باغ":
@@ -296,8 +271,109 @@ def change_bagh_zamin_forosh_bagh(event):
         fram_option_forosh_bagh.place(x=60,y=60)
     else:
         fram_option_forosh_bagh.place_forget()
-        fram_option_forosh_zamin.place(x=60,y=60)       
-    
+        fram_option_forosh_zamin.place(x=60,y=60) 
+
+#=============================================================      
+#---------------------قسمت اضافه کردن اپشن های تفریحی و درختان در قسمت باغ و زمین------------
+selected_trees=[]
+def add_tree():# برای اضافه کردن درخت به صورت دستی
+    t=type_tree_combo.get()
+    if t and t not in selected_trees:
+        selected_trees.append(t)
+        label_result_add.config(text=','.join(selected_trees))
+selected_option=[]
+def add_option():
+    op=option_bagh_combo.get()
+    if op and op not in selected_option:
+        selected_option.append(op)
+        label_result2_add.config(text=','.join(selected_option))
+selected_topo1=[]
+def add_topo1():
+    topo=zamin_shape_ejareh_combo.get()
+    if topo and topo not in selected_topo1:
+        selected_topo1.append(topo)
+        label_result_topo1_add.config(text=','.join(selected_topo1))
+
+selected_topo2=[]
+def add_topo2():
+    topo2=zamin_shape_forosh_combo.get()
+    if topo2 and topo2 not in selected_topo2:
+        selected_topo2.append(topo2)
+        label_result_topo2_add.config(text=','.join(selected_topo2))
+
+
+def home_true_false1(): # برای فعال یا غیر فعال کردن ویجت های خونه باغ در اجاره
+    if var0.get()==1:
+        metraj_vila_bagh_entry.config(state="normal")
+        year_vila_bagh_entry.config(state="normal")
+        type_vila_combo.config(state="normal")
+        toilet_bagh_combo.config(state="normal")
+        hamam_bagh_combo.config(state="normal")
+        sanad_bagh_combo.config(state="normal")
+        option_bagh_combo.config(state="normal")
+        javaz_bagh.config(state="normal")
+        mohavate_bagh.config(state="normal")
+    else:
+        metraj_vila_bagh_entry.config(state="disabled")
+        year_vila_bagh_entry.config(state="disabled")
+        type_vila_combo.config(state="disabled")
+        toilet_bagh_combo.config(state="disabled")
+        hamam_bagh_combo.config(state="disabled")
+        sanad_bagh_combo.config(state="disabled")
+        option_bagh_combo.config(state="disabled")
+        javaz_bagh.config(state="disabled")
+        mohavate_bagh.config(state="disabled")
+        
+def home_true_false2(): #برای فعال یا غیر فعال کردن ویجت های خونه باغ در فروش
+    if var0.get()==1:
+        metraj_vila_forosh_bagh_entry.config(state="normal")
+        year_vila_forosh_bagh_entry.config(state="normal")
+        type_vila_forosh_bagh_combo.config(state="normal")
+        toilet_forosh_bagh_combo.config(state="normal")
+        hamam_forosh_bagh_combo.config(state="normal")
+        sanad_forosh_bagh_combo.config(state="normal")
+        option_forosh_bagh_combo.config(state="normal")
+        javaz_forosh_bagh.config(state="normal")
+        mohavate_forosh_bagh.config(state="normal")
+    else:
+        metraj_vila_forosh_bagh_entry.config(state="disabled")
+        year_vila_forosh_bagh_entry.config(state="disabled")
+        type_vila_forosh_bagh_combo.config(state="disabled")
+        toilet_forosh_bagh_combo.config(state="disabled")
+        hamam_forosh_bagh_combo.config(state="disabled")
+        sanad_forosh_bagh_combo.config(state="disabled")
+        option_forosh_bagh_combo.config(state="disabled")
+        javaz_forosh_bagh.config(state="disabled")
+        mohavate_forosh_bagh.config(state="disabled")
+def choos_kesht(event):
+    a=kesht_ejareh_combo.get()
+    if a=="بدون کشت":
+        kesht_ejareh_entry.config(state="disabled")
+    else:
+        kesht_ejareh_entry.config(state="normal")
+def choos_kesht2(event):
+    b=kesht_forosh_combo.get()
+    if b=="بدون کشت":
+        kesht_forosh_entry.config(state="disabled")
+    else:
+        kesht_forosh_entry.config(state="normal")
+
+
+
+def add_tree2():
+    # برای اضافه کردن درخت به صورت دستی در فروش
+    pass
+def add_option2():
+    pass
+    #برای اضافه کردن امکانات تفریحی به صورت دستی در فروش
+
+
+
+
+
+
+
+
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
 # ---------دکمه فایل با منوی کشویی ------------------
 file_button = tk.Button(menu_frame, text="ثبت فایل ها", bg="#ffffff", relief="flat")
@@ -310,8 +386,34 @@ file_popup.add_command(label="رهن/اجاره", command=rahn)
 file_popup.add_command(label="مشارکت", command=mosharecat)
 file_button.bind("<Button-1>", show_file_popup)
 
-#===========================================================
+# ----------لیست کشویی فیلد گزارش ها-----------------
+def excel():
+    pass
+def gharardadeha():
+    pass
+# ---------------اضافه کردن فیلد قرارداد ---------------
+file_button = tk.Button(menu_frame, text="قرارداد ", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=5, side="left")
 
+# ---------دکمه گزارش ها با منوی کشویی ---------------------- 
+file_button = tk.Button(menu_frame, text="گزارش ها", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=10, side="left")
+
+file_popup1 = tk.Menu(root, tearoff=0, font=("Arial", 12))
+file_popup1.add_command(label="خروجی اکسل", command=excel)
+file_popup1.add_command(label="قرارداد ها", command=gharardadeha)
+
+
+file_button.bind("<Button-1>", show_file_popup)
+
+# اضافه کردن فیلد درخواست ها  
+file_button = tk.Button(menu_frame, text="درخواست ها", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=5, side="left")
+
+#اضافه کردن فیلد کاربران 
+file_button = tk.Button(menu_frame, text="کاربران ", bg="#ffffff", relief="flat")
+file_button.pack(padx=10, pady=5, side="left")
+#========================================================
 # باکس سمت چپ - جستجو در فایل های ملک
 
 left_frame = tk.LabelFrame(root, text="جستجوی ملک", width=200, bg="#575353",fg="#F8F7F7", font=("Arial", 16))
@@ -353,12 +455,12 @@ melk_Area_lable.pack(padx=5, pady=1)
 entry_melk_area_lable = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
 entry_melk_area_lable.pack(padx=20,pady=10)
 
-# دکمه جستجوی ملک
+# ---------------------دکمه جستجوی ملک-----------------
 search_btn = tk.Button(left_frame, text="    جستجو    " , bg="#94c6dd", fg="#201F1F", font=("Arial", 14), command=open_file)
 search_btn.pack(pady=10)
-#--------------------------------------------------------------------------------------------------------
+#=====================================================
 
-# باکس وسط - نمایش جستجوی قراردادها
+# ---------------------------باکس وسط - نمایش جستجوی --------------
 
 center_frame = tk.LabelFrame(root, text="لیست املاک", bg="#ffffff", font=("Arial", 14))
 center_frame.pack(side="left", fill="both", expand=True, padx=4, pady=15)
@@ -408,8 +510,8 @@ extension.pack(padx=6,pady=4)
 
 entry_extension = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
 entry_extension.pack(padx=20,pady=4)
-
-#نوع انتخاب ثبتی فایل برای پنجره های رهن و اجاره
+#-------------------------باکس های نوع ثبتی فایل ها----------------------
+#-------------------نوع انتخاب ثبتی فایل برای پنجره های رهن و اجاره--------------
 
 box_rehn_ejareh=tk.Toplevel(root)
 box_rehn_ejareh.title("انتخاب نوع ملک رهن و اجاره")
@@ -437,7 +539,7 @@ def show_file_list_box1(event):
 
 file_button2.bind("<Button-1>",show_file_list_box1)
 
-#نوع انتخاب ثبتی فایل برای پنجره های فروش
+#----------------------------------نوع انتخاب ثبتی فایل برای پنجره های فروش-----------------
 
 box_forosh=tk.Toplevel(root)
 box_forosh.title("انتخاب نوع ملک فروش")
@@ -464,9 +566,9 @@ def show_file_list_box3(event):
     file_list_box3.tk_popup(event.x_root, event.y_root)
 
 file_button3.bind("<Button-1>",show_file_list_box3)
-
-#==========WINS_BOX1_REHN_EJAREH======================
-#win_ejareh_rehn
+#======================================================================
+#-----------------پنجره های ثبتی بخش رهن و اجاره----------------------------
+#----------پنجره اجاره مسکونی----------------
 ejareh_rehn_page = tk.Toplevel(root)
 ejareh_rehn_page.title("رهن و اجاره مسکونی")
 ejareh_rehn_page.geometry("800x600")
@@ -474,25 +576,22 @@ ejareh_rehn_page.withdraw()
 ejareh_rehn_page.configure(bg="#0F6E6E")
 
  
-#option_file
+#-----------option_file_ejareh_maskoni-----------------------------
 option_file_frame=tk.Toplevel(ejareh_rehn_page,background="#bbfbd1" )
-option_file_frame.title(" ")
+option_file_frame.title("امکانات اجاره مسکونی ")
 option_file_frame.geometry("500x370")
 option_file_frame.pack_propagate(False)
 option_file_frame.withdraw()
 
 
-
 rehn_page_frame1=tk.Frame(ejareh_rehn_page,width=490,height=800,bg="#5d6059",border=2)
 rehn_page_frame1.place(x=450,y=40)
-
 
 melktype_ejare_maskoni=tk.Label(rehn_page_frame1,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
 melktype_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
 melk_type_rehn_maskoni=tk.Entry(rehn_page_frame1,text="اجاره مسکونی",bg="#C2C2C2", fg="#180202",font=("Arial", 10))
 melk_type_rehn_maskoni.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
-
 
 year_ejare_maskoni=tk.Label(rehn_page_frame1,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
 year_ejare_maskoni.grid(padx=8,pady=10,sticky="e",row=1,column=1)
@@ -524,7 +623,6 @@ room_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=5,column=1)
 room_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
 room_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
 
-
 price_ejare_ejare_maskoni=tk.Label(rehn_page_frame1,text="مبلغ اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
 price_ejare_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=7,column=0)
 
@@ -549,7 +647,7 @@ photo_lbl2_ejare_maskoni = tk.Label(photo_box_ejare_maskoni, text="[تصویر �
 photo_lbl2_ejare_maskoni.place(x=30,y=45)
 add_img_btn_ejare_maskoni = tk.Button(photo_box_ejare_maskoni, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn_ejare_maskoni.place(x=40,y=330)
-#ساخت پنجره امکانات
+#------------------ساخت امکانات اجاره مسکونی------------------------
 option_frame_ejare_maskoni=tk.Frame(ejareh_rehn_page,width=300,height=30,background="#bbfbd1")
 option_frame_ejare_maskoni.place(x=525,y=500)
 
@@ -575,8 +673,6 @@ warehouse_ch_btn_ejare_maskoni.pack(padx=15,side="right")
 
 option_frame2=tk.Frame(option_file_frame,width=400,height=400,background="#bbfbd1",border=1)
 option_frame2.pack(padx=10,pady=15)
-
-#balcon_ch_btn=tk.Checkbutton(option_frame2,text="تراس")
 
 sarmaesh_ejare_maskoni=tk.Label(option_frame2,text="سرمایش",background="#025578",fg="#ffffff")
 sarmaesh_ejare_maskoni.grid(row=0,column=1,padx=15,pady=5)
@@ -609,8 +705,7 @@ back_to_ejare_maskoni=tk.Button(option_file_frame,text="بازگشت",command=ba
 back_to_ejare_maskoni.place(x=95,y=330)
 
 
-#==========WINS_BOX3_REHN_EJAREH======================
-#win_ejareh_et
+#------------------------پنجره اجاره اداری/تجاری--------------------
 
 ejareh_et = tk.Toplevel(root)
 ejareh_et.title("رهن و اجاره اداری / تجاری")
@@ -618,9 +713,9 @@ ejareh_et.geometry("800x600")
 ejareh_et.withdraw()
 ejareh_et.configure(bg="#0F6E6E")
 
-#option_file
+#--------------------پنجره امکانات اجاره اداری/تجاری----------------------
 option_file_frame_ejareh_et=tk.Toplevel(ejareh_et,background="#bbfbd1" )
-option_file_frame_ejareh_et.title(" ")
+option_file_frame_ejareh_et.title("امکانات اجاره اداری/تجاری ")
 option_file_frame_ejareh_et.geometry("500x370")
 option_file_frame_ejareh_et.pack_propagate(False)
 option_file_frame_ejareh_et.withdraw()
@@ -691,7 +786,7 @@ photo_lbl2_ejareh_et.place(x=30,y=45)
 add_img_btn_ejareh_et = tk.Button(photo_box_ejareh_et, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn_ejareh_et.place(x=40,y=330)
 
-# (ejareh_et)  ===>> ساخت پنجره امکانات (رهن و اجاره اداری/تجاری)
+#----------------------ساخت امکانات اجاره اداری/تجاری---------------------
 
 option_frame_ejareh_et=tk.Frame(ejareh_et,width=300,height=30,background="#bbfbd1")
 option_frame_ejareh_et.place(x=520,y=475)
@@ -748,7 +843,7 @@ back_to_home_ejareh_et=tk.Button(option_file_frame_ejareh_et,text="بازگشت"
 back_to_home_ejareh_et.place(x=95,y=330)
 
 
-#win_ejareh_bagh_zamin
+#-------------------پنجره اجاره باغ/زمین------------------------
 ejareh_bz = tk.Toplevel(root)
 ejareh_bz.title(" اجاره باغ و زمین")
 ejareh_bz.geometry("800x600")
@@ -812,7 +907,7 @@ back_to_home_bagh.place(x=320,y=520)
 save_button_re_bagh=tk.Button(ejareh_bz,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_rehn_bagh)
 save_button_re_bagh.place(x=220,y=520)
 
-# (ejareh_et)  ===>> ساخت پنجره امکانات (باغ)
+#---------------------امکانات اجاره باغ/زمین---------------------
 
 option_frame_ejareh_bz=tk.Frame(ejareh_bz,width=300,height=30,background="#bbfbd1")
 option_frame_ejareh_bz.place(x=550,y=450)
@@ -826,7 +921,7 @@ plus_button_ejareh_bz=tk.Button(option_frame_ejareh_bz,image=plus,command=open_o
 plus_button_ejareh_bz.pack()
 
 option_file_frame_ejareh_bz=tk.Toplevel(ejareh_bz,background="#bbfbd1")
-option_file_frame_ejareh_bz.title(" ")
+option_file_frame_ejareh_bz.title(" امکانات اجاره باغ/زمین")
 option_file_frame_ejareh_bz.geometry("690x630")
 option_file_frame_ejareh_bz.pack_propagate(False)
 option_file_frame_ejareh_bz.withdraw()
@@ -895,7 +990,6 @@ gas_bagh=tk.Checkbutton(fram_option1_bagh,text="گاز کشی",background="#d6d0
 gas_bagh.grid(padx=0,pady=5,row=5,column=4)
 
 var0=tk.IntVar(value=0)#چک باتن پیش فرض تیک نخورده باشه
-
 
 room_bagh_ch=tk.Checkbutton(fram_option1_bagh,variable=var0,image=warehouse_pic,background="#022578",text="ساختمان",command=home_true_false1)
 room_bagh_ch.grid(padx=10,pady=5,row=6,column=4)
@@ -971,7 +1065,7 @@ save_button_bz_option.place(x=170,y=580)
 back_to_ejareh_bz=tk.Button(option_file_frame_ejareh_bz,text="بازگشت",command=back_to_ejareh_bz,background="#079BDB",fg="#ffffff",width=8)
 back_to_ejareh_bz.place(x=95,y=580)
 
-#zamin_frame_option_ejareh
+#-------------------تعویض کاربری به زمین در قسمت اجاره باغ/زمین--------------
 
 fram_option1_zamin=tk.Frame(option_file_frame_ejareh_bz,width=445,height=290,background="#d1e0df")
 fram_option1_zamin.place_forget()
@@ -1064,19 +1158,10 @@ bardasht_zamin_ejareh.grid(padx=10,pady=6,row=7,column=2)
 dam_zamin_ejareh=tk.Checkbutton(fram_option1_zamin,text="اجازه ورود دام",background="#d6d0d0")
 dam_zamin_ejareh.grid(padx=10,pady=6,row=7,column=3)
 
+#=======================================================================
 
-
-
-
-
-
-
-
-
-
-
-#==========WINS_BOX2_FOROSH==================
-#win_forosh_rehn_page
+#---------------------------پنجره های ثبتی بخش فروش--------------------
+#-------------------پنجره فروش مسکونی----------------------
 
 forosh_rehn_page = tk.Toplevel(root)
 forosh_rehn_page.title("فروش مسکونی")
@@ -1084,25 +1169,21 @@ forosh_rehn_page.geometry("800x600")
 forosh_rehn_page.withdraw()
 forosh_rehn_page.configure(bg="#0F6E6E")
 
-#option_file === (Forosh_rehn_page)
+#---------------------پنجره امکانات فروش مسکونی----------------------
 option_file_frame_forosh_maskoni=tk.Toplevel(forosh_rehn_page,background="#bbfbd1" )
-option_file_frame_forosh_maskoni.title(" ")
+option_file_frame_forosh_maskoni.title(" امکانات فروش مسکونی")
 option_file_frame_forosh_maskoni.geometry("500x370")
 option_file_frame_forosh_maskoni.pack_propagate(False)
 option_file_frame_forosh_maskoni.withdraw()
 
-
-
 rehn_page_frame2=tk.Frame(forosh_rehn_page,width=490,height=800,bg="#5d6059",border=2)
 rehn_page_frame2.place(x=500,y=50)
-
 
 melktype_forosh_maskoni=tk.Label(rehn_page_frame2,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
 melktype_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
 melk_type_forosh_maskoni=tk.Entry(rehn_page_frame2,text="فروش مسکونی",bg="#C2C2C2", fg="#180202",font=("Arial", 10))
 melk_type_forosh_maskoni.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
-
 
 year_forosh_maskoni=tk.Label(rehn_page_frame2,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
 year_forosh_maskoni.grid(padx=8,pady=10,sticky="e",row=1,column=1)
@@ -1150,7 +1231,7 @@ photo_lbl2_forosh_maskoni.place(x=30,y=45)
 add_img_btn_forosh_maskoni = tk.Button(photo_box_forosh_maskoni, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn_forosh_maskoni.place(x=40,y=330)
 
-# (Forosh_rehn_page) === ساخت پنجره امکانات 
+#------------------------امکانات فروش مسکونی--------------------
 
 option_frame3=tk.Frame(forosh_rehn_page,width=300,height=30,background="#bbfbd1")
 option_frame3.place(x=520,y=460)
@@ -1177,8 +1258,6 @@ warehouse_ch_btn_forosh_maskoni.pack(padx=15,side="right")
 
 option_frame5=tk.Frame(option_file_frame_forosh_maskoni,width=400,height=400,background="#bbfbd1",border=1)
 option_frame5.pack(padx=10,pady=15)
-
-#balcon_ch_btn=tk.Checkbutton === (Forosh_rehn_page)(option_frame2,text="تراس")
 
 sarmaesh_forosh_maskoni=tk.Label(option_frame5,text="سرمایش",background="#025578",fg="#ffffff")
 sarmaesh_forosh_maskoni.grid(row=0,column=1,padx=15,pady=5)
@@ -1209,7 +1288,7 @@ save_optoin2.place(x=170,y=330)
 back_to_home_forosh_maskoni=tk.Button(option_file_frame_forosh_maskoni,text="بازگشت",command=back_to_forosh_maskoni_page,background="#079BDB",fg="#ffffff",width=8)
 back_to_home_forosh_maskoni.place(x=95,y=330)
 
-#win_forosh_et===emad
+#-----------------پنجره فروش اداری/تجاری-------------------
 
 forosh_et = tk.Toplevel(root)
 forosh_et.title(" فروش اداری / تجاری")
@@ -1217,10 +1296,10 @@ forosh_et.geometry("800x600")
 forosh_et.withdraw()
 forosh_et.configure(bg="#0F6E6E")
 
-# option_file forosh_et
+#---------------پنجره امکانات فروش اداری/تجاری----------------
 
 option_file_frame_forosh_et=tk.Toplevel(forosh_et,background="#bbfbd1" )
-option_file_frame_forosh_et.title(" ")
+option_file_frame_forosh_et.title(" امکانات فروش اداری/تجاری")
 option_file_frame_forosh_et.geometry("500x370")
 option_file_frame_forosh_et.pack_propagate(False)
 option_file_frame_forosh_et.withdraw()
@@ -1286,7 +1365,7 @@ photo_lbl2_forosh_et.place(x=30,y=45)
 add_img_btn_forosh_et = tk.Button(photo_box_forosh_et, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn_forosh_et.place(x=40,y=330)
 
-# (Forosh_et) === ساخت پنجره امکانات 
+#---------------امکانات فروش اداری/تجاری-------------------
 
 option_frame_forosh_et=tk.Frame(forosh_et,width=300,height=30,background="#bbfbd1")
 option_frame_forosh_et.place(x=520,y=475)
@@ -1342,7 +1421,7 @@ save_optoin4.place(x=170,y=330)
 back_to_home_forosh_et=tk.Button(option_file_frame_forosh_et,text="بازگشت",command=back_to_forosh_et,background="#079BDB",fg="#ffffff",width=8)
 back_to_home_forosh_et.place(x=95,y=330)
 
-# win_forosh_bagh_zamin
+#--------------------پنجره فروش باغ/زمین-----------------------
 forosh_bz = tk.Toplevel(root)
 forosh_bz.title("فروش باغ و زمین")
 forosh_bz.geometry("800x600")
@@ -1406,7 +1485,7 @@ back_to_home_forosh_bagh.place(x=320,y=520)
 save_button_forosh_bagh=tk.Button(forosh_bz,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_forosh_bagh)
 save_button_forosh_bagh.place(x=220,y=520)
 
-# (forosh_bz)  ===>> ساخت پنجره امکانات (باغ)
+#-----------------------پنجره امکانات فروش باغ/زمین-------------------
 
 option_frame_forosh_bz=tk.Frame(forosh_bz,width=300,height=30,background="#bbfbd1")
 option_frame_forosh_bz.place(x=550,y=450)
@@ -1420,7 +1499,7 @@ plus_button_forosh_bz=tk.Button(option_frame_forosh_bz,image=plus,command=open_o
 plus_button_forosh_bz.pack()
 
 option_file_frame_forosh_bz=tk.Toplevel(forosh_bz,background="#bbfbd1")
-option_file_frame_forosh_bz.title(" ")
+option_file_frame_forosh_bz.title(" امکانات فروش باغ/زمین")
 option_file_frame_forosh_bz.geometry("690x630")
 option_file_frame_forosh_bz.pack_propagate(False)
 option_file_frame_forosh_bz.withdraw()
@@ -1489,7 +1568,6 @@ gas_forosh_bagh=tk.Checkbutton(fram_option_forosh_bagh,text="گاز کشی",back
 gas_forosh_bagh.grid(padx=0,pady=5,row=5,column=4)
 
 var0_forosh_bsgh=tk.IntVar(value=0)#چک باتن پیش فرض تیک نخورده باشه
-
 
 room_forosh_bagh_check=tk.Checkbutton(fram_option_forosh_bagh,variable=var0,image=warehouse_pic,background="#022578",text="ساختمان",command=home_true_false2)
 room_forosh_bagh_check.grid(padx=10,pady=5,row=6,column=4)
@@ -1565,11 +1643,10 @@ save_button_bz_option_forosh_bagh.place(x=170,y=580)
 back_to_forosh_bz=tk.Button(option_file_frame_forosh_bz,text="بازگشت",command=back_to_forosh_bz,background="#079BDB",fg="#ffffff",width=8)
 back_to_forosh_bz.place(x=95,y=580)
 
-#zamin_frame_option_forosh
+#-------------------------تعویض کاربری به زمین در قسمت فروش باغ/زمین-------------
 
 fram_option_forosh_zamin=tk.Frame(option_file_frame_forosh_bz,width=445,height=290,background="#d1e0df")
 fram_option_forosh_zamin.place_forget()
-
 
 metraj_zamin2_forosh=tk.Label(fram_option_forosh_zamin,bg="#0F6E6E",fg="#ffffff",width=13,text="متراژ زمین")
 metraj_zamin2_forosh.grid(padx=10,pady=5,row=0,column=4)
@@ -1659,8 +1736,7 @@ bardasht_zamin_forosh.grid(padx=10,pady=6,row=7,column=2)
 dam_zamin_forosh=tk.Checkbutton(fram_option_forosh_zamin,text="اجازه ورود دام",background="#d6d0d0")
 dam_zamin_forosh.grid(padx=10,pady=6,row=7,column=3)
 
-
-# اجرای برنامه
+# ----------------------اجرای برنامه-------------------
 root.protocol("WM_DELETE_WINDOW",close_window)
 option_file_frame.mainloop()
 root.mainloop()
