@@ -1,0 +1,91 @@
+selected_trees=[]
+def add_tree():# برای اضافه کردن درخت به صورت دستی
+    t=type_tree_combo.get()
+    if t and t not in selected_trees:
+        selected_trees.append(t)
+        label_result_add.config(text=','.join(selected_trees))
+selected_option=[]
+def add_option():
+    op=option_bagh_combo.get()
+    if op and op not in selected_option:
+        selected_option.append(op)
+        label_result2_add.config(text=','.join(selected_option))
+selected_topo1=[]
+def add_topo1():
+    topo=zamin_shape_ejareh_combo.get()
+    if topo and topo not in selected_topo1:
+        selected_topo1.append(topo)
+        label_result_topo1_add.config(text=','.join(selected_topo1))
+
+selected_topo2=[]
+def add_topo2():
+    topo2=zamin_shape_forosh_combo.get()
+    if topo2 and topo2 not in selected_topo2:
+        selected_topo2.append(topo2)
+        label_result_topo2_add.config(text=','.join(selected_topo2))
+
+
+def home_true_false1(): # برای فعال یا غیر فعال کردن ویجت های خونه باغ در اجاره
+    if var0.get()==1:
+        metraj_vila_bagh_entry.config(state="normal")
+        year_vila_bagh_entry.config(state="normal")
+        type_vila_combo.config(state="normal")
+        toilet_bagh_combo.config(state="normal")
+        hamam_bagh_combo.config(state="normal")
+        sanad_bagh_combo.config(state="normal")
+        option_bagh_combo.config(state="normal")
+        javaz_bagh.config(state="normal")
+        mohavate_bagh.config(state="normal")
+    else:
+        metraj_vila_bagh_entry.config(state="disabled")
+        year_vila_bagh_entry.config(state="disabled")
+        type_vila_combo.config(state="disabled")
+        toilet_bagh_combo.config(state="disabled")
+        hamam_bagh_combo.config(state="disabled")
+        sanad_bagh_combo.config(state="disabled")
+        option_bagh_combo.config(state="disabled")
+        javaz_bagh.config(state="disabled")
+        mohavate_bagh.config(state="disabled")
+        
+def home_true_false2(): #برای فعال یا غیر فعال کردن ویجت های خونه باغ در فروش
+    if var0.get()==1:
+        metraj_vila_forosh_bagh_entry.config(state="normal")
+        year_vila_forosh_bagh_entry.config(state="normal")
+        type_vila_forosh_bagh_combo.config(state="normal")
+        toilet_forosh_bagh_combo.config(state="normal")
+        hamam_forosh_bagh_combo.config(state="normal")
+        sanad_forosh_bagh_combo.config(state="normal")
+        option_forosh_bagh_combo.config(state="normal")
+        javaz_forosh_bagh.config(state="normal")
+        mohavate_forosh_bagh.config(state="normal")
+    else:
+        metraj_vila_forosh_bagh_entry.config(state="disabled")
+        year_vila_forosh_bagh_entry.config(state="disabled")
+        type_vila_forosh_bagh_combo.config(state="disabled")
+        toilet_forosh_bagh_combo.config(state="disabled")
+        hamam_forosh_bagh_combo.config(state="disabled")
+        sanad_forosh_bagh_combo.config(state="disabled")
+        option_forosh_bagh_combo.config(state="disabled")
+        javaz_forosh_bagh.config(state="disabled")
+        mohavate_forosh_bagh.config(state="disabled")
+def choos_kesht(event):
+    a=kesht_ejareh_combo.get()
+    if a=="بدون کشت":
+        kesht_ejareh_entry.config(state="disabled")
+    else:
+        kesht_ejareh_entry.config(state="normal")
+def choos_kesht2(event):
+    b=kesht_forosh_combo.get()
+    if b=="بدون کشت":
+        kesht_forosh_entry.config(state="disabled")
+    else:
+        kesht_forosh_entry.config(state="normal")
+
+
+
+def add_tree2():
+    # برای اضافه کردن درخت به صورت دستی در فروش
+    pass
+def add_option2():
+    pass
+    #برای اضافه کردن امکانات تفریحی به صورت دستی در فروش
