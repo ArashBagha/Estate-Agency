@@ -1,43 +1,48 @@
-#صدازدن کتابخانه ها
+#-------------------------------------صدازدن کتابخانه ها-----------------
+#region
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog,messagebox,font
 import subprocess
 import os
-
+#endregion
 #---#----#----#----#----#----------  توابع   ----------#----#----#----#-------------
-#تابع بستن پروژه
+#-------------------------تابع بستن پروژه-----------------
+#region
 def close_window():#این تابع بعد از اتصال دیتابیس تکمیل مشود 
     response=messagebox.askyesno("تایید خروج","آیا از خارج شدن اطمینان دارید؟")
     if response:
         root.destroy()
     else:
         return
+#endregion
 # -------------------------------------تابع فراخوانی ادرس با دکمه-----------
-
+#region
 def open_file_folder():
     file_path = filedialog.askopenfilename()
     if file_path:
         folder_path = os.path.dirname(file_path)
         subprocess.run(['explorer', '/select,', file_path])
-
-#  تابع انتخاب فایل عکس
-
+#endregion
+#  ------------------------------------------تابع انتخاب فایل عکس------------
+#region
 def open_file():
     file_path = filedialog.askopenfilename()
     if file_path:
         os.startfile(file_path)
-
+#endregion
 #---------تابع پاک کردن فرم اصلی----------------
+#region
 def delete_root():
     entry_melk_Pricelimit.delete(0,tk.END) 
     entry_melk_width_lable.delete(0,tk.END)
     entry_melk_area_lable.delete(0,tk.END)
     combo1.set("")
     combo2.set("")
+#endregion
 #===================================================
 #------------توابع اصلی ذخیره----------------------
-
+#region
 def save_rehn_maskkoni():#ذخیره پنجره راجاره مسکونی
     pass
 def save_rehn_edari():#ذخیره پنجره راجاره اداری
@@ -46,16 +51,13 @@ def save_rehn_bagh():#ذخیره پنجره راجاره زمین و باغ
     pass
 def save_forosh_bagh():# ذخیره پنجره فروش باغ و زمین 
     pass
+#endregion
 #===================================================
 #----------توابع نگه داری امکانات فایل ها-----------
 
-
-
-
-
 #========================================================
 # ------------پنجره اصلی--------
-
+#region
 root = tk.Tk()
 root.title("Astate Agency")
 root.geometry("1100x700")
@@ -68,21 +70,26 @@ warehouse_pic=tk.PhotoImage(file="anbari.png")
 root.configure(bg="#0D4D34")
 main_frame=tk.Frame(root)
 main_frame.pack(fill="both",expand=True)
+#endregion
 #------------------------فریم هدر --------------
+#region
 header=tk.Frame(main_frame,bg="#404040",height=60)
 header.pack(fill='x')
 title_font=font.Font(family="B Nazanin",size=22,weight="bold")
 title_label=tk.Label(header,text="آژانس املاک",fg="#FFFFFF",bg="#404040",font=title_font)
 title_label.pack(pady=10)
+#endregion
 #-----------قسمت منوبار پروژه------------------------
 #----تابع لیست بندی در دکمه ها------------------
 def show_file_popup(event):
     file_popup.tk_popup(event.x_root, event.y_root)
 #---------------------فریم منو----------------------
+#region
 menu_frame=tk.Frame(main_frame,bg="#ffffff", relief="flat",height=1)
 menu_frame.pack(padx=2, pady=2, fill="both", expand=True)
-
+#endregion
 # ------------- لیست کشویی فیلد فایل های ثبتی-----------
+#region
 def kharid():
     pass
 
@@ -96,10 +103,9 @@ def rahn():
 
 def mosharecat():
     pass
-
-
+#endregion
 #---------------------------توابع باز و بستن کردن امکانات فایل ها---------------------------
-
+#region
 def open_option1():
     option_file_frame.deiconify()
     ejareh_rehn_page.withdraw()
@@ -123,9 +129,11 @@ def open_option5():
 def open_option6():
     option_file_frame_forosh_bz.deiconify()
     forosh_bz.withdraw() 
+#endregion
 #=======================================================
 #-----------توابع برگشت صفحات ثبتی به فرم اصلی----------
 #-----برگشت از صفحه اجاره مسکونی-------------------------
+#region
 def back_home_ejare_maskoni():
     root.deiconify()
     ejareh_rehn_page.withdraw()
@@ -138,7 +146,9 @@ def back_home_ejare_maskoni():
     price_ejare_ejare_maskoni_entry.delete(0,tk.END)
     price_pish_ejare_maskoni_entry.delete(0,tk.END)
     delete_root()
+#endregion
 #-----برگشت از صفحه فروش مسکونی-------------------------
+#region
 def back_home_forosh_maskoni():
     root.deiconify()
     forosh_rehn_page.withdraw()
@@ -149,7 +159,9 @@ def back_home_forosh_maskoni():
     room_forosh_maskoni_entry.delete(0,tk.END)
     price_forosh_maskoni_entry.delete(0,tk.END)
     delete_root()
+#endregion
 #------------------------برگشت از صفحه اجاره اداری/تجاری---------------------
+#region
 def back_home_ejareh_et():
     root.deiconify()
     ejareh_et.withdraw()
@@ -159,6 +171,7 @@ def back_home_ejareh_et():
     vahed_ejareh_et_entry.delete(0,tk.END)
     price_ejareh_et_entry.delete(0,tk.END) 
     delete_root()
+#endregion
 #---------------------------برگشت از صفحه فروش اداری/تجاری--------------------
 def back_home_forosh_et():
     root.deiconify()
@@ -358,8 +371,6 @@ def choos_kesht2(event):
     else:
         kesht_forosh_entry.config(state="normal")
 
-
-
 def add_tree2():
     # برای اضافه کردن درخت به صورت دستی در فروش
     pass
@@ -367,15 +378,9 @@ def add_option2():
     pass
     #برای اضافه کردن امکانات تفریحی به صورت دستی در فروش
 
-
-
-
-
-
-
-
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
 # ---------دکمه فایل با منوی کشویی ------------------
+#region 
 file_button = tk.Button(menu_frame, text="ثبت فایل ها", bg="#ffffff", relief="flat")
 file_button.pack(padx=5, pady=5, side="left")
 
@@ -385,17 +390,19 @@ file_popup.add_command(label="فروش", command=forosh)
 file_popup.add_command(label="رهن/اجاره", command=rahn)
 file_popup.add_command(label="مشارکت", command=mosharecat)
 file_button.bind("<Button-1>", show_file_popup)
-
+#endregion
 # ----------لیست کشویی فیلد گزارش ها-----------------
 def excel():
     pass
 def gharardadeha():
     pass
 # ---------------اضافه کردن فیلد قرارداد ---------------
+#region
 file_button = tk.Button(menu_frame, text="قرارداد ", bg="#ffffff", relief="flat")
 file_button.pack(padx=10, pady=5, side="left")
-
-# ---------دکمه گزارش ها با منوی کشویی ---------------------- 
+#endregion
+#----------------دکمه گزارش ها با منوی کشویی ------------------------
+#region
 file_button = tk.Button(menu_frame, text="گزارش ها", bg="#ffffff", relief="flat")
 file_button.pack(padx=10, pady=10, side="left")
 
@@ -403,19 +410,22 @@ file_popup1 = tk.Menu(root, tearoff=0, font=("Arial", 12))
 file_popup1.add_command(label="خروجی اکسل", command=excel)
 file_popup1.add_command(label="قرارداد ها", command=gharardadeha)
 
-
 file_button.bind("<Button-1>", show_file_popup)
+#endregion
 
-# اضافه کردن فیلد درخواست ها  
+# ----------------------اضافه کردن فیلد درخواست ها-------
+#region
 file_button = tk.Button(menu_frame, text="درخواست ها", bg="#ffffff", relief="flat")
 file_button.pack(padx=10, pady=5, side="left")
-
-#اضافه کردن فیلد کاربران 
+#endregion
+#-------------------------اضافه کردن فیلد کاربران---------
+#region
 file_button = tk.Button(menu_frame, text="کاربران ", bg="#ffffff", relief="flat")
 file_button.pack(padx=10, pady=5, side="left")
+#endregion
 #========================================================
-# باکس سمت چپ - جستجو در فایل های ملک
-
+# -----------باکس سمت چپ - جستجو در فایل های ملک----------
+#region
 left_frame = tk.LabelFrame(root, text="جستجوی ملک", width=200, bg="#575353",fg="#F8F7F7", font=("Arial", 16))
 left_frame.pack(side="left", fill="y", padx=6, pady=15)
 
@@ -459,9 +469,9 @@ entry_melk_area_lable.pack(padx=20,pady=10)
 search_btn = tk.Button(left_frame, text="    جستجو    " , bg="#94c6dd", fg="#201F1F", font=("Arial", 14), command=open_file)
 search_btn.pack(pady=10)
 #=====================================================
-
+#endregion
 # ---------------------------باکس وسط - نمایش جستجوی --------------
-
+#region
 center_frame = tk.LabelFrame(root, text="لیست املاک", bg="#ffffff", font=("Arial", 14))
 center_frame.pack(side="left", fill="both", expand=True, padx=4, pady=15)
 
@@ -471,10 +481,11 @@ for textt in columns:
     tree.heading(textt,text=textt)
     tree.column(textt, width=100)
 tree.pack(fill="both", expand=True)
-#--------------------------------------------------------------------------------------------------------
+#===================================================
+#endregion
 
-# باکس سمت راست - نمایش جزئیات فایل های موجود املاک
-
+# --------------------باکس سمت راست - نمایش جزئیات فایل های موجود املاک---------------
+#region
 right_frame = tk.LabelFrame(root, text="جزئیات ملک", width=200, bg="#ffffff", font=("Arial", 14))
 right_frame.pack(side="right", fill="y", padx=6, pady=15)
 
@@ -510,9 +521,11 @@ extension.pack(padx=6,pady=4)
 
 entry_extension = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
 entry_extension.pack(padx=20,pady=4)
+#=======================================================
+#endregion
 #-------------------------باکس های نوع ثبتی فایل ها----------------------
 #-------------------نوع انتخاب ثبتی فایل برای پنجره های رهن و اجاره--------------
-
+#region
 box_rehn_ejareh=tk.Toplevel(root)
 box_rehn_ejareh.title("انتخاب نوع ملک رهن و اجاره")
 box_rehn_ejareh.geometry("420x180")
@@ -538,9 +551,10 @@ def show_file_list_box1(event):
     file_list_box2.tk_popup(event.x_root, event.y_root)
 
 file_button2.bind("<Button-1>",show_file_list_box1)
-
+#=====================================================================
+#endregion
 #----------------------------------نوع انتخاب ثبتی فایل برای پنجره های فروش-----------------
-
+#region
 box_forosh=tk.Toplevel(root)
 box_forosh.title("انتخاب نوع ملک فروش")
 box_forosh.geometry("420x180")
@@ -567,16 +581,17 @@ def show_file_list_box3(event):
 
 file_button3.bind("<Button-1>",show_file_list_box3)
 #======================================================================
+#endregion
 #-----------------پنجره های ثبتی بخش رهن و اجاره----------------------------
-#----------پنجره اجاره مسکونی----------------
+#-------------------------------------------پنجره اجاره مسکونی----------------
+#region
 ejareh_rehn_page = tk.Toplevel(root)
 ejareh_rehn_page.title("رهن و اجاره مسکونی")
 ejareh_rehn_page.geometry("800x600")
 ejareh_rehn_page.withdraw()
 ejareh_rehn_page.configure(bg="#0F6E6E")
-
  
-#-----------option_file_ejareh_maskoni-----------------------------
+#----------------------پنجره امکانات اجاره مسکونی-----------------------------
 option_file_frame=tk.Toplevel(ejareh_rehn_page,background="#bbfbd1" )
 option_file_frame.title("امکانات اجاره مسکونی ")
 option_file_frame.geometry("500x370")
@@ -647,7 +662,9 @@ photo_lbl2_ejare_maskoni = tk.Label(photo_box_ejare_maskoni, text="[تصویر �
 photo_lbl2_ejare_maskoni.place(x=30,y=45)
 add_img_btn_ejare_maskoni = tk.Button(photo_box_ejare_maskoni, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn_ejare_maskoni.place(x=40,y=330)
+#endregion
 #------------------ساخت امکانات اجاره مسکونی------------------------
+#region
 option_frame_ejare_maskoni=tk.Frame(ejareh_rehn_page,width=300,height=30,background="#bbfbd1")
 option_frame_ejare_maskoni.place(x=525,y=500)
 
@@ -703,10 +720,10 @@ save_optoin1.place(x=170,y=330)
 
 back_to_ejare_maskoni=tk.Button(option_file_frame,text="بازگشت",command=back_to_buy_page,background="#079BDB",fg="#ffffff",width=8)
 back_to_ejare_maskoni.place(x=95,y=330)
-
+#endregion
 
 #------------------------پنجره اجاره اداری/تجاری--------------------
-
+#region
 ejareh_et = tk.Toplevel(root)
 ejareh_et.title("رهن و اجاره اداری / تجاری")
 ejareh_et.geometry("800x600")
@@ -777,17 +794,15 @@ back_to_home.place(x=650,y=535)
 save_button_re_edari=tk.Button(ejareh_et,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_rehn_edari)
 save_button_re_edari.place(x=550,y=532)
 
-
-
 photo_box_ejareh_et=tk.Frame(ejareh_et,width=410,height=450,background="#e4dde3")
 photo_box_ejareh_et.place(x=40,y=40)
 photo_lbl2_ejareh_et = tk.Label(photo_box_ejareh_et, text="[تصویر ملک]", bg="gray", width=50, height=15)
 photo_lbl2_ejareh_et.place(x=30,y=45)
 add_img_btn_ejareh_et = tk.Button(photo_box_ejareh_et, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn_ejareh_et.place(x=40,y=330)
-
+#endregion
 #----------------------ساخت امکانات اجاره اداری/تجاری---------------------
-
+#region
 option_frame_ejareh_et=tk.Frame(ejareh_et,width=300,height=30,background="#bbfbd1")
 option_frame_ejareh_et.place(x=520,y=475)
 
@@ -841,9 +856,10 @@ save_optoin3.place(x=170,y=330)
 
 back_to_home_ejareh_et=tk.Button(option_file_frame_ejareh_et,text="بازگشت",command=back_to_ejareh_et,background="#079BDB",fg="#ffffff",width=8)
 back_to_home_ejareh_et.place(x=95,y=330)
-
+#endregion
 
 #-------------------پنجره اجاره باغ/زمین------------------------
+#region
 ejareh_bz = tk.Toplevel(root)
 ejareh_bz.title(" اجاره باغ و زمین")
 ejareh_bz.geometry("800x600")
@@ -906,9 +922,9 @@ back_to_home_bagh.place(x=320,y=520)
 
 save_button_re_bagh=tk.Button(ejareh_bz,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_rehn_bagh)
 save_button_re_bagh.place(x=220,y=520)
-
+#endregion
 #---------------------امکانات اجاره باغ/زمین---------------------
-
+#region
 option_frame_ejareh_bz=tk.Frame(ejareh_bz,width=300,height=30,background="#bbfbd1")
 option_frame_ejareh_bz.place(x=550,y=450)
 
@@ -1064,9 +1080,9 @@ save_button_bz_option.place(x=170,y=580)
 
 back_to_ejareh_bz=tk.Button(option_file_frame_ejareh_bz,text="بازگشت",command=back_to_ejareh_bz,background="#079BDB",fg="#ffffff",width=8)
 back_to_ejareh_bz.place(x=95,y=580)
-
+#endregion
 #-------------------تعویض کاربری به زمین در قسمت اجاره باغ/زمین--------------
-
+#region
 fram_option1_zamin=tk.Frame(option_file_frame_ejareh_bz,width=445,height=290,background="#d1e0df")
 fram_option1_zamin.place_forget()
 
@@ -1159,10 +1175,10 @@ dam_zamin_ejareh=tk.Checkbutton(fram_option1_zamin,text="اجازه ورود د�
 dam_zamin_ejareh.grid(padx=10,pady=6,row=7,column=3)
 
 #=======================================================================
-
+#endregion
 #---------------------------پنجره های ثبتی بخش فروش--------------------
 #-------------------پنجره فروش مسکونی----------------------
-
+#region
 forosh_rehn_page = tk.Toplevel(root)
 forosh_rehn_page.title("فروش مسکونی")
 forosh_rehn_page.geometry("800x600")
@@ -1230,9 +1246,9 @@ photo_lbl2_forosh_maskoni = tk.Label(photo_box_forosh_maskoni, text="[تصویر
 photo_lbl2_forosh_maskoni.place(x=30,y=45)
 add_img_btn_forosh_maskoni = tk.Button(photo_box_forosh_maskoni, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn_forosh_maskoni.place(x=40,y=330)
-
+#endregion
 #------------------------امکانات فروش مسکونی--------------------
-
+#region
 option_frame3=tk.Frame(forosh_rehn_page,width=300,height=30,background="#bbfbd1")
 option_frame3.place(x=520,y=460)
 
@@ -1287,9 +1303,9 @@ save_optoin2.place(x=170,y=330)
 
 back_to_home_forosh_maskoni=tk.Button(option_file_frame_forosh_maskoni,text="بازگشت",command=back_to_forosh_maskoni_page,background="#079BDB",fg="#ffffff",width=8)
 back_to_home_forosh_maskoni.place(x=95,y=330)
-
+#endregion
 #-----------------پنجره فروش اداری/تجاری-------------------
-
+#region
 forosh_et = tk.Toplevel(root)
 forosh_et.title(" فروش اداری / تجاری")
 forosh_et.geometry("800x600")
@@ -1364,9 +1380,9 @@ photo_lbl2_forosh_et = tk.Label(photo_box_forosh_et, text="[تصویر ملک]",
 photo_lbl2_forosh_et.place(x=30,y=45)
 add_img_btn_forosh_et = tk.Button(photo_box_forosh_et, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
 add_img_btn_forosh_et.place(x=40,y=330)
-
+#endregion
 #---------------امکانات فروش اداری/تجاری-------------------
-
+#region
 option_frame_forosh_et=tk.Frame(forosh_et,width=300,height=30,background="#bbfbd1")
 option_frame_forosh_et.place(x=520,y=475)
 
@@ -1420,8 +1436,9 @@ save_optoin4.place(x=170,y=330)
 
 back_to_home_forosh_et=tk.Button(option_file_frame_forosh_et,text="بازگشت",command=back_to_forosh_et,background="#079BDB",fg="#ffffff",width=8)
 back_to_home_forosh_et.place(x=95,y=330)
-
+#endregion
 #--------------------پنجره فروش باغ/زمین-----------------------
+#region
 forosh_bz = tk.Toplevel(root)
 forosh_bz.title("فروش باغ و زمین")
 forosh_bz.geometry("800x600")
@@ -1484,9 +1501,9 @@ back_to_home_forosh_bagh.place(x=320,y=520)
 
 save_button_forosh_bagh=tk.Button(forosh_bz,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_forosh_bagh)
 save_button_forosh_bagh.place(x=220,y=520)
-
+#endregion
 #-----------------------پنجره امکانات فروش باغ/زمین-------------------
-
+#region
 option_frame_forosh_bz=tk.Frame(forosh_bz,width=300,height=30,background="#bbfbd1")
 option_frame_forosh_bz.place(x=550,y=450)
 
@@ -1642,9 +1659,9 @@ save_button_bz_option_forosh_bagh.place(x=170,y=580)
 
 back_to_forosh_bz=tk.Button(option_file_frame_forosh_bz,text="بازگشت",command=back_to_forosh_bz,background="#079BDB",fg="#ffffff",width=8)
 back_to_forosh_bz.place(x=95,y=580)
-
+#endregion
 #-------------------------تعویض کاربری به زمین در قسمت فروش باغ/زمین-------------
-
+#region
 fram_option_forosh_zamin=tk.Frame(option_file_frame_forosh_bz,width=445,height=290,background="#d1e0df")
 fram_option_forosh_zamin.place_forget()
 
@@ -1735,8 +1752,10 @@ bardasht_zamin_forosh.grid(padx=10,pady=6,row=7,column=2)
 
 dam_zamin_forosh=tk.Checkbutton(fram_option_forosh_zamin,text="اجازه ورود دام",background="#d6d0d0")
 dam_zamin_forosh.grid(padx=10,pady=6,row=7,column=3)
-
+#endregion
 # ----------------------اجرای برنامه-------------------
+#region
 root.protocol("WM_DELETE_WINDOW",close_window)
 option_file_frame.mainloop()
 root.mainloop()
+#endregion
