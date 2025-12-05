@@ -94,12 +94,12 @@ def kharid():
     pass
 
 def forosh():
-    root.withdraw()
     box_forosh.deiconify()
+    box_forosh.grab_set()
 
 def rahn():
-    root.withdraw()
     box_rehn_ejareh.deiconify()
+    box_rehn_ejareh.grab_set()
 
 def mosharecat():
     pass
@@ -228,40 +228,52 @@ def  back_to_forosh_bz():
 #----------برگشت باکس ها(نوع ملک)-------------
 def back_forosh_exit():
     box_forosh.withdraw()
-    root.deiconify()
+    box_forosh.grab_release()
 
 def back_rehn_ejareh_exit():
     box_rehn_ejareh.withdraw()
-    root.deiconify()
+    box_rehn_ejareh.grab_release()
 #============================================
 #--------باز و بسته کردن بین باکس ها----------------
 #-----بستن باکس و باز کردن صفحه اجاره مسکونی-----------
 def ejareh_rehn_page():
     box_rehn_ejareh.withdraw()
+    root.withdraw()
     ejareh_rehn_page.deiconify()
+    box_rehn_ejareh.grab_release()
 #-----بستن باکس و باز کردن صفحه اجاره اداری/تجاری-----------
 def ejareh_et():
     box_rehn_ejareh.withdraw()
-    ejareh_et.deiconify()  
+    root.withdraw()
+    ejareh_et.deiconify() 
+    box_rehn_ejareh.grab_release()
 #-----بستن باکس و باز کردن صفحه اجاره باغ/زمین---------
 def ejareh_bz():
     box_rehn_ejareh.withdraw()
+    root.withdraw()
     ejareh_bz.deiconify()
+    box_rehn_ejareh.grab_release()
 #-----بستن باکس و باز کردن صفحه اجاره سوله/کارگاه---------
 def ejareh_sk():
     pass
 #-----بستن باکس و باز کردن صفحه فروش مسکونی-----------
 def forosh_rehn_page():
     box_forosh.withdraw()
+    root.withdraw()
     forosh_rehn_page.deiconify() 
+    box_forosh.grab_release()
 #-----بستن باکس و باز کردن صفحه فروش اداری/تجاری-----------
 def forosh_et():
     box_forosh.withdraw()
+    root.withdraw()
     forosh_et.deiconify()
+    box_forosh.grab_release()
 #-----بستن باکس و باز کردن صفحه فروش باغ/زمین---------
 def forosh_bz():
     box_forosh.withdraw()
-    forosh_bz.deiconify()  
+    root.withdraw()
+    forosh_bz.deiconify()
+    box_forosh.grab_release()  
 #-----بستن باکس و باز کردن صفحه فروش اجاره سوله/کارگاه---------
 def forosh_sk():
     pass
