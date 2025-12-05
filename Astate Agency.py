@@ -382,13 +382,20 @@ def choos_kesht2(event):
         kesht_forosh_entry.config(state="disabled")
     else:
         kesht_forosh_entry.config(state="normal")
-
+selected_trees2=[]
 def add_tree2():
-    # برای اضافه کردن درخت به صورت دستی در فروش
-    pass
+    t3=type_tree_forosh_bagh_combo.get()
+    if t3 and t3 not in selected_trees2:
+        selected_trees2.append(t3)
+        label_result_add_forosh_bagh.config(text=','.join(selected_trees2))
+selected_option2=[]
 def add_option2():
-    pass
-    #برای اضافه کردن امکانات تفریحی به صورت دستی در فروش
+    op2=option_forosh_bagh_combo.get()
+    if op2 and op2 not in selected_option:
+        selected_option.append(op2)
+        label_result2_add.config(text=','.join(selected_option2))
+
+
 
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
 # ---------دکمه فایل با منوی کشویی ------------------
@@ -1492,13 +1499,13 @@ bagh_price_forosh_bagh2.grid(padx=8,pady=15,sticky="e",row=4,column=1)
 bagh_price_forosh_bagh2_entry=tk.Entry(forosh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
 bagh_price_forosh_bagh2_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
 
-time_bagh_forosh_bagh=tk.Label(forosh_bagh_frame,text="مدت اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
-time_bagh_forosh_bagh.grid(padx=8,pady=15,sticky="e",row=5,column=1)
+#time_bagh_forosh_bagh=tk.Label(forosh_bagh_frame,text="مدت اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
+#time_bagh_forosh_bagh.grid(padx=8,pady=15,sticky="e",row=5,column=1)
 
-bagh_time_forosh_bagh_combo=ttk.Combobox(forosh_bagh_frame,state="readonly")
-bagh_time_forosh_bagh_combo["values"]=("بلندمدت","کوتاه مدت","فصلی","سالانه")
-bagh_time_forosh_bagh_combo.set("فصلی")
-bagh_time_forosh_bagh_combo.grid(padx=8,pady=15,sticky="w",row=5,column=0)
+#bagh_time_forosh_bagh_combo=ttk.Combobox(forosh_bagh_frame,state="readonly")
+#bagh_time_forosh_bagh_combo["values"]=("بلندمدت","کوتاه مدت","فصلی","سالانه")
+#.set("فصلی")
+#bagh_time_forosh_bagh_combo.grid(padx=8,pady=15,sticky="w",row=5,column=0)
 
 photo_box_forosh_bagh=tk.Frame(forosh_bz,width=410,height=450,background="#e4dde3")
 photo_box_forosh_bagh.place(x=50,y=40)
@@ -1575,8 +1582,8 @@ type_tree_forosh_bagh_combo["values"]=(" ","پسته","بادام","گردو","�
                            ,"انجیر","زردالو","گیلاس","البالو")
 type_tree_forosh_bagh_combo.set("گردو")
 type_tree_forosh_bagh_combo.grid(padx=10,pady=5,row=3,column=3)
-type_tree_forosh_bagh_combo=tk.Button(fram_option_forosh_bagh,text="افزودن درخت",command=add_tree,bg="#007acc",width=10)
-type_tree_forosh_bagh_combo.grid(padx=10,pady=5,row=4,column=4)
+type_tree_forosh_bagh_bt_combo=tk.Button(fram_option_forosh_bagh,text="افزودن درخت",command=add_tree2,bg="#007acc",width=10)
+type_tree_forosh_bagh_bt_combo.grid(padx=10,pady=5,row=4,column=4)
 
 label_result_add_forosh_bagh=tk.Label(fram_option_forosh_bagh,text="")
 label_result_add_forosh_bagh.grid(padx=10,pady=5,row=4,column=3)
@@ -1652,7 +1659,7 @@ option_forosh_bagh_combo=ttk.Combobox(fram_option_forosh_bagh,state="disabled")
 option_forosh_bagh_combo["values"]=(" ","استخر","جکوزی","باربیکیو")
 option_forosh_bagh_combo.set(" ")
 option_forosh_bagh_combo.grid(padx=10,pady=5,row=13,column=3)
-add_option_button_forosh_bagh=tk.Button(fram_option_forosh_bagh,text="افزودن امکانات",command=add_option,bg="#007acc",width=10)
+add_option_button_forosh_bagh=tk.Button(fram_option_forosh_bagh,text="افزودن امکانات",command=add_option2,bg="#007acc",width=10)
 add_option_button_forosh_bagh.grid(padx=10,pady=5,row=13,column=2)
 label_result2_add_forosh_bagh=tk.Label(fram_option_forosh_bagh,text="")
 label_result2_add_forosh_bagh.grid(padx=10,pady=5,row=13,column=1)
