@@ -184,7 +184,8 @@ def back_home_forosh_et():
     delete_root()
 #----------------------------برگشت از صفحه اجاره باغ / زمین------------------
 def back_to_ejareh_bz():
-    pass
+    option_frame_ejareh_bz.withdraw()
+    ejareh_bz.deiconify()
 #-----------------------------برگشت از صفحه فروش باغ / زمین------------------
 def back_home_forosh_bagh():
     forosh_bz.withdraw()
@@ -391,9 +392,9 @@ def add_tree2():
 selected_option2=[]
 def add_option2():
     op2=option_forosh_bagh_combo.get()
-    if op2 and op2 not in selected_option:
-        selected_option.append(op2)
-        label_result2_add.config(text=','.join(selected_option2))
+    if op2 and op2 not in selected_option2:
+        selected_option2.append(op2)
+        label_result2_add_forosh_bagh.config(text=','.join(selected_option2))
 
 
 
