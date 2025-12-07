@@ -184,7 +184,7 @@ def back_home_forosh_et():
     delete_root()
 #----------------------------برگشت از صفحه اجاره باغ / زمین------------------
 def back_to_ejareh_bz():
-    option_frame_ejareh_bz.withdraw()
+    option_file_frame_ejareh_bz.withdraw()
     ejareh_bz.deiconify()
 #-----------------------------برگشت از صفحه فروش باغ / زمین------------------
 def back_home_forosh_bagh():
