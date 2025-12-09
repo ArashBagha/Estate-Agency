@@ -279,6 +279,56 @@ def forosh_bz():
 def forosh_sk():
     pass
 
+#تابع رادیو باتن باز و بسته کردن صفحات فروش
+def sabt_radio_frosh():
+    selected2 = frosh_radio_value.get()
+
+    if selected2==0:
+            box_forosh.withdraw()
+            root.withdraw()
+            forosh_rehn_page.deiconify() 
+            box_forosh.grab_release()
+
+    elif selected2==2:
+            box_forosh.withdraw()
+            root.withdraw()
+            forosh_et.deiconify()
+            box_forosh.grab_release()
+        
+    elif selected2==4:
+         box_forosh.withdraw()
+         root.withdraw()
+         forosh_bz.deiconify()
+         box_forosh.grab_release()
+        
+    elif selected2==6:
+        forosh_sk()#بعد از ایجاد صفحه سوله و کارگاه تکمیل شود
+#برای باکس صفحه اجاره
+def sabt_radio_rehn():
+    selected = ejareh_radio_value.get()
+
+    if selected==0:
+            box_rehn_ejareh.withdraw()
+            root.withdraw()
+            ejareh_rehn_page.deiconify()
+            box_rehn_ejareh.grab_release()
+        
+    elif selected==2:
+        box_rehn_ejareh.withdraw()
+        root.withdraw()
+        ejareh_et.deiconify() 
+        box_rehn_ejareh.grab_release()
+    elif selected==4:
+            box_rehn_ejareh.withdraw()
+            root.withdraw()
+            ejareh_bz.deiconify()
+            box_rehn_ejareh.grab_release()
+    elif selected==6:
+        ejareh_sk()#بعد از تکمیل صفحه سوله و کارگاه تکمیل شود
+
+
+
+
 #=======================================================
 #---------------جابه جایی کاربری باغ و زمین در قسمت های فروش/اجاره-------------
 def change_bagh_zamin1(event):
@@ -548,58 +598,88 @@ entry_extension.pack(padx=20,pady=4)
 #region
 box_rehn_ejareh=tk.Toplevel(root)
 box_rehn_ejareh.title("انتخاب نوع ملک رهن و اجاره")
-box_rehn_ejareh.geometry("420x180")
+box_rehn_ejareh.geometry("500x270")
 box_rehn_ejareh.withdraw()
 box_rehn_ejareh.configure(bg="#0F6E6E")
-label_box1=tk.Label(box_rehn_ejareh,text="لطفا نوع ملک رهن و اجاره را انتخاب کنید",font=("B Nazanin",17),bg="#0F6E6E",fg="#fff")
-label_box1.place(x=75,y=10)
-back_to_home_reh=tk.Button(box_rehn_ejareh,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_rehn_ejareh_exit)
-back_to_home_reh.place(x=290,y=110)
+
+ejareh_radio_value = tk.IntVar(value=0)
+
+ejareh_maskoni_radio = tk.Radiobutton(box_rehn_ejareh,text="ثبت فایل مسکونی",background="#0F6E6E",variable=ejareh_radio_value,value=0,font=("Arial", 12))
+ejareh_maskoni_radio.place(x=330, y=50)
+
+ejareh_edari_radio = tk.Radiobutton( box_rehn_ejareh,text="ثبت فایل اداری/تجاری",
+    bg="#0F6E6E",
+    variable=ejareh_radio_value,
+    value=2,
+    font=("Arial", 12))
+ejareh_edari_radio.place(x=330, y=90)
+
+ejareh_bagh_radio = tk.Radiobutton(box_rehn_ejareh,text="ثبت فایل باغ/زمین",bg="#0F6E6E",
+    variable=ejareh_radio_value,
+    value=4,
+    font=("Arial", 12))
+ejareh_bagh_radio.place(x=330, y=130)
+
+ejareh_sooleh_radio = tk.Radiobutton(box_rehn_ejareh,text="ثبت فایل سوله/کارگاه",bg="#0F6E6E",variable=ejareh_radio_value,value=6,
+    font=("Arial", 12))
+ejareh_sooleh_radio.place(x=330, y=170)
+
+
+
+
+back_to_home_e=tk.Button(box_rehn_ejareh,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_rehn_ejareh_exit)
+back_to_home_e.place(x=140,y=210)
+
+
+sabt_radio_e=tk.Button(box_rehn_ejareh,text="ادامه",bg="#13f",fg="white",width=12,height=2,command=sabt_radio_rehn)
+sabt_radio_e.place(x=60,y=210)
 
 box_rehn_ejareh.protocol("WM_DELETE_WINDOW", lambda: None)
 box_rehn_ejareh.resizable(False, False) 
 
-file_button2= tk.Button(box_rehn_ejareh, text="ثبت", bg="#ffffff", relief="flat",width=20)
-file_button2.place(x=140,y=60)
 
-file_list_box2 = tk.Menu(box_rehn_ejareh, tearoff=0, font=("Arial", 12))
-file_list_box2.add_command(label="اجاره مسکونی", command=ejareh_rehn_page)
-file_list_box2.add_command(label="اجاره اداری/تجاری", command=ejareh_et) 
-file_list_box2.add_command(label="اجاره باغ/زمین",command=ejareh_bz)
-file_list_box2.add_command(label="اجاره سوله/کارگاه",command=ejareh_sk)
-def show_file_list_box1(event):
-    file_list_box2.tk_popup(event.x_root, event.y_root)
 
-file_button2.bind("<Button-1>",show_file_list_box1)
+
+
+
 #=====================================================================
 #endregion
 #----------------------------------نوع انتخاب ثبتی فایل برای پنجره های فروش-----------------
 #region
 box_forosh=tk.Toplevel(root)
 box_forosh.title("انتخاب نوع ملک فروش")
-box_forosh.geometry("420x180")
+box_forosh.geometry("500x270")
 box_forosh.withdraw()
 box_forosh.configure(bg="#0F6E6E")
-label_box2=tk.Label(box_forosh,text="لطفا نوع ملک فروش را انتخاب کنید",font=("B Nazanin",17),bg="#0F6E6E",fg="#fff")
-label_box2.place(x=100,y=10)
+
+# یک متغیر مشترک برای همه رادیوباتن‌ها
+frosh_radio_value = tk.IntVar(value=0)  # مقدار پیش‌فرض -1 یعنی هیچکدام انتخاب نشده
+
+frosh_maskoni_radio = tk.Radiobutton(box_forosh, value=0, text="ثبت فایل مسکونی", background="#0F6E6E", variable=frosh_radio_value, font=("Arial",12))
+frosh_maskoni_radio.place(x=330,y=50)
+
+frosh_edari_radio = tk.Radiobutton(box_forosh, value=2, text="ثبت فایل اداری/تجاری",
+bg="#0F6E6E", variable=frosh_radio_value, font=("Arial",12))
+frosh_edari_radio.place(x=330,y=90)
+
+frosh_bagh_radio = tk.Radiobutton(box_forosh, value=4, text="ثبت فایل باغ/زمین",bg="#0F6E6E", variable=frosh_radio_value, font=("Arial",12))
+frosh_bagh_radio.place(x=330,y=130)
+
+frosh_sooleh_radio = tk.Radiobutton(box_forosh, value=6, text="ثبت فایل سوله/کارگاه",bg="#0F6E6E", variable=frosh_radio_value, font=("Arial",12))
+frosh_sooleh_radio.place(x=330,y=170)
+
 
 back_to_home_f=tk.Button(box_forosh,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_forosh_exit)
-back_to_home_f.place(x=290,y=110)
+back_to_home_f.place(x=140,y=210)
+
+sabt_radio_f=tk.Button(box_forosh,text="ادامه",bg="#13f",fg="white",width=12,height=2,command=sabt_radio_frosh)
+sabt_radio_f.place(x=60,y=210)
+
 box_forosh.protocol("WM_DELETE_WINDOW", lambda: None)
 box_forosh.resizable(False, False) 
 
-file_button3= tk.Button(box_forosh, text="ثبت", bg="#ffffff", relief="flat",width=20)
-file_button3.place(x=140,y=60)
 
-file_list_box3 = tk.Menu(box_forosh, tearoff=0, font=("Arial", 12))
-file_list_box3.add_command(label="فروش مسکونی", command=forosh_rehn_page) 
-file_list_box3.add_command(label="فروش اداری/تجاری", command=forosh_et)    #پنجره عماد
-file_list_box3.add_command(label="فروش باغ/زمین",command=forosh_bz)
-file_list_box3.add_command(label="فروش سوله/کارگاه",command=forosh_sk)
-def show_file_list_box3(event):
-    file_list_box3.tk_popup(event.x_root, event.y_root)
 
-file_button3.bind("<Button-1>",show_file_list_box3)
 #======================================================================
 #endregion
 #-----------------پنجره های ثبتی بخش رهن و اجاره----------------------------
