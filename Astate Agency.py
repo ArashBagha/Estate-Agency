@@ -1,4 +1,4 @@
-#-------------------------------------صدازدن کتابخانه ها-----------------
+#-------------------------------------  کتابخانه ها-----------------
 #region
 import tkinter as tk
 from tkinter import ttk
@@ -43,15 +43,17 @@ def delete_root():
 #===================================================
 #------------توابع اصلی ذخیره----------------------
 #region
-def save_rehn_maskkoni():#ذخیره پنجره راجاره مسکونی
+def save_rehn_maskkoni():#ذخیره پنجره اجاره مسکونی
     pass
-def save_rehn_edari():#ذخیره پنجره راجاره اداری
+def save_rehn_edari():#ذخیره پنجره اجاره اداری
     pass
-def save_rehn_bagh():#ذخیره پنجره راجاره زمین و باغ
+def save_rehn_bagh():#ذخیره پنجره اجاره زمین و باغ
     pass
 def save_forosh_bagh():# ذخیره پنجره فروش باغ و زمین 
     pass
-def save_ejareh_karghah():# ذخیره پنجره فروش باغ و زمین 
+def save_ejareh_karghah():# ذخیره پنجره اجاره کارگاه 
+    pass
+def save_forosh_karghah():# ذخیره پنجره فروش کارگاه 
     pass
 #endregion
 #===================================================
@@ -135,6 +137,11 @@ def open_option6():
 def open_option7():
     option_file_frame_ejareh_karghah.deiconify()
     ejareh_karghah.withdraw 
+
+def open_option8():
+    option_file_frame_forosh_karghah.deiconify()
+    forosh_karghah.withdraw 
+
 #endregion
 #=======================================================
 #-----------توابع برگشت صفحات ثبتی به فرم اصلی----------
@@ -218,6 +225,18 @@ def back_home_ejareh_karghah():
     delete_root()
 
 #bagha
+#----------------------- برگشت از صفحه فروش کارگاه--------------------
+#region
+def back_home_forosh_karghah():
+    forosh_karghah.withdraw()
+    root.deiconify()
+    metraj_sk_entry.delete(0,tk.END)
+    sk_loctaion_entry.delete(0,tk.END)
+    sk_price_forosh_ent.delete(0,tk.END)
+    sk_price_forosh2_ent.delete(0,tk.END) 
+    delete_root()
+
+#EMAD
 #----------------------------برگشت از صفحه اجاره کارگاه------------------
 def back_to_ejareh_karghah():
     option_file_frame_ejareh_bz.withdraw()
@@ -252,6 +271,10 @@ def  back_to_forosh_bz():
 def  back_to_ejareh_karghah():
      option_file_frame_ejareh_karghah.withdraw()
      ejareh_karghah.deiconify()
+#--------------------برگشت فروش کارگاه------------------------------------------------
+def  back_to_forosh_karghah():
+     option_file_frame_forosh_karghah.withdraw()
+     forosh_karghah.deiconify()
 
 #----------برگشت باکس ها(نوع ملک)-------------
 def back_forosh_exit():
@@ -305,10 +328,13 @@ def forosh_bz():
     root.withdraw()
     forosh_bz.deiconify()
     box_forosh.grab_release()  
-#-----بستن باکس و باز کردن صفحه فروش اجاره کارگاه---------
-def forosh_sk():
-    pass
-
+#-----بستن باکس و باز کردن صفحه فروش  کارگاه---------
+def forosh_karghah():
+    box_forosh.withdraw()
+    root.withdraw()
+    forosh_karghah.deiconify() 
+    box_forosh.grab_release()
+    
 #تابع رادیو باتن باز و بسته کردن صفحات فروش
 def sabt_radio_frosh():
     selected2 = frosh_radio_value.get()
@@ -332,8 +358,12 @@ def sabt_radio_frosh():
          box_forosh.grab_release()
         
     elif selected2==6:
-        forosh_sk()#بعد از ایجاد صفحه کارگاه تکمیل شود
-#برای باکس صفحه اجاره
+        box_forosh.withdraw()
+        root.withdraw()
+        forosh_karghah.deiconify()
+        box_forosh.grab_release()
+
+#تابع رادیو باتن باز و بسته کردن صفحات اجاره
 def sabt_radio_rehn():
     selected = ejareh_radio_value.get()
 
@@ -348,22 +378,19 @@ def sabt_radio_rehn():
         root.withdraw()
         ejareh_et.deiconify() 
         box_rehn_ejareh.grab_release()
+
     elif selected==4:
             box_rehn_ejareh.withdraw()
             root.withdraw()
             ejareh_bz.deiconify()
             box_rehn_ejareh.grab_release()
+
     elif selected==6:
             box_rehn_ejareh.withdraw()
             root.withdraw()
             ejareh_karghah.deiconify()
             box_rehn_ejareh.grab_release()
-
-            #ejareh_karghah()#بعد از تکمیل صفحه کارگاه تکمیل شود
-
-
-
-
+            
 #=======================================================
 #---------------جابه جایی کاربری باغ و زمین در قسمت های فروش/اجاره-------------
 def change_bagh_zamin1(event):
@@ -2153,6 +2180,183 @@ otagh_kargah_combo=ttk.Combobox(fram_option1_kargah)
 otagh_kargah_combo["values"]=("ندارد","دارد")
 otagh_kargah_combo.set("ندارد")
 otagh_kargah_combo.grid(padx=10,pady=5,row=10,column=0)
+
+save_button_k_option_ejareh_karghah=tk.Button(option_file_frame_ejareh_karghah,text="ذخیره",background="#079BDB",fg="#ffffff",width=8)
+save_button_k_option_ejareh_karghah.place(x=170,y=420)
+
+back_to_ejareh_karghah=tk.Button(option_file_frame_ejareh_karghah,text="بازگشت",command=back_to_ejareh_karghah,background="#079BDB",fg="#ffffff",width=8)
+back_to_ejareh_karghah.place(x=95,y=420)
+
+#EMAD
+#-------------------پنجره فروش کارگاه------------------------
+#region
+forosh_karghah = tk.Toplevel(root)
+forosh_karghah.title(" فروش کارگاه")
+forosh_karghah.geometry("800x600")
+forosh_karghah.withdraw()
+forosh_karghah.configure(bg="#0F6E6E")
+
+forosh_karghah_frame=tk.Frame(forosh_karghah,width=490,height=800,bg="#5d6059",border=2)
+forosh_karghah_frame.place(x=500,y=90)
+
+sk_type=tk.Label(forosh_karghah_frame,text="کاربری زمین",bg="#0F6E6E",fg="#ffffff",width=10)
+sk_type.grid(padx=8,pady=15,sticky="e",row=0,column=1)
+
+sk_type_text=tk.Label(forosh_karghah_frame,text=" کارگاه ",bg="#C2C2C2",fg="#313131",width=20)
+sk_type_text.grid(padx=8,pady=15,sticky="e",row=0,column=0)
+
+metraj_sk=tk.Label(forosh_karghah_frame,text="متراژ",bg="#0F6E6E",fg="#ffffff",width=10)
+metraj_sk.grid(padx=8,pady=15,sticky="e",row=1,column=1)
+
+metraj_sk_entry=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10),textvariable="متر مربع")
+metraj_sk_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
+
+sk_loctaion=tk.Label(forosh_karghah_frame,text="منطقه و ادرس ",bg="#0F6E6E",fg="#ffffff",width=10)
+sk_loctaion.grid(padx=8,pady=15,sticky="e",row=2,column=1)
+
+sk_loctaion_entry=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+sk_loctaion_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
+
+sk_price_forosh=tk.Label(forosh_karghah_frame,text='ودیعه',bg="#0F6E6E",fg="#ffffff",width=10)
+sk_price_forosh.grid(padx=8,pady=15,sticky="e",row=3,column=1)
+
+sk_price_forosh_ent=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+sk_price_forosh_ent.grid(padx=8,pady=15,sticky="w",row=3,column=0)
+
+sk_price_forosh2=tk.Label(forosh_karghah_frame,text='قیمت هر متر',bg="#0F6E6E",fg="#ffffff",width=10)
+sk_price_forosh2.grid(padx=8,pady=15,sticky="e",row=4,column=1)
+
+sk_price_forosh2_ent=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+sk_price_forosh2_ent.grid(padx=8,pady=15,sticky="w",row=4,column=0)
+
+time_sk_forosh=tk.Label(forosh_karghah_frame,text="مدت اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
+time_sk_forosh.grid(padx=8,pady=15,sticky="e",row=5,column=1)
+
+sk_time_combo=ttk.Combobox(forosh_karghah_frame,state="readonly")
+sk_time_combo["values"]=("بلندمدت","کوتاه مدت","فصلی","سالانه")
+sk_time_combo.set("فصلی")
+sk_time_combo.grid(padx=8,pady=15,sticky="w",row=5,column=0)
+
+photo_box_forosh_karghah=tk.Frame(forosh_karghah,width=410,height=450,background="#e4dde3")
+photo_box_forosh_karghah.place(x=50,y=40)
+
+photo_lbl2_forosh_karghah = tk.Label(photo_box_forosh_karghah, text="[تصویر ملک]", bg="gray", width=50, height=15)
+photo_lbl2_forosh_karghah.place(x=30,y=45)
+add_img_btn_forosh_karghah = tk.Button(photo_box_forosh_karghah, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
+add_img_btn_forosh_karghah.place(x=40,y=330)
+
+back_to_home_sk=tk.Button(forosh_karghah,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_forosh_karghah)
+back_to_home_sk.place(x=320,y=520)
+
+save_button_re_sk=tk.Button(forosh_karghah,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_forosh_karghah)
+save_button_re_sk.place(x=220,y=520)
+#endregion
+#---------------------پنجره امکانات فروش کارگاه---------------------
+#region
+option_frame_forosh_karghah=tk.Frame(forosh_karghah,width=300,height=30,background="#bbfbd1")
+option_frame_forosh_karghah.place(x=550,y=450)
+
+option_label_forosh_karghah=tk.Label(option_frame_forosh_karghah,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_forosh_karghah.pack(side="right",padx=1)
+
+button_label_forosh_karghah=tk.Label(option_frame_forosh_karghah)
+button_label_forosh_karghah.pack(side="left",padx=1)
+plus_button_forosh_karghah=tk.Button(option_frame_forosh_karghah,image=plus,command=open_option8,border=0)
+plus_button_forosh_karghah.pack()
+
+option_file_frame_forosh_karghah=tk.Toplevel(forosh_karghah,background="#bbfbd1")
+option_file_frame_forosh_karghah.title(" امکانات فروش کارگاه")
+option_file_frame_forosh_karghah.geometry("500x450")
+option_file_frame_forosh_karghah.pack_propagate(False)
+option_file_frame_forosh_karghah.withdraw()
+mini_frame=tk.Frame(option_file_frame_forosh_karghah)
+mini_frame.place(x=290,y=20)
+
+fram_option1_kargah=tk.Frame(option_file_frame_forosh_karghah,width=400,height=400,background="#bbfbd1")
+fram_option1_kargah.place(x=60,y=60)
+
+year_kargah=tk.Label(fram_option1_kargah,bg="#0F6E6E",fg="#ffffff",width=13,text="سال ساخت")
+year_kargah.grid(padx=10,pady=5,row=0,column=1)
+
+year_kargah_entry=tk.Entry(fram_option1_kargah,width=10,bg="#ffffff",fg="#000000")
+year_kargah_entry.grid(padx=10,pady=5,row=0,column=0)
+
+ab=tk.Label(fram_option1_kargah,bg="#0F6E6E",fg="#ffffff",width=15,text="وضعیت برق")
+ab.grid(padx=10,pady=5,row=1,column=1)
+
+ab_type_combo=ttk.Combobox(fram_option1_kargah)
+ab_type_combo["values"]=("برق شهری","سه فاز","تک فاز")
+ab_type_combo.set("برق شهری")
+ab_type_combo.grid(padx=10,pady=5,row=1,column=0)
+
+garmayesh_kargah=tk.Label(fram_option1_kargah,bg="#0F6E6E",fg="#ffffff",width=15,text="سیستم گرمایش")
+garmayesh_kargah.grid(padx=10,pady=5,row=2,column=1)
+
+garmayesh_kargah_type_combo=ttk.Combobox(fram_option1_kargah)
+garmayesh_kargah_type_combo["values"]=("بخاری ","شوفاژ ","فن کوئل(گرما) ")
+garmayesh_kargah_type_combo.set(" بخاری")
+garmayesh_kargah_type_combo.grid(padx=10,pady=3,row=2,column=0)
+
+sarmayesh_kargah=tk.Label(fram_option1_kargah,bg="#0F6E6E",fg="#ffffff",width=15,text="سیستم سرمایش ")
+sarmayesh_kargah.grid(padx=10,pady=5,row=3,column=1)
+
+sarmayesh_fan_kargah=tk.Checkbutton(fram_option1_kargah,text="تهویه(فن)",background="#d6d0d0")
+sarmayesh_fan_kargah.grid(padx=0,pady=5,row=4,column=0)
+
+sarmayesh_panke_kargah=tk.Checkbutton(fram_option1_kargah,text="پنکه سقفی",background="#d6d0d0")
+sarmayesh_panke_kargah.grid(padx=0,pady=5,row=4,column=1)
+
+sarmayesh_kooler_abi_kargah=tk.Checkbutton(fram_option1_kargah,text="کولر آبی",background="#d6d0d0")
+sarmayesh_kooler_abi_kargah.grid(padx=0,pady=5,row=5,column=0)
+
+sarmayesh_kooler_gazi_kargah=tk.Checkbutton(fram_option1_kargah,text="کولر گازی",background="#d6d0d0")
+sarmayesh_kooler_gazi_kargah.grid(padx=0,pady=5,row=5,column=1)
+
+type_kargah=tk.Label(fram_option1_kargah,bg="#0F6E6E",fg="#ffffff",width=13,text=" وضعیت آب")
+type_kargah.grid(padx=10,pady=5,row=6,column=1)
+
+type_kargah_combo=ttk.Combobox(fram_option1_kargah,width=35)
+type_kargah_combo["values"]=(" آب مستقیم لوله کشی (بدون فشار) " ," آب مستقیم لوله کشی (همراه موتور فشار) ","دارای منبع(همراه موتور فشار)","دارای منبع(بدون فشار)")
+type_kargah_combo.set(" آب مستقیم لوله کشی (بدون فشار) ")
+type_kargah_combo.grid(padx=10,pady=5,row=6,column=0)
+
+abzaar=tk.Label(fram_option1_kargah,bg="#0F6E6E",fg="#ffffff",width=15,text=" ابزار صنعتی ")
+abzaar.grid(padx=10,pady=5,row=7,column=1)
+
+type_abzaar_combo=ttk.Combobox(fram_option1_kargah,width=23)
+type_abzaar_combo["values"]=("(کارگاه خالی) بدون دستگاه ","دارای دستگاه های تولیدی")
+type_abzaar_combo.set("(کارگاه خالی) بدون دستگاه ")
+type_abzaar_combo.grid(padx=10,pady=5,row=7,column=0)
+
+toilet_kargah=tk.Label(fram_option1_kargah,bg="#0F6E6E",fg="#ffffff",width=15,text="سرویس بهداشتی")
+toilet_kargah.grid(padx=10,pady=5,row=8,column=1)
+
+toilet_kargah_combo=ttk.Combobox(fram_option1_kargah)
+toilet_kargah_combo["values"]=("دارد","ندارد")
+toilet_kargah_combo.set("دارد")
+toilet_kargah_combo.grid(padx=10,pady=5,row=8,column=0)
+
+hamam_kargah=tk.Label(fram_option1_kargah,bg="#0F6E6E",fg="#ffffff",width=13,text="حمام")
+hamam_kargah.grid(padx=10,pady=5,row=9,column=1)
+
+hamam_kargah_combo=ttk.Combobox(fram_option1_kargah)
+hamam_kargah_combo["values"]=("ندارد","دارد")
+hamam_kargah_combo.set("ندارد")
+hamam_kargah_combo.grid(padx=10,pady=5,row=9,column=0)
+
+otagh_kargah=tk.Label(fram_option1_kargah,bg="#0F6E6E",fg="#ffffff",width=17,text="اتاق رخت کن و استراحت")
+otagh_kargah.grid(padx=10,pady=5,row=10,column=1)
+
+otagh_kargah_combo=ttk.Combobox(fram_option1_kargah)
+otagh_kargah_combo["values"]=("ندارد","دارد")
+otagh_kargah_combo.set("ندارد")
+otagh_kargah_combo.grid(padx=10,pady=5,row=10,column=0)
+
+save_button_k_option_forosh_karghah=tk.Button(option_file_frame_forosh_karghah,text="ذخیره",background="#079BDB",fg="#ffffff",width=8)
+save_button_k_option_forosh_karghah.place(x=170,y=420)
+
+back_to_forosh_karghah=tk.Button(option_file_frame_forosh_karghah,text="بازگشت",command=back_to_forosh_karghah,background="#079BDB",fg="#ffffff",width=8)
+back_to_forosh_karghah.place(x=95,y=420)
 
 # ----------------------اجرای برنامه-------------------
 #region
