@@ -45,7 +45,11 @@ def delete_root():
 #region
 def save_rehn_maskkoni():#ذخیره پنجره اجاره مسکونی
     pass
+def save_forosh_maskkoni():#ذخیره پنجره فروش مسکونی
+    pass
 def save_rehn_edari():#ذخیره پنجره اجاره اداری
+    pass
+def save_forosh_edari():#ذخیره پنجره فروش اداری
     pass
 def save_rehn_bagh():#ذخیره پنجره اجاره زمین و باغ
     pass
@@ -1502,6 +1506,9 @@ price_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
 back_to_home_forosh_maskoni=tk.Button(forosh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_forosh_maskoni)
 back_to_home_forosh_maskoni.place(x=650,y=535)
 
+save_button_forosh_maskoni=tk.Button(forosh_rehn_page,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_forosh_maskkoni)
+save_button_forosh_maskoni.place(x=550,y=535)
+
 photo_box_forosh_maskoni=tk.Frame(forosh_rehn_page,width=410,height=450,background="#e4dde3")
 photo_box_forosh_maskoni.place(x=40,y=40)
 photo_lbl2_forosh_maskoni = tk.Label(photo_box_forosh_maskoni, text="[تصویر ملک]", bg="gray", width=50, height=15)
@@ -1635,6 +1642,9 @@ Full_mortgage_ch_btn_forosh_et.grid(padx=8,pady=15,sticky="w",row=7,column=0)
 
 back_to_home=tk.Button(forosh_et,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_forosh_et)
 back_to_home.place(x=650,y=535)
+
+save_button_forosh_et=tk.Button(forosh_et,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_forosh_edari)
+save_button_forosh_et.place(x=550,y=535)
 
 photo_box_forosh_et=tk.Frame(forosh_et,width=410,height=450,background="#e4dde3")
 photo_box_forosh_et.place(x=40,y=40)
