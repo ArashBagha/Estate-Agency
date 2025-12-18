@@ -83,14 +83,11 @@ main_frame.pack(fill="both",expand=True)
 #region
 header=tk.Frame(main_frame,bg="#404040",height=60)
 header.pack(fill='x')
-title_font=font.Font(family="B Nazanin",size=22,weight="bold")
+title_font=font.Font(family="Shabnam",size=22,weight="bold")
 title_label=tk.Label(header,text="آژانس املاک",fg="#FFFFFF",bg="#404040",font=title_font)
-title_label.pack(pady=10)
+title_label.pack(pady=25)
 #endregion
 #-----------قسمت منوبار پروژه------------------------
-#----تابع لیست بندی در دکمه ها------------------
-def show_file_popup(event):
-    file_popup.tk_popup(event.x_root, event.y_root)
 #---------------------فریم منو----------------------
 #region
 menu_frame=tk.Frame(main_frame,bg="#ffffff", relief="flat",height=1)
@@ -617,58 +614,74 @@ def add_option2():
 #---#----#----#----#----#----------  گرافیک   ----------#----#----#----#-----#-----------
 # ---------دکمه فایل با منوی کشویی ------------------
 #region 
-file_button = tk.Button(menu_frame, text="ثبت فایل ها", bg="#ffffff", relief="flat")
-file_button.pack(padx=5, pady=5, side="left")
+menubar = tk.Menu(root, font=("Shabnam", 10))
+# ایجاد منوی "ثبت فایل ها"
+file_menu = tk.Menu(menubar, tearoff=0, font=("Shabnam", 10))
+file_menu.add_command(label="خرید", command=kharid)
+file_menu.add_command(label="فروش", command=forosh)
+file_menu.add_command(label="رهن/اجاره", command=rahn)
+file_menu.add_command(label="مشارکت", command=mosharecat)
 
-file_popup = tk.Menu(root, tearoff=0, font=("Arial", 12))
-file_popup.add_command(label="خرید", command=kharid)
-file_popup.add_command(label="فروش", command=forosh)
-file_popup.add_command(label="رهن/اجاره", command=rahn)
-file_popup.add_command(label="مشارکت", command=mosharecat)
-file_button.bind("<Button-1>", show_file_popup)
+# اضافه کردن منوی "ثبت فایل ها" به منوبار
+menubar.add_cascade(label="ثبت فایل ها", menu=file_menu)
+
+# اتصال منوبار به پنجره
+root.config(menu=menubar)
 #endregion
+# ---------------اضافه کردن فیلد قرارداد ---------------
+#region
+file_menu2 = tk.Menu(menubar, tearoff=0, font=("Shabnam", 10))
+file_menu2.add_command(label="خرید", command=None)
+file_menu2.add_command(label="فروش", command=None)
+file_menu2.add_command(label="رهن/اجاره", command=None)
+file_menu2.add_command(label="مشارکت", command=None)
+
+# اضافه کردن منوی قرار دادها به منوبار
+menubar.add_cascade(label="قراردادها", menu=file_menu2)
+#endregion
+#----------------دکمه گزارش ها با منوی کشویی ------------------------
 # ----------لیست کشویی فیلد گزارش ها-----------------
+file_menu3 = tk.Menu(menubar, tearoff=0, font=("Shabnam", 10))
+file_menu3.add_command(label="خروجی اکسل", command=None)
+file_menu3.add_command(label="قراردادها", command=None)
+
+# اضافه کردن منوی گزارش ها به منوبار
+menubar.add_cascade(label="گزارش ها", menu=file_menu3)
+
+#---------------------------تابع های خروجی اکسل و قرار دادها------------
 def excel():
     pass
 def gharardadeha():
     pass
-# ---------------اضافه کردن فیلد قرارداد ---------------
-#region
-file_button = tk.Button(menu_frame, text="قرارداد ", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=5, side="left")
-#endregion
-#----------------دکمه گزارش ها با منوی کشویی ------------------------
-#region
-file_button = tk.Button(menu_frame, text="گزارش ها", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=10, side="left")
-
-file_popup1 = tk.Menu(root, tearoff=0, font=("Arial", 12))
-file_popup1.add_command(label="خروجی اکسل", command=excel)
-file_popup1.add_command(label="قرارداد ها", command=gharardadeha)
-
-file_button.bind("<Button-1>", show_file_popup)
-#endregion
 
 # ----------------------اضافه کردن فیلد درخواست ها-------
 #region
-file_button = tk.Button(menu_frame, text="درخواست ها", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=5, side="left")
+file_menu4 = tk.Menu(menubar, tearoff=0, font=("Shabnam", 10))
+file_menu4.add_command(label="", command=None)
+file_menu4.add_command(label="", command=None)
+
+# اضافه کردن منوی گزارش ها به منوبار
+menubar.add_cascade(label="درخواست ها", menu=file_menu4)
 #endregion
 #-------------------------اضافه کردن فیلد کاربران---------
 #region
-file_button = tk.Button(menu_frame, text="کاربران ", bg="#ffffff", relief="flat")
-file_button.pack(padx=10, pady=5, side="left")
+file_menu5 = tk.Menu(menubar, tearoff=0, font=("Shabnam", 10))
+file_menu5.add_command(label="", command=None)
+file_menu5.add_command(label="", command=None)
+
+# اضافه کردن منوی گزارش ها به منوبار
+menubar.add_cascade(label="کاربران", menu=file_menu5)
 #endregion
 #========================================================
 # -----------باکس سمت چپ - جستجو در فایل های ملک----------
 #region
-left_frame = tk.LabelFrame(root, text="جستجوی ملک", width=200, bg="#575353",fg="#F8F7F7", font=("Arial", 16))
+left_frame = tk.LabelFrame(root, text="جستجوی ملک", width=200, bg="#575353",fg="#F8F7F7", font=("Shabnam", 16))
 left_frame.pack(side="left", fill="y", padx=6, pady=15)
 
 Box1 = tk.Frame(left_frame,bg="#0F6E6E")
 Box1.pack(padx=6, pady=15)
 
-filetype = tk.Label(Box1,text="نوع فایل",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+filetype = tk.Label(Box1,text="نوع فایل",bg="#0F6E6E", fg="#FFFFFF",font=("Shabnam", 13))
 filetype.pack(padx=15,pady=10, side="right")
 combo1= ttk.Combobox(Box1)
 combo1["values"] = ("رهن/اجاره","خرید","فروش","مشارکت",)
@@ -677,7 +690,7 @@ combo1.pack(padx=10, pady=10)
 Box3 = tk.Frame(left_frame,bg="#0F6E6E")
 Box3.pack(padx=6, pady=15)
 
-melktypelable = tk.Label(Box3,text="نوع ملک",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+melktypelable = tk.Label(Box3,text="نوع ملک",bg="#0F6E6E", fg="#FFFFFF",font=("Shabnam", 13))
 melktypelable.pack(padx=15,pady=10, side="right")
 combo2= ttk.Combobox(Box3)
 combo2["values"] = ("مسکونی","مغازه/ تجاری"," باغ / زمین","کارگاه")
@@ -686,29 +699,29 @@ combo2.pack(padx=10, pady=10)
 Box3 = tk.Frame(left_frame,bg="#0F6E6E")
 Box3.pack(padx=6, pady=5)
 
-melk_Pricelimit_lable = tk.Label(Box3,text="محدوده قیمت",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+melk_Pricelimit_lable = tk.Label(Box3,text="محدوده قیمت",bg="#0F6E6E", fg="#FFFFFF",font=("Shabnam", 13))
 melk_Pricelimit_lable.pack(padx=5, pady=1)
-entry_melk_Pricelimit = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_Pricelimit = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Shabnam", 13))
 entry_melk_Pricelimit.pack(padx=20,pady=10)
 
-melk_Area_lable = tk.Label(Box3,text=" متراژ",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+melk_Area_lable = tk.Label(Box3,text=" متراژ",bg="#0F6E6E", fg="#FFFFFF",font=("Shabnam", 13))
 melk_Area_lable.pack(padx=5, pady=1)
-entry_melk_width_lable = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_width_lable = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Shabnam", 13))
 entry_melk_width_lable.pack(padx=20,pady=10)
 
-melk_Area_lable = tk.Label(Box3,text=" منطقه / آدرس",bg="#0F6E6E", fg="#FFFFFF",font=("Arial", 14))
+melk_Area_lable = tk.Label(Box3,text=" منطقه / آدرس",bg="#0F6E6E", fg="#FFFFFF",font=("Shabnam", 13))
 melk_Area_lable.pack(padx=5, pady=1)
-entry_melk_area_lable = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_area_lable = tk.Entry(Box3,bg="#C2C2C2", fg="#FFFFFF",font=("Shabnam", 13))
 entry_melk_area_lable.pack(padx=20,pady=10)
 
 # ---------------------دکمه جستجوی ملک-----------------
-search_btn = tk.Button(left_frame, text="    جستجو    " , bg="#94c6dd", fg="#201F1F", font=("Arial", 14), command=open_file)
+search_btn = tk.Button(left_frame, text="    جستجو    " , bg="#94c6dd", fg="#201F1F", font=("Shabnam", 13), command=open_file)
 search_btn.pack(pady=10)
 #=====================================================
 #endregion
 # ---------------------------باکس وسط - نمایش جستجوی --------------
 #region
-center_frame = tk.LabelFrame(root, text="لیست املاک", bg="#ffffff", font=("Arial", 14))
+center_frame = tk.LabelFrame(root, text="لیست املاک", bg="#ffffff", font=("Shabnam", 13))
 center_frame.pack(side="left", fill="both", expand=True, padx=4, pady=15)
 
 columns = ["آدرس", "قیمت ", "نوع ملک ", "متراژ"]
@@ -722,40 +735,40 @@ tree.pack(fill="both", expand=True)
 
 # --------------------باکس سمت راست - نمایش جزئیات فایل های موجود املاک---------------
 #region
-right_frame = tk.LabelFrame(root, text="جزئیات ملک", width=200, bg="#ffffff", font=("Arial", 14))
+right_frame = tk.LabelFrame(root, text="جزئیات ملک", width=200, bg="#ffffff", font=("Shabnam", 13))
 right_frame.pack(side="right", fill="y", padx=6, pady=15)
 
 photo_lbl = tk.Label(right_frame, text="[تصویر ملک]", bg="gray", width=20, height=10)
 photo_lbl.pack(pady=10)
 
-malek = tk.Label(right_frame,text="مالک ",bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
+malek = tk.Label(right_frame,text="مالک ",bg="#272B61", fg="#F7F7FA",font=("Shabnam", 13))
 malek.pack(padx=6,pady=4)
 
-entry_malek = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_malek = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Shabnam", 13))
 entry_malek.pack(padx=20,pady=4)
 
-malek_phone_number = tk.Label(right_frame,text="شماره تماس مالک ",bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
+malek_phone_number = tk.Label(right_frame,text="شماره تماس مالک ",bg="#272B61", fg="#F7F7FA",font=("Shabnam", 13))
 malek_phone_number.pack(padx=6,pady=4)
 
-entry_malek_phone_number = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_malek_phone_number = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Shabnam", 13))
 entry_malek_phone_number.pack(padx=20,pady=4)
 
-metr = tk.Label(right_frame,text="متراژ ",bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
+metr = tk.Label(right_frame,text="متراژ ",bg="#272B61", fg="#F7F7FA",font=("Shabnam", 13))
 metr.pack(padx=6,pady=4)
 
-entry_metr = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_metr = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Shabnam", 13))
 entry_metr.pack(padx=20,pady=4)
 
-melk_price = tk.Label(right_frame,text="قیمت ",bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
+melk_price = tk.Label(right_frame,text="قیمت ",bg="#272B61", fg="#F7F7FA",font=("Shabnam", 13))
 melk_price.pack(padx=6,pady=4)
 
-entry_melk_price= tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_melk_price= tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Shabnam", 13))
 entry_melk_price.pack(padx=20,pady=4)
 
-extension = tk.Label(right_frame,text="توضیحات ",bg="#272B61", fg="#F7F7FA",font=("Arial", 14))
+extension = tk.Label(right_frame,text="توضیحات ",bg="#272B61", fg="#F7F7FA",font=("Shabnam", 13))
 extension.pack(padx=6,pady=4)
 
-entry_extension = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Arial", 14))
+entry_extension = tk.Entry(right_frame,bg="#C2C2C2", fg="#FFFFFF",font=("Shabnam", 13))
 entry_extension.pack(padx=20,pady=4)
 #=======================================================
 #endregion
@@ -770,24 +783,24 @@ box_rehn_ejareh.configure(bg="#0F6E6E")
 
 ejareh_radio_value = tk.IntVar(value=0)
 
-ejareh_maskoni_radio = tk.Radiobutton(box_rehn_ejareh,text="ثبت فایل مسکونی",background="#0F6E6E",variable=ejareh_radio_value,value=0,font=("Arial", 12))
+ejareh_maskoni_radio = tk.Radiobutton(box_rehn_ejareh,text="ثبت فایل مسکونی",background="#0F6E6E",variable=ejareh_radio_value,value=0,font=("Shabnam", 11))
 ejareh_maskoni_radio.place(x=330, y=50)
 
 ejareh_edari_radio = tk.Radiobutton( box_rehn_ejareh,text="ثبت فایل اداری/تجاری",
     bg="#0F6E6E",
     variable=ejareh_radio_value,
     value=2,
-    font=("Arial", 12))
+    font=("Shabnam", 11))
 ejareh_edari_radio.place(x=330, y=90)
 
 ejareh_bagh_radio = tk.Radiobutton(box_rehn_ejareh,text="ثبت فایل باغ/زمین",bg="#0F6E6E",
     variable=ejareh_radio_value,
     value=4,
-    font=("Arial", 12))
+    font=("Shabnam", 11))
 ejareh_bagh_radio.place(x=330, y=130)
 
 ejareh_kargah_radio = tk.Radiobutton(box_rehn_ejareh,text="ثبت فایل کارگاه",bg="#0F6E6E",variable=ejareh_radio_value,value=6,
-    font=("Arial", 12))
+    font=("Shabnam", 11))
 ejareh_kargah_radio.place(x=330, y=170)
 
 
@@ -821,17 +834,17 @@ box_forosh.configure(bg="#0F6E6E")
 # یک متغیر مشترک برای همه رادیوباتن‌ها
 frosh_radio_value = tk.IntVar(value=0)  # مقدار پیش‌فرض -1 یعنی هیچکدام انتخاب نشده
 
-frosh_maskoni_radio = tk.Radiobutton(box_forosh, value=0, text="ثبت فایل مسکونی", background="#0F6E6E", variable=frosh_radio_value, font=("Arial",12))
+frosh_maskoni_radio = tk.Radiobutton(box_forosh, value=0, text="ثبت فایل مسکونی", background="#0F6E6E", variable=frosh_radio_value, font=("Shabnam",11))
 frosh_maskoni_radio.place(x=330,y=50)
 
 frosh_edari_radio = tk.Radiobutton(box_forosh, value=2, text="ثبت فایل اداری/تجاری",
-bg="#0F6E6E", variable=frosh_radio_value, font=("Arial",12))
+bg="#0F6E6E", variable=frosh_radio_value, font=("Shabnam",11))
 frosh_edari_radio.place(x=330,y=90)
 
-frosh_bagh_radio = tk.Radiobutton(box_forosh, value=4, text="ثبت فایل باغ/زمین",bg="#0F6E6E", variable=frosh_radio_value, font=("Arial",12))
+frosh_bagh_radio = tk.Radiobutton(box_forosh, value=4, text="ثبت فایل باغ/زمین",bg="#0F6E6E", variable=frosh_radio_value, font=("Shabnam",11))
 frosh_bagh_radio.place(x=330,y=130)
 
-frosh_kargah_radio = tk.Radiobutton(box_forosh, value=6, text="ثبت فایل کارگاه",bg="#0F6E6E", variable=frosh_radio_value, font=("Arial",12))
+frosh_kargah_radio = tk.Radiobutton(box_forosh, value=6, text="ثبت فایل کارگاه",bg="#0F6E6E", variable=frosh_radio_value, font=("Shabnam",11))
 frosh_kargah_radio.place(x=330,y=170)
 
 
@@ -871,37 +884,37 @@ rehn_page_frame1.place(x=450,y=40)
 melktype_ejare_maskoni=tk.Label(rehn_page_frame1,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
 melktype_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
-melk_type_rehn_maskoni=tk.Entry(rehn_page_frame1,text="اجاره مسکونی",bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+melk_type_rehn_maskoni=tk.Entry(rehn_page_frame1,text="اجاره مسکونی",bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 melk_type_rehn_maskoni.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
 
 year_ejare_maskoni=tk.Label(rehn_page_frame1,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
 year_ejare_maskoni.grid(padx=8,pady=10,sticky="e",row=1,column=1)
 
-year_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+year_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 year_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
 
 addrres_buy=tk.Label(rehn_page_frame1,text="آدرس",bg="#0F6E6E",fg="#ffffff",width=10)
 addrres_buy.grid(padx=8,pady=15,sticky="e",row=2,column=1)
 
-addrres_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+addrres_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 addrres_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
 
 floor_ejare_maskoni=tk.Label(rehn_page_frame1,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
 floor_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=3,column=1)
 
-floor_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+floor_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 floor_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
 
 vahed_ejare_maskoni=tk.Label(rehn_page_frame1,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
 vahed_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=4,column=1)
 
-vahed_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+vahed_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 vahed_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
 
 room_ejare_maskoni=tk.Label(rehn_page_frame1,text="اتاق",bg="#0F6E6E",fg="#ffffff",width=10)
 room_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=5,column=1)
 
-room_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+room_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 room_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
 
 price_ejare_ejare_maskoni=tk.Label(rehn_page_frame1,text="مبلغ اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
@@ -910,10 +923,10 @@ price_ejare_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=7,column=0)
 price_pish_ejare_maskoni=tk.Label(rehn_page_frame1,text="مبلغ پیش",bg="#0F6E6E",fg="#ffffff",width=10)
 price_pish_ejare_maskoni.grid(padx=8,pady=15,sticky="e",row=7,column=1)
 
-price_ejare_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_ejare_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 price_ejare_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=8,column=0)
 
-price_pish_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_pish_ejare_maskoni_entry=tk.Entry(rehn_page_frame1,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 price_pish_ejare_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=8,column=1)
 
 back_to_home=tk.Button(ejareh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_ejare_maskoni)
@@ -934,7 +947,7 @@ add_img_btn_ejare_maskoni.place(x=40,y=330)
 option_frame_ejare_maskoni=tk.Frame(ejareh_rehn_page,width=300,height=30,background="#bbfbd1")
 option_frame_ejare_maskoni.place(x=525,y=500)
 
-option_label_ejare_maskoni=tk.Label(option_frame_ejare_maskoni,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_ejare_maskoni=tk.Label(option_frame_ejare_maskoni,text='افزودن امکانات فایل',font=("Shabnam",10,"bold"),background="#FFFFFF",fg="#000000")
 option_label_ejare_maskoni.pack(side="right",padx=1)
 
 button_label_ejare_maskoni=tk.Label(option_frame_ejare_maskoni)
@@ -1009,49 +1022,49 @@ rehn_page_frame3.place(x=500,y=50)
 melktype_ejareh_et=tk.Label(rehn_page_frame3,text="متراژ ملک ",bg="#0F6E6E",fg="#ffffff",width=10)
 melktype_ejareh_et.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
-melk_type_rehn_et=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+melk_type_rehn_et=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 melk_type_rehn_et.grid(padx=8, pady=15,sticky="w",row=0,column=0) 
 
 year_ejareh_et=tk.Label(rehn_page_frame3,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
 year_ejareh_et.grid(padx=8,pady=10,sticky="e",row=1,column=1)
 
-year_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+year_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 year_ejareh_et_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
 
 addrres_ejareh_et=tk.Label(rehn_page_frame3,text="آدرس",bg="#0F6E6E",fg="#ffffff",width=10)
 addrres_ejareh_et.grid(padx=8,pady=15,sticky="e",row=2,column=1)
 
-addrres_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+addrres_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 addrres_ejareh_et_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
 floor_ejareh_et=tk.Label(rehn_page_frame3,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
 floor_ejareh_et.grid(padx=8,pady=15,sticky="e",row=3,column=1)
 
-floor_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+floor_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 floor_ejareh_et_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
 
 vahed_ejareh_et=tk.Label(rehn_page_frame3,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
 vahed_ejareh_et.grid(padx=8,pady=15,sticky="e",row=4,column=1)
 
-vahed_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+vahed_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 vahed_ejareh_et_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
 
 
 price_ejareh_et=tk.Label(rehn_page_frame3,text="مبلغ ودیعه",bg="#0F6E6E",fg="#ffffff",width=10)
 price_ejareh_et.grid(padx=8,pady=15,sticky="e",row=5,column=1)
 
-price_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 price_ejareh_et_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
 
 Monthly_fee_ejareh_et=tk.Label(rehn_page_frame3,text=" مبلغ اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
 Monthly_fee_ejareh_et.grid(padx=8,pady=15,sticky="e",row=6,column=1)
 
-Monthly_fee_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+Monthly_fee_ejareh_et_entry=tk.Entry(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 Monthly_fee_ejareh_et_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
 
 Full_mortgage_ejareh_et=tk.Label(rehn_page_frame3,text=" رهن کامل؟ ",bg="#0F6E6E",fg="#ffffff",width=10)
 Full_mortgage_ejareh_et.grid(padx=8,pady=15,sticky="e",row=7,column=1)
 
-Full_mortgage_ch_btn_ejareh_et=tk.Checkbutton(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+Full_mortgage_ch_btn_ejareh_et=tk.Checkbutton(rehn_page_frame3,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 Full_mortgage_ch_btn_ejareh_et.grid(padx=8,pady=15,sticky="w",row=7,column=0)
 
 back_to_home=tk.Button(ejareh_et,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_ejareh_et)
@@ -1072,7 +1085,7 @@ add_img_btn_ejareh_et.place(x=40,y=330)
 option_frame_ejareh_et=tk.Frame(ejareh_et,width=300,height=30,background="#bbfbd1")
 option_frame_ejareh_et.place(x=520,y=475)
 
-option_label_ejareh_et=tk.Label(option_frame_ejareh_et,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_ejareh_et=tk.Label(option_frame_ejareh_et,text='افزودن امکانات فایل',font=("Shabnam",10,"bold"),background="#FFFFFF",fg="#000000")
 option_label_ejareh_et.pack(side="right",padx=1)
 
 button_label_ejareh_et=tk.Label(option_frame_ejareh_et)
@@ -1138,7 +1151,7 @@ ejareh_bagh_frame.place(x=500,y=90)
 metraj_zamin=tk.Label(ejareh_bagh_frame,text="متراژ",bg="#0F6E6E",fg="#ffffff",width=10)
 metraj_zamin.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
-metraj_zamin_entry=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10),textvariable="متر مربع")
+metraj_zamin_entry=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),textvariable="متر مربع")
 metraj_zamin_entry.grid(padx=8,pady=15,sticky="w",row=0,column=0)
 
 bagh_type=tk.Label(ejareh_bagh_frame,text="کاربری زمین",bg="#0F6E6E",fg="#ffffff",width=10)
@@ -1152,19 +1165,19 @@ bagh_type_combo.grid(padx=8,pady=15,sticky="w",row=1,column=0)
 bagh_loctaion=tk.Label(ejareh_bagh_frame,text="منطقه و ادرس ",bg="#0F6E6E",fg="#ffffff",width=10)
 bagh_loctaion.grid(padx=8,pady=15,sticky="e",row=2,column=1)
 
-bagh_loctaion_entry=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_loctaion_entry=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 bagh_loctaion_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
 
 bagh_price_ejareh=tk.Label(ejareh_bagh_frame,text='ودیعه',bg="#0F6E6E",fg="#ffffff",width=10)
 bagh_price_ejareh.grid(padx=8,pady=15,sticky="e",row=3,column=1)
 
-bagh_price_ejareh_ent=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_price_ejareh_ent=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 bagh_price_ejareh_ent.grid(padx=8,pady=15,sticky="w",row=3,column=0)
 
 bagh_price_ejareh2=tk.Label(ejareh_bagh_frame,text='قیمت هر متر',bg="#0F6E6E",fg="#ffffff",width=10)
 bagh_price_ejareh2.grid(padx=8,pady=15,sticky="e",row=4,column=1)
 
-bagh_price_ejareh2_ent=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_price_ejareh2_ent=tk.Entry(ejareh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 bagh_price_ejareh2_ent.grid(padx=8,pady=15,sticky="w",row=4,column=0)
 
 time_bagh_ejareh=tk.Label(ejareh_bagh_frame,text="مدت اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
@@ -1194,7 +1207,7 @@ save_button_re_bagh.place(x=220,y=520)
 option_frame_ejareh_bz=tk.Frame(ejareh_bz,width=300,height=30,background="#bbfbd1")
 option_frame_ejareh_bz.place(x=550,y=450)
 
-option_label_ejareh_bz=tk.Label(option_frame_ejareh_bz,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_ejareh_bz=tk.Label(option_frame_ejareh_bz,text='افزودن امکانات فایل',font=("Shabnam",10,"bold"),background="#FFFFFF",fg="#000000")
 option_label_ejareh_bz.pack(side="right",padx=1)
 
 button_label_ejareh_bz=tk.Label(option_frame_ejareh_et)
@@ -1464,43 +1477,43 @@ rehn_page_frame2.place(x=500,y=50)
 melktype_forosh_maskoni=tk.Label(rehn_page_frame2,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
 melktype_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
-melk_type_forosh_maskoni=tk.Entry(rehn_page_frame2,text="فروش مسکونی",bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+melk_type_forosh_maskoni=tk.Entry(rehn_page_frame2,text="فروش مسکونی",bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 melk_type_forosh_maskoni.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
 
 year_forosh_maskoni=tk.Label(rehn_page_frame2,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
 year_forosh_maskoni.grid(padx=8,pady=10,sticky="e",row=1,column=1)
 
-year_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+year_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 year_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
 
 addrres_forosh_maskoni=tk.Label(rehn_page_frame2,text="آدرس",bg="#0F6E6E",fg="#ffffff",width=10)
 addrres_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=2,column=1)
 
-addrres_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+addrres_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 addrres_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
 
 floor_forosh_maskoni=tk.Label(rehn_page_frame2,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
 floor_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=3,column=1)
 
-floor_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+floor_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 floor_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
 
 vahed_forosh_maskoni=tk.Label(rehn_page_frame2,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
 vahed_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=4,column=1)
 
-vahed_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+vahed_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 vahed_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
 
 room_forosh_maskoni=tk.Label(rehn_page_frame2,text="اتاق",bg="#0F6E6E",fg="#ffffff",width=10)
 room_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=5,column=1)
 
-room_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+room_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 room_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
 
 price_forosh_maskoni=tk.Label(rehn_page_frame2,text="قیمت",bg="#0F6E6E",fg="#ffffff",width=10)
 price_forosh_maskoni.grid(padx=8,pady=15,sticky="e",row=6,column=1)
 
-price_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_forosh_maskoni_entry=tk.Entry(rehn_page_frame2,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 price_forosh_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
 
 back_to_home_forosh_maskoni=tk.Button(forosh_rehn_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_forosh_maskoni)
@@ -1521,7 +1534,7 @@ add_img_btn_forosh_maskoni.place(x=40,y=330)
 option_frame3=tk.Frame(forosh_rehn_page,width=300,height=30,background="#bbfbd1")
 option_frame3.place(x=520,y=460)
 
-option_label_forosh_maskoni=tk.Label(option_frame3,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_forosh_maskoni=tk.Label(option_frame3,text='افزودن امکانات فایل',font=("Shabnam",10,"bold"),background="#FFFFFF",fg="#000000")
 option_label_forosh_maskoni.pack(side="right",padx=1)
 
 button_label_forosh_maskoni=tk.Label(option_frame3)
@@ -1595,49 +1608,49 @@ rehn_page_frame8.place(x=500,y=50)
 melktype_forosh_et=tk.Label(rehn_page_frame8,text="متراژ ملک ",bg="#0F6E6E",fg="#ffffff",width=10)
 melktype_forosh_et.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
-melk_type_rehn_et=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+melk_type_rehn_et=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 melk_type_rehn_et.grid(padx=8, pady=15,sticky="w",row=0,column=0) 
 
 year_forosh_et=tk.Label(rehn_page_frame8,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
 year_forosh_et.grid(padx=8,pady=10,sticky="e",row=1,column=1)
 
-year_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+year_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 year_forosh_et_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
 
 addrres_forosh_et=tk.Label(rehn_page_frame8,text="آدرس",bg="#0F6E6E",fg="#ffffff",width=10)
 addrres_forosh_et.grid(padx=8,pady=15,sticky="e",row=2,column=1)
 
-addrres_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+addrres_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 addrres_forosh_et_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
 floor_forosh_et=tk.Label(rehn_page_frame8,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
 floor_forosh_et.grid(padx=8,pady=15,sticky="e",row=3,column=1)
 
-floor_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+floor_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 floor_forosh_et_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
 
 vahed_forosh_et=tk.Label(rehn_page_frame8,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
 vahed_forosh_et.grid(padx=8,pady=15,sticky="e",row=4,column=1)
 
-vahed_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+vahed_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 vahed_forosh_et_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
 
 
 price_forosh_et=tk.Label(rehn_page_frame8,text="مبلغ ودیعه",bg="#0F6E6E",fg="#ffffff",width=10)
 price_forosh_et.grid(padx=8,pady=15,sticky="e",row=5,column=1)
 
-price_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+price_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 price_forosh_et_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
 
 Monthly_fee_forosh_et=tk.Label(rehn_page_frame8,text=" مبلغ اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
 Monthly_fee_forosh_et.grid(padx=8,pady=15,sticky="e",row=6,column=1)
 
-Monthly_fee_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+Monthly_fee_forosh_et_entry=tk.Entry(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 Monthly_fee_forosh_et_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
 
 Full_mortgage_forosh_et=tk.Label(rehn_page_frame8,text=" رهن کامل؟ ",bg="#0F6E6E",fg="#ffffff",width=10)
 Full_mortgage_forosh_et.grid(padx=8,pady=15,sticky="e",row=7,column=1)
 
-Full_mortgage_ch_btn_forosh_et=tk.Checkbutton(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Arial", 10),)
+Full_mortgage_ch_btn_forosh_et=tk.Checkbutton(rehn_page_frame8,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 Full_mortgage_ch_btn_forosh_et.grid(padx=8,pady=15,sticky="w",row=7,column=0)
 
 back_to_home=tk.Button(forosh_et,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_forosh_et)
@@ -1658,7 +1671,7 @@ add_img_btn_forosh_et.place(x=40,y=330)
 option_frame_forosh_et=tk.Frame(forosh_et,width=300,height=30,background="#bbfbd1")
 option_frame_forosh_et.place(x=520,y=475)
 
-option_label_forosh_et=tk.Label(option_frame_forosh_et,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_forosh_et=tk.Label(option_frame_forosh_et,text='افزودن امکانات فایل',font=("Shabnam",10,"bold"),background="#FFFFFF",fg="#000000")
 option_label_forosh_et.pack(side="right",padx=1)
 
 button_label_forosh_et=tk.Label(option_frame_forosh_et)
@@ -1723,7 +1736,7 @@ forosh_bagh_frame.place(x=500,y=90)
 metraj_zamin_forosh_bagh=tk.Label(forosh_bagh_frame,text="متراژ",bg="#0F6E6E",fg="#ffffff",width=10)
 metraj_zamin_forosh_bagh.grid(padx=8,pady=15,sticky="e",row=0,column=1)
 
-metraj_zamin_forosh_bagh_entry=tk.Entry(forosh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10),textvariable="متر مربع")
+metraj_zamin_forosh_bagh_entry=tk.Entry(forosh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),textvariable="متر مربع")
 metraj_zamin_forosh_bagh_entry.grid(padx=8,pady=15,sticky="w",row=0,column=0)
 
 bagh_type_forosh_bagh=tk.Label(forosh_bagh_frame,text="کاربری زمین",bg="#0F6E6E",fg="#ffffff",width=10)
@@ -1737,19 +1750,19 @@ bagh_type_forosh_bagh_combo.grid(padx=8,pady=15,sticky="w",row=1,column=0)
 bagh_loctaion_forosh_bagh=tk.Label(forosh_bagh_frame,text="منطقه و ادرس ",bg="#0F6E6E",fg="#ffffff",width=10)
 bagh_loctaion_forosh_bagh.grid(padx=8,pady=15,sticky="e",row=2,column=1)
 
-bagh_loctaion_forosh_bagh_entry=tk.Entry(forosh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_loctaion_forosh_bagh_entry=tk.Entry(forosh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 bagh_loctaion_forosh_bagh_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
 
 bagh_price_forosh_bagh=tk.Label(forosh_bagh_frame,text='ودیعه',bg="#0F6E6E",fg="#ffffff",width=10)
 bagh_price_forosh_bagh.grid(padx=8,pady=15,sticky="e",row=3,column=1)
 
-bagh_price_forosh_bagh_entry=tk.Entry(forosh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_price_forosh_bagh_entry=tk.Entry(forosh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 bagh_price_forosh_bagh_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
 
 bagh_price_forosh_bagh2=tk.Label(forosh_bagh_frame,text='قیمت هر متر',bg="#0F6E6E",fg="#ffffff",width=10)
 bagh_price_forosh_bagh2.grid(padx=8,pady=15,sticky="e",row=4,column=1)
 
-bagh_price_forosh_bagh2_entry=tk.Entry(forosh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+bagh_price_forosh_bagh2_entry=tk.Entry(forosh_bagh_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 bagh_price_forosh_bagh2_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
 
 #time_bagh_forosh_bagh=tk.Label(forosh_bagh_frame,text="مدت اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
@@ -1779,7 +1792,7 @@ save_button_forosh_bagh.place(x=220,y=520)
 option_frame_forosh_bz=tk.Frame(forosh_bz,width=300,height=30,background="#bbfbd1")
 option_frame_forosh_bz.place(x=550,y=450)
 
-option_label_forosh_bz=tk.Label(option_frame_forosh_bz,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_forosh_bz=tk.Label(option_frame_forosh_bz,text='افزودن امکانات فایل',font=("Shabnam",10,"bold"),background="#FFFFFF",fg="#000000")
 option_label_forosh_bz.pack(side="right",padx=1)
 
 button_label_forosh_bz=tk.Label(option_frame_forosh_et)
@@ -2047,25 +2060,25 @@ sk_type_text.grid(padx=8,pady=15,sticky="e",row=0,column=0)
 metraj_sk=tk.Label(ejareh_karghah_frame,text="متراژ",bg="#0F6E6E",fg="#ffffff",width=10)
 metraj_sk.grid(padx=8,pady=15,sticky="e",row=1,column=1)
 
-metraj_sk_entry=tk.Entry(ejareh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10),textvariable="متر مربع")
+metraj_sk_entry=tk.Entry(ejareh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),textvariable="متر مربع")
 metraj_sk_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
 
 sk_loctaion=tk.Label(ejareh_karghah_frame,text="منطقه و ادرس ",bg="#0F6E6E",fg="#ffffff",width=10)
 sk_loctaion.grid(padx=8,pady=15,sticky="e",row=2,column=1)
 
-sk_loctaion_entry=tk.Entry(ejareh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+sk_loctaion_entry=tk.Entry(ejareh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 sk_loctaion_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
 
 sk_price_ejareh=tk.Label(ejareh_karghah_frame,text='ودیعه',bg="#0F6E6E",fg="#ffffff",width=10)
 sk_price_ejareh.grid(padx=8,pady=15,sticky="e",row=3,column=1)
 
-sk_price_ejareh_ent=tk.Entry(ejareh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+sk_price_ejareh_ent=tk.Entry(ejareh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 sk_price_ejareh_ent.grid(padx=8,pady=15,sticky="w",row=3,column=0)
 
 sk_price_ejareh2=tk.Label(ejareh_karghah_frame,text='قیمت هر متر',bg="#0F6E6E",fg="#ffffff",width=10)
 sk_price_ejareh2.grid(padx=8,pady=15,sticky="e",row=4,column=1)
 
-sk_price_ejareh2_ent=tk.Entry(ejareh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+sk_price_ejareh2_ent=tk.Entry(ejareh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 sk_price_ejareh2_ent.grid(padx=8,pady=15,sticky="w",row=4,column=0)
 
 time_sk_ejareh=tk.Label(ejareh_karghah_frame,text="مدت اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
@@ -2095,7 +2108,7 @@ save_button_re_sk.place(x=220,y=520)
 option_frame_ejareh_karghah=tk.Frame(ejareh_karghah,width=300,height=30,background="#bbfbd1")
 option_frame_ejareh_karghah.place(x=550,y=450)
 
-option_label_ejareh_karghah=tk.Label(option_frame_ejareh_karghah,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_ejareh_karghah=tk.Label(option_frame_ejareh_karghah,text='افزودن امکانات فایل',font=("Shabnam",10,"bold"),background="#FFFFFF",fg="#000000")
 option_label_ejareh_karghah.pack(side="right",padx=1)
 
 button_label_ejareh_karghah=tk.Label(option_frame_ejareh_karghah)
@@ -2196,7 +2209,7 @@ save_button_k_option_ejareh_karghah.place(x=170,y=420)
 
 back_to_ejareh_karghah=tk.Button(option_file_frame_ejareh_karghah,text="بازگشت",command=back_to_ejareh_karghah,background="#079BDB",fg="#ffffff",width=8)
 back_to_ejareh_karghah.place(x=95,y=420)
-
+#endregion
 #EMAD
 #-------------------پنجره فروش کارگاه------------------------
 #region
@@ -2218,25 +2231,25 @@ sk_type_text.grid(padx=8,pady=15,sticky="e",row=0,column=0)
 metraj_sk=tk.Label(forosh_karghah_frame,text="متراژ",bg="#0F6E6E",fg="#ffffff",width=10)
 metraj_sk.grid(padx=8,pady=15,sticky="e",row=1,column=1)
 
-metraj_sk_entry=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10),textvariable="متر مربع")
+metraj_sk_entry=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),textvariable="متر مربع")
 metraj_sk_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
 
 sk_loctaion=tk.Label(forosh_karghah_frame,text="منطقه و ادرس ",bg="#0F6E6E",fg="#ffffff",width=10)
 sk_loctaion.grid(padx=8,pady=15,sticky="e",row=2,column=1)
 
-sk_loctaion_entry=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+sk_loctaion_entry=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 sk_loctaion_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
 
 sk_price_forosh=tk.Label(forosh_karghah_frame,text='ودیعه',bg="#0F6E6E",fg="#ffffff",width=10)
 sk_price_forosh.grid(padx=8,pady=15,sticky="e",row=3,column=1)
 
-sk_price_forosh_ent=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+sk_price_forosh_ent=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 sk_price_forosh_ent.grid(padx=8,pady=15,sticky="w",row=3,column=0)
 
 sk_price_forosh2=tk.Label(forosh_karghah_frame,text='قیمت هر متر',bg="#0F6E6E",fg="#ffffff",width=10)
 sk_price_forosh2.grid(padx=8,pady=15,sticky="e",row=4,column=1)
 
-sk_price_forosh2_ent=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Arial", 10))
+sk_price_forosh2_ent=tk.Entry(forosh_karghah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
 sk_price_forosh2_ent.grid(padx=8,pady=15,sticky="w",row=4,column=0)
 
 time_sk_forosh=tk.Label(forosh_karghah_frame,text="مدت اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
@@ -2266,7 +2279,7 @@ save_button_re_sk.place(x=220,y=520)
 option_frame_forosh_karghah=tk.Frame(forosh_karghah,width=300,height=30,background="#bbfbd1")
 option_frame_forosh_karghah.place(x=550,y=450)
 
-option_label_forosh_karghah=tk.Label(option_frame_forosh_karghah,text='افزودن امکانات فایل',font=("B Nazanin",12,"bold"),background="#FFFFFF",fg="#000000")
+option_label_forosh_karghah=tk.Label(option_frame_forosh_karghah,text='افزودن امکانات فایل',font=("Shabnam",10,"bold"),background="#FFFFFF",fg="#000000")
 option_label_forosh_karghah.pack(side="right",padx=1)
 
 button_label_forosh_karghah=tk.Label(option_frame_forosh_karghah)
@@ -2367,7 +2380,7 @@ save_button_k_option_forosh_karghah.place(x=170,y=420)
 
 back_to_forosh_karghah=tk.Button(option_file_frame_forosh_karghah,text="بازگشت",command=back_to_forosh_karghah,background="#079BDB",fg="#ffffff",width=8)
 back_to_forosh_karghah.place(x=95,y=420)
-
+#endregion
 # ----------------------اجرای برنامه-------------------
 #region
 root.protocol("WM_DELETE_WINDOW",close_window)
