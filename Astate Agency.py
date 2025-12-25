@@ -96,7 +96,8 @@ menu_frame.pack(padx=2, pady=2, fill="both", expand=True)
 # ------------- لیست کشویی فیلد فایل های ثبتی-----------
 #region
 def kharid():
-    pass
+    box_kharid.deiconify()
+    box_kharid.grab_set()
 
 def forosh():
     box_forosh.deiconify()
@@ -287,6 +288,11 @@ def back_forosh_exit():
 def back_rehn_ejareh_exit():
     box_rehn_ejareh.withdraw()
     box_rehn_ejareh.grab_release()
+
+def back_kharid_exit():
+    box_kharid.withdraw()
+    box_kharid.grab_release()
+
 #============================================
 #--------باز و بسته کردن بین باکس ها----------------
 #-----بستن باکس و باز کردن صفحه اجاره مسکونی-----------
@@ -393,6 +399,33 @@ def sabt_radio_rehn():
             root.withdraw()
             ejareh_karghah.deiconify()
             box_rehn_ejareh.grab_release()
+def sabt_radio_kharid():
+    selected = kharid_radio_value.get()
+
+    if selected==0:
+            box_kharid.withdraw()
+            root.withdraw()
+            #kharid_maskoni_page.deiconify()خرید مسکونی نیما
+            box_kharid.grab_release()
+        
+    elif selected==2:
+        box_kharid.withdraw()
+        root.withdraw()
+        #kharid_et.deiconify() خرید اداری تجاری عماد
+        box_kharid.grab_release()
+
+    elif selected==4:
+        box_kharid.withdraw()
+        root.withdraw()
+        #kharid_bz.deiconify()خریدباغ و زمین مهدی
+        box_kharid.grab_release()
+
+    elif selected==6:
+        box_kharid.withdraw()
+        root.withdraw()
+        #kharid_karghah.deiconify()خریدکارگاه سبحان
+        box_kharid.grab_release()
+
             
 #=======================================================
 #---------------جابه جایی کاربری باغ و زمین در قسمت های فروش/اجاره-------------
@@ -856,8 +889,43 @@ box_forosh.resizable(False, False)
 
 
 
+
 #======================================================================
 #endregion
+#----------------------------------نوع انتخاب ثبتی فایل برای پنجره های خرید-----------------
+#region
+box_kharid=tk.Toplevel(root)
+box_kharid.title("انتخاب نوع ملک خرید")
+box_kharid.geometry("500x270")
+box_kharid.withdraw()
+box_kharid.configure(bg="#0F6E6E")
+
+# یک متغیر مشترک برای همه رادیوباتن‌ها
+kharid_radio_value = tk.IntVar(value=0)  # مقدار پیش‌فرض -1 یعنی هیچکدام انتخاب نشده
+
+kharid_maskoni_radio = tk.Radiobutton(box_kharid, value=0, text="ثبت فایل مسکونی", background="#0F6E6E", variable=forosh_radio_value, font=("Shabnam",11))
+kharid_maskoni_radio.place(x=330,y=50)
+
+kharid_edari_radio = tk.Radiobutton(box_kharid, value=2, text="ثبت فایل اداری/تجاری",
+bg="#0F6E6E", variable=forosh_radio_value, font=("Shabnam",11))
+kharid_edari_radio.place(x=330,y=90)
+
+kharid_bagh_radio = tk.Radiobutton(box_kharid, value=4, text="ثبت فایل باغ/زمین",bg="#0F6E6E", variable=forosh_radio_value, font=("Shabnam",11))
+kharid_bagh_radio.place(x=330,y=130)
+
+kharid_kargah_radio = tk.Radiobutton(box_kharid, value=6, text="ثبت فایل کارگاه",bg="#0F6E6E", variable=forosh_radio_value, font=("Shabnam",11))
+kharid_kargah_radio.place(x=330,y=170)
+
+
+back_to_home_box_kharid=tk.Button(box_kharid,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_kharid_exit)
+back_to_home_box_kharid.place(x=140,y=210)
+
+zakhire_radio_box_kharid=tk.Button(box_kharid,text="ادامه",bg="#13f",fg="white",width=12,height=2,command=sabt_radio_kharid)
+zakhire_radio_box_kharid.place(x=60,y=210)
+
+box_kharid.protocol("WM_DELETE_WINDOW", lambda: None)
+box_kharid.resizable(False, False)
+#endregion 
 #-----------------پنجره های ثبتی بخش رهن و اجاره----------------------------
 #-------------------------------------------پنجره اجاره مسکونی----------------
 #region
