@@ -150,6 +150,10 @@ def open_option9():
     option_file_frame_kharid_maskoni.deiconify()
     kharid_maskoni_page.withdraw()
 
+def open_option10():
+    option_file_frame_kharid_edari_tejari.deiconify()
+    kharid_edari_tejari.withdraw() 
+
 #endregion
 #=======================================================
 #-----------توابع برگشت صفحات ثبتی به فرم اصلی----------
@@ -204,6 +208,17 @@ def back_home_forosh_edari_tejari():
     vahed_forosh_edari_tejari_entry.delete(0,tk.END)
     mablagh_ejare_forosh_edari_tejari_entry.delete(0,tk.END)
     mablagh_pish_forosh_edari_tejari_entry.delete(0,tk.END)
+    delete_root()
+#---------------------------برگشت از صفحه خرید اداری/تجاری--------------------
+def back_home_kharid_edari_tejari():
+    root.deiconify()
+    kharid_edari_tejari.withdraw()
+    sal_sakht_kharid_edari_tejari_entry.delete(0,tk.END)
+    addrres_kharid_edari_tejari_entry.delete(0,tk.END)
+    tabaghe_kharid_edari_tejari_entry.delete(0,tk.END)
+    vahed_kharid_edari_tejari_entry.delete(0,tk.END)
+    mablagh_ejare_kharid_edari_tejari_entry.delete(0,tk.END)
+    mablagh_pish_kharid_edari_tejari_entry.delete(0,tk.END)
     delete_root()
 #----------------------------برگشت از صفحه اجاره باغ / زمین------------------
 def back_to_ejareh_bagh_zamin():
@@ -289,6 +304,11 @@ def  back_to_forosh_karghah():
 def back_to_kharid_maskoni_page():
     option_file_frame_kharid_maskoni.withdraw()
     kharid_maskoni_page.deiconify()
+#---------------------------برگشت از صفحه خرید اداری/تجاری--------------------
+#--------برگشت خرید اداری/تجاری----------------- 
+def back_to_kharid_edari_tejari():
+    option_file_frame_kharid_edari_tejari.withdraw()
+    kharid_edari_tejari.deiconify()
 #----------برگشت باکس ها(نوع ملک)-------------
 def back_forosh_exit():
     box_forosh.withdraw()
@@ -358,6 +378,12 @@ def kharid_maskoni_page():
     root.withdraw()
     kharid_maskoni_page.deiconify() 
     box_kharid.grab_release()
+#-----بستن باکس و باز کردن صفحه خرید اداری/تجاری-----------
+def kharid_edari_tejari():
+    box_kharid.withdraw()
+    root.withdraw()
+    kharid_edari_tejari.deiconify()
+    box_kharid.grab_release()   
 
 #تابع رادیو باتن باز و بسته کردن صفحات فروش
 def sabt_radio_frosh():
@@ -428,7 +454,7 @@ def sabt_radio_kharid():
     elif selected==2:
         box_kharid.withdraw()
         root.withdraw()
-        #kharid_edari_tejari.deiconify() خرید اداری تجاری عماد
+        kharid_edari_tejari.deiconify()
         box_kharid.grab_release()
 
     elif selected==4:
@@ -920,17 +946,17 @@ box_kharid.configure(bg="#0F6E6E")
 # یک متغیر مشترک برای همه رادیوباتن‌ها
 kharid_radio_value = tk.IntVar(value=0)  # مقدار پیش‌فرض -1 یعنی هیچکدام انتخاب نشده
 
-kharid_maskoni_radio = tk.Radiobutton(box_kharid, value=0, text="ثبت فایل مسکونی", background="#0F6E6E", variable=forosh_radio_value, font=("Shabnam",11))
+kharid_maskoni_radio = tk.Radiobutton(box_kharid, value=0, text="ثبت فایل مسکونی", background="#0F6E6E", variable=kharid_radio_value, font=("Shabnam",11))
 kharid_maskoni_radio.place(x=330,y=50)
 
 kharid_edari_radio = tk.Radiobutton(box_kharid, value=2, text="ثبت فایل اداری/تجاری",
-bg="#0F6E6E", variable=forosh_radio_value, font=("Shabnam",11))
+bg="#0F6E6E", variable=kharid_radio_value, font=("Shabnam",11))
 kharid_edari_radio.place(x=330,y=90)
 
-kharid_bagh_radio = tk.Radiobutton(box_kharid, value=4, text="ثبت فایل باغ/زمین",bg="#0F6E6E", variable=forosh_radio_value, font=("Shabnam",11))
+kharid_bagh_radio = tk.Radiobutton(box_kharid, value=4, text="ثبت فایل باغ/زمین",bg="#0F6E6E", variable=kharid_radio_value, font=("Shabnam",11))
 kharid_bagh_radio.place(x=330,y=130)
 
-kharid_kargah_radio = tk.Radiobutton(box_kharid, value=6, text="ثبت فایل کارگاه",bg="#0F6E6E", variable=forosh_radio_value, font=("Shabnam",11))
+kharid_kargah_radio = tk.Radiobutton(box_kharid, value=6, text="ثبت فایل کارگاه",bg="#0F6E6E", variable=kharid_radio_value, font=("Shabnam",11))
 kharid_kargah_radio.place(x=330,y=170)
 
 
@@ -2599,6 +2625,143 @@ zakhire_options_kharid_maskini.place(x=170,y=330)
 
 back_to_home_kharid_maskoni=tk.Button(option_file_frame_kharid_maskoni,text="بازگشت",command=back_to_kharid_maskoni_page,background="#079BDB",fg="#ffffff",width=8)
 back_to_home_kharid_maskoni.place(x=95,y=330)
+#endregion
+#-----------------پنجره خرید اداری/تجاری-------------------
+#region
+kharid_edari_tejari = tk.Toplevel(root)
+kharid_edari_tejari.title(" خرید اداری / تجاری")
+kharid_edari_tejari.geometry("800x600")
+kharid_edari_tejari.withdraw()
+kharid_edari_tejari.configure(bg="#0F6E6E")
+
+#---------------پنجره امکانات خرید اداری/تجاری----------------
+
+option_file_frame_kharid_edari_tejari=tk.Toplevel(kharid_edari_tejari,background="#bbfbd1" )
+option_file_frame_kharid_edari_tejari.title(" امکانات خرید اداری/تجاری")
+option_file_frame_kharid_edari_tejari.geometry("500x370")
+option_file_frame_kharid_edari_tejari.pack_propagate(False)
+option_file_frame_kharid_edari_tejari.withdraw()
+
+rehn_page_frame_asli_kharid_edari_tejari=tk.Frame(kharid_edari_tejari,width=490,height=800,bg="#5d6059",border=2)
+rehn_page_frame_asli_kharid_edari_tejari.place(x=500,y=50)
+
+melk_type_kharid_edari_tejari_lable=tk.Label(rehn_page_frame_asli_kharid_edari_tejari,text="متراژ ملک ",bg="#0F6E6E",fg="#ffffff",width=10)
+melk_type_kharid_edari_tejari_lable.grid(padx=8,pady=15,sticky="e",row=0,column=1)
+
+melk_type_kharid_edari_tejari_entry=tk.Entry(rehn_page_frame_asli_kharid_edari_tejari,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
+melk_type_kharid_edari_tejari_entry.grid(padx=8, pady=15,sticky="w",row=0,column=0) 
+
+sal_sakht_kharid_edari_tejari_lable=tk.Label(rehn_page_frame_asli_kharid_edari_tejari,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
+sal_sakht_kharid_edari_tejari_lable.grid(padx=8,pady=10,sticky="e",row=1,column=1)
+
+sal_sakht_kharid_edari_tejari_entry=tk.Entry(rehn_page_frame_asli_kharid_edari_tejari,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
+sal_sakht_kharid_edari_tejari_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
+
+addrres_kharid_edari_tejari_lable=tk.Label(rehn_page_frame_asli_kharid_edari_tejari,text="آدرس",bg="#0F6E6E",fg="#ffffff",width=10)
+addrres_kharid_edari_tejari_lable.grid(padx=8,pady=15,sticky="e",row=2,column=1)
+
+addrres_kharid_edari_tejari_entry=tk.Entry(rehn_page_frame_asli_kharid_edari_tejari,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
+addrres_kharid_edari_tejari_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
+
+tabaghe_kharid_edari_tejari_lable=tk.Label(rehn_page_frame_asli_kharid_edari_tejari,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
+tabaghe_kharid_edari_tejari_lable.grid(padx=8,pady=15,sticky="e",row=3,column=1)
+
+tabaghe_kharid_edari_tejari_entry=tk.Entry(rehn_page_frame_asli_kharid_edari_tejari,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
+tabaghe_kharid_edari_tejari_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
+
+vahed_kharid_edari_tejari_lable=tk.Label(rehn_page_frame_asli_kharid_edari_tejari,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
+vahed_kharid_edari_tejari_lable.grid(padx=8,pady=15,sticky="e",row=4,column=1)
+
+vahed_kharid_edari_tejari_entry=tk.Entry(rehn_page_frame_asli_kharid_edari_tejari,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
+vahed_kharid_edari_tejari_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
+
+
+mablagh_pish_kharid_edari_tejari_lable=tk.Label(rehn_page_frame_asli_kharid_edari_tejari,text="مبلغ ودیعه",bg="#0F6E6E",fg="#ffffff",width=10)
+mablagh_pish_kharid_edari_tejari_lable.grid(padx=8,pady=15,sticky="e",row=5,column=1)
+
+mablagh_pish_kharid_edari_tejari_entry=tk.Entry(rehn_page_frame_asli_kharid_edari_tejari,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
+mablagh_pish_kharid_edari_tejari_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
+
+mablagh_ejare_kharid_edari_tejari_lable=tk.Label(rehn_page_frame_asli_kharid_edari_tejari,text=" مبلغ اجاره",bg="#0F6E6E",fg="#ffffff",width=10)
+mablagh_ejare_kharid_edari_tejari_lable.grid(padx=8,pady=15,sticky="e",row=6,column=1)
+
+mablagh_ejare_kharid_edari_tejari_entry=tk.Entry(rehn_page_frame_asli_kharid_edari_tejari,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
+mablagh_ejare_kharid_edari_tejari_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
+
+rahn_kamel_kharid_edari_tejari_lable=tk.Label(rehn_page_frame_asli_kharid_edari_tejari,text=" رهن کامل؟ ",bg="#0F6E6E",fg="#ffffff",width=10)
+rahn_kamel_kharid_edari_tejari_lable.grid(padx=8,pady=15,sticky="e",row=7,column=1)
+
+rahn_kamel_check_btn_kharid_edari_tejari=tk.Checkbutton(rehn_page_frame_asli_kharid_edari_tejari,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
+rahn_kamel_check_btn_kharid_edari_tejari.grid(padx=8,pady=15,sticky="w",row=7,column=0)
+
+back_to_home_kharid_edari_tejari=tk.Button(kharid_edari_tejari,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_kharid_edari_tejari)
+back_to_home_kharid_edari_tejari.place(x=650,y=535)
+
+zakhire_kharid_edari_tejari=tk.Button(kharid_edari_tejari,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=None)
+zakhire_kharid_edari_tejari.place(x=550,y=535)
+
+photo_box_kharid_edari_tejari=tk.Frame(kharid_edari_tejari,width=410,height=450,background="#e4dde3")
+photo_box_kharid_edari_tejari.place(x=40,y=40)
+photo_lbl2_kharid_edari_tejari = tk.Label(photo_box_kharid_edari_tejari, text="[تصویر ملک]", bg="gray", width=50, height=15)
+photo_lbl2_kharid_edari_tejari.place(x=30,y=45)
+add_img_btn_kharid_edari_tejari = tk.Button(photo_box_kharid_edari_tejari, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
+add_img_btn_kharid_edari_tejari.place(x=40,y=330)
+#endregion
+#---------------امکانات خرید اداری/تجاری-------------------
+#region
+option_frame_options_kharid_edari_tejari=tk.Frame(kharid_edari_tejari,width=300,height=30,background="#bbfbd1")
+option_frame_options_kharid_edari_tejari.place(x=520,y=475)
+
+option_label_kharid_edari_tejari=tk.Label(option_frame_options_kharid_edari_tejari,text='افزودن امکانات فایل',font=("Shabnam",10,"bold"),background="#FFFFFF",fg="#000000")
+option_label_kharid_edari_tejari.pack(side="right",padx=1)
+
+button_label_kharid_eedari_tejari=tk.Label(option_frame_options_kharid_edari_tejari)
+button_label_kharid_eedari_tejari.pack(side="left",padx=1)
+plus_button_kharid_eedari_tejari=tk.Button(option_frame_options_kharid_edari_tejari,image=plus,command=open_option10,border=0)
+plus_button_kharid_eedari_tejari.pack()
+
+option_frame_photosh_options_kharid_edari_tejari=tk.Frame(option_file_frame_kharid_edari_tejari,width=400,height=100,background="#bbfbd1")
+option_frame_photosh_options_kharid_edari_tejari.pack(padx=10,pady=15)
+
+parking_check_btn_kharid_edari_tejari=tk.Checkbutton(option_frame_photosh_options_kharid_edari_tejari,image=parking_pic,background="#022578")
+parking_check_btn_kharid_edari_tejari.pack(padx=15,side="left")
+
+asansor_check_btn_kharid_edari_tejari=tk.Checkbutton(option_frame_photosh_options_kharid_edari_tejari,image=elvator_pic,background="#022578")
+asansor_check_btn_kharid_edari_tejari.pack(padx=15,side="left")
+
+anbari_check_btn_kharid_edari_tejari=tk.Checkbutton(option_frame_photosh_options_kharid_edari_tejari,image=warehouse_pic,background="#022578")
+anbari_check_btn_kharid_edari_tejari.pack(padx=15,side="right")
+
+option_frame_combos_kharid_edari_tejari=tk.Frame(option_file_frame_kharid_edari_tejari,width=400,height=400,background="#bbfbd1",border=1)
+option_frame_combos_kharid_edari_tejari.pack(padx=10,pady=15)
+
+
+aab_va_gaz_emkanat_kharid_edari_tejari=tk.Label(option_frame_combos_kharid_edari_tejari,text="وضعیت آب و گاز",background="#0F6E6E",fg="#ffffff",width=17)
+aab_va_gaz_emkanat_kharid_edari_tejari.grid(padx=8,pady=15,row=0,column=1)
+
+aab_va_gaz_combo_emkanat_kharid_edari_tejari=ttk.Combobox(option_frame_combos_kharid_edari_tejari)
+aab_va_gaz_combo_emkanat_kharid_edari_tejari["values"] = ("فقط گاز دارد","فقط آب دارد","آب و گاز دارد")
+aab_va_gaz_combo_emkanat_kharid_edari_tejari.grid(padx=8,pady=15,row=0,column=0)
+
+sarmayesh_emkanat_kharid_edari_tejari=tk.Label(option_frame_combos_kharid_edari_tejari,text="سیستم سرمایش",background="#0F6E6E",fg="#ffffff",width=17)
+sarmayesh_emkanat_kharid_edari_tejari.grid(padx=8,pady=15,row=4,column=1)
+
+sarmayesh_combo_emkanat_kharid_edari_tejari=ttk.Combobox(option_frame_combos_kharid_edari_tejari)
+sarmayesh_combo_emkanat_kharid_edari_tejari["values"] = (" کولر گازی"," کولرآبی","پنکه سقفی","ندارد")
+sarmayesh_combo_emkanat_kharid_edari_tejari.grid(padx=8,pady=15,row=4,column=0)
+
+garmayesh_emkanat_kharid_edari_tejari=tk.Label(option_frame_combos_kharid_edari_tejari,text="سیستم گرمایش",background="#0F6E6E",fg="#ffffff",width=17)
+garmayesh_emkanat_kharid_edari_tejari.grid(padx=8,pady=15,row=5,column=1)
+
+garmayesh_combo_emkanat_kharid_edari_tejari=ttk.Combobox(option_frame_combos_kharid_edari_tejari)
+garmayesh_combo_emkanat_kharid_edari_tejari["values"] = (" شوفاژ"," بخاری","ندارد")
+garmayesh_combo_emkanat_kharid_edari_tejari.grid(padx=8,pady=15,row=5,column=0)
+
+zakhire_options_kharid_edari_tejari=tk.Button(option_file_frame_kharid_edari_tejari,text="ذخیره",command=None,background="#079BDB",fg="#ffffff",width=8)
+zakhire_options_kharid_edari_tejari.place(x=170,y=330)
+
+back_to_home_kharid_edari_tejari=tk.Button(option_file_frame_kharid_edari_tejari,text="بازگشت",command=back_to_kharid_edari_tejari,background="#079BDB",fg="#ffffff",width=8)
+back_to_home_kharid_edari_tejari.place(x=95,y=330)
 #endregion
 # ----------------------اجرای برنامه-------------------
 #region
