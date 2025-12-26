@@ -1,3 +1,5 @@
+
+
 #-------------------------------------  کتابخانه ها-----------------
 #region
 import tkinter as tk
@@ -144,6 +146,10 @@ def open_option8():
     option_file_frame_forosh_kargah.deiconify()
     forosh_karghah.withdraw 
 
+def open_option9():
+    option_file_frame_kharid_maskoni.deiconify()
+    kharid_maskoni_page.withdraw()
+
 #endregion
 #=======================================================
 #-----------توابع برگشت صفحات ثبتی به فرم اصلی----------
@@ -279,7 +285,10 @@ def  back_to_ejareh_karghah():
 def  back_to_forosh_karghah():
      option_file_frame_forosh_kargah.withdraw()
      forosh_karghah.deiconify()
-
+#-----------------------------برگشت خرید مسکونی--------------------------
+def back_to_kharid_maskoni_page():
+    option_file_frame_kharid_maskoni.withdraw()
+    kharid_maskoni_page.deiconify()
 #----------برگشت باکس ها(نوع ملک)-------------
 def back_forosh_exit():
     box_forosh.withdraw()
@@ -343,7 +352,13 @@ def forosh_karghah():
     root.withdraw()
     forosh_karghah.deiconify() 
     box_forosh.grab_release()
-    
+#--------بستن باکس و باز کردن صفحه خرید مسکونی--------
+def kharid_maskoni_page():
+    box_kharid.withdraw()
+    root.withdraw()
+    kharid_maskoni_page.deiconify() 
+    box_kharid.grab_release()
+
 #تابع رادیو باتن باز و بسته کردن صفحات فروش
 def sabt_radio_frosh():
     selected2 = forosh_radio_value.get()
@@ -399,13 +414,15 @@ def sabt_radio_rehn():
             root.withdraw()
             ejareh_karghah.deiconify()
             box_rehn_ejareh.grab_release()
+
+#تابع رادیو باتن باز و بسته کردن صفحات خرید
 def sabt_radio_kharid():
     selected = kharid_radio_value.get()
 
     if selected==0:
             box_kharid.withdraw()
             root.withdraw()
-            #kharid_maskoni_page.deiconify()خرید مسکونی نیما
+            kharid_maskoni_page.deiconify()
             box_kharid.grab_release()
         
     elif selected==2:
@@ -2450,6 +2467,138 @@ zakhire_options_forosh_kargah.place(x=170,y=420)
 
 back_to_forosh_kargah=tk.Button(option_file_frame_forosh_kargah,text="بازگشت",command=back_to_forosh_karghah,background="#079BDB",fg="#ffffff",width=8)
 back_to_forosh_kargah.place(x=95,y=420)
+#endregion
+#--------------------پنجره های ثبتی بخش خرید-----------------------
+#----------------------پنجره خرید مسکونی--------------------------
+#region
+kharid_maskoni_page = tk.Toplevel(root)
+kharid_maskoni_page.title("خرید مسکونی")
+kharid_maskoni_page.geometry("800x600")
+kharid_maskoni_page.withdraw()
+kharid_maskoni_page.configure(bg="#0F6E6E")
+
+#---------------------پنجره امکانات خرید مسکونی----------------------
+option_file_frame_kharid_maskoni=tk.Toplevel(kharid_maskoni_page,background="#bbfbd1" )
+option_file_frame_kharid_maskoni.title(" امکانات خرید مسکونی")
+option_file_frame_kharid_maskoni.geometry("500x370")
+option_file_frame_kharid_maskoni.pack_propagate(False)
+option_file_frame_kharid_maskoni.withdraw()
+
+rehn_page_frame_kharid_maskoni=tk.Frame(kharid_maskoni_page,width=490,height=800,bg="#5d6059",border=2)
+rehn_page_frame_kharid_maskoni.place(x=500,y=50)
+
+melk_type_kharid_maskoni=tk.Label(rehn_page_frame_kharid_maskoni,text="نوع ملک",bg="#0F6E6E",fg="#ffffff",width=10)
+melk_type_kharid_maskoni.grid(padx=8,pady=15,sticky="e",row=0,column=1)
+
+melk_type_kharid_maskoni_entry=tk.Entry(rehn_page_frame_kharid_maskoni,text="فروش مسکونی",bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
+melk_type_kharid_maskoni_entry.grid(padx=8, pady=15,row=0,column=0,sticky="w") 
+
+sal_sakht_kharid_maskoni=tk.Label(rehn_page_frame_kharid_maskoni,text="سال ساخت",bg="#0F6E6E",fg="#ffffff",width=10)
+sal_sakht_kharid_maskoni.grid(padx=8,pady=10,sticky="e",row=1,column=1)
+
+sal_sakht_kharid_maskoni_entry=tk.Entry(rehn_page_frame_kharid_maskoni,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
+sal_sakht_kharid_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
+
+addrres_kharid_maskoni=tk.Label(rehn_page_frame_kharid_maskoni,text="آدرس",bg="#0F6E6E",fg="#ffffff",width=10)
+addrres_kharid_maskoni.grid(padx=8,pady=15,sticky="e",row=2,column=1)
+
+addrres_kharid_maskoni_entry=tk.Entry(rehn_page_frame_kharid_maskoni,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
+addrres_kharid_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
+
+tabaghe_kharid_maskoni=tk.Label(rehn_page_frame_kharid_maskoni,text="طبقه",bg="#0F6E6E",fg="#ffffff",width=10)
+tabaghe_kharid_maskoni.grid(padx=8,pady=15,sticky="e",row=3,column=1)
+
+tabaghe_kharid_maskoni_entry=tk.Entry(rehn_page_frame_kharid_maskoni,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
+tabaghe_kharid_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
+
+vahed_kharid_maskoni=tk.Label(rehn_page_frame_kharid_maskoni,text="واحد",bg="#0F6E6E",fg="#ffffff",width=10)
+vahed_kharid_maskoni.grid(padx=8,pady=15,sticky="e",row=4,column=1)
+
+vahed_kharid_maskoni_entry=tk.Entry(rehn_page_frame_kharid_maskoni,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
+vahed_kharid_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
+
+otagh_kharid_maskoni=tk.Label(rehn_page_frame_kharid_maskoni,text="اتاق",bg="#0F6E6E",fg="#ffffff",width=10)
+otagh_kharid_maskoni.grid(padx=8,pady=15,sticky="e",row=5,column=1)
+
+otagh_kharid_maskoni_entry=tk.Entry(rehn_page_frame_kharid_maskoni,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
+otagh_kharid_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=5,column=0)
+
+gheimat_kharid_maskoni=tk.Label(rehn_page_frame_kharid_maskoni,text="قیمت",bg="#0F6E6E",fg="#ffffff",width=10)
+gheimat_kharid_maskoni.grid(padx=8,pady=15,sticky="e",row=6,column=1)
+
+gheimat_kharid_maskoni_entry=tk.Entry(rehn_page_frame_kharid_maskoni,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
+gheimat_kharid_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
+
+back_to_home_kharid_maskoni=tk.Button(kharid_maskoni_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_forosh_maskoni)
+back_to_home_kharid_maskoni.place(x=650,y=535)
+
+zakhire_kharid_maskoni=tk.Button(kharid_maskoni_page,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_forosh_maskkoni)
+zakhire_kharid_maskoni.place(x=550,y=535)
+
+photo_box_kharid_maskoni=tk.Frame(kharid_maskoni_page,width=410,height=450,background="#e4dde3")
+photo_box_kharid_maskoni.place(x=40,y=40)
+photo_lbl2_kharid_maskoni = tk.Label(photo_box_kharid_maskoni, text="[تصویر ملک]", bg="gray", width=50, height=15)
+photo_lbl2_kharid_maskoni.place(x=30,y=45)
+add_img_btn_kharid_maskoni = tk.Button(photo_box_kharid_maskoni, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
+add_img_btn_kharid_maskoni.place(x=40,y=330)
+#endregion
+#------------------------امکانات خرید مسکونی--------------------
+#region
+option_frame_options_kharid_maskoni=tk.Frame(kharid_maskoni_page,width=300,height=30,background="#bbfbd1")
+option_frame_options_kharid_maskoni.place(x=520,y=460)
+
+option_label_kharid_maskoni=tk.Label(option_frame_options_kharid_maskoni,text='افزودن امکانات فایل',font=("Shabnam",10,"bold"),background="#FFFFFF",fg="#000000")
+option_label_kharid_maskoni.pack(side="right",padx=1)
+
+button_label_kharid_maskoni=tk.Label(option_frame_options_kharid_maskoni)
+button_label_kharid_maskoni.pack(side="left",padx=1)
+plus_button_kharid_maskoni=tk.Button(option_frame_options_kharid_maskoni,image=plus,command=open_option9,border=0)
+plus_button_kharid_maskoni.pack()
+
+option_lable_kharid_maskoni=tk.Frame(option_file_frame_kharid_maskoni,width=400,height=100,background="#bbfbd1")
+option_lable_kharid_maskoni.pack(padx=10,pady=15)
+
+parking_ch_btn_kharid_maskoni=tk.Checkbutton(option_lable_kharid_maskoni,image=parking_pic,background="#022578")
+parking_ch_btn_kharid_maskoni.pack(padx=15,side="left")
+
+asansor_ch_btn_kharid_maskoni=tk.Checkbutton(option_lable_kharid_maskoni,image=elvator_pic,background="#022578")
+asansor_ch_btn_kharid_maskoni.pack(padx=15,side="left")
+
+anbari_checkbuton_kharid_maskoni=tk.Checkbutton(option_lable_kharid_maskoni,image=warehouse_pic,background="#022578")
+anbari_checkbuton_kharid_maskoni.pack(padx=15,side="right")
+
+option_frame_options_kharid_maskoni2=tk.Frame(option_file_frame_kharid_maskoni,width=400,height=400,background="#bbfbd1",border=1)
+option_frame_options_kharid_maskoni2.pack(padx=10,pady=15)
+
+sarmaesh_kharid_maskoni=tk.Label(option_frame_options_kharid_maskoni2,text="سرمایش",background="#025578",fg="#ffffff")
+sarmaesh_kharid_maskoni.grid(row=0,column=1,padx=15,pady=5)
+sarmaesh_combo_kharid_maskoni=ttk.Combobox(option_frame_options_kharid_maskoni2)
+sarmaesh_combo_kharid_maskoni["values"] = ("ندارد","پنکه سقفی","کولر ابی","کولر گازی ","ابی/گازی")
+sarmaesh_combo_kharid_maskoni.grid(row=0,column=0,padx=15,pady=5)
+
+garmaesh_kharid_maskoni=tk.Label(option_frame_options_kharid_maskoni2,text="گرمایش",background="#025578",fg="#ffffff")
+garmaesh_kharid_maskoni.grid(row=1,column=1,padx=15,pady=5)
+garmaesh_combo_kharid_maskoni=ttk.Combobox(option_frame_options_kharid_maskoni2)
+garmaesh_combo_kharid_maskoni["values"] = ("ندارد","بخاری"," شوفاژ","گرمایش از کف ")
+garmaesh_combo_kharid_maskoni.grid(row=1,column=0,padx=15,pady=5)
+
+kaf_kharid_maskoni=tk.Label(option_frame_options_kharid_maskoni2,text="کف",background="#025578",fg="#ffffff")
+kaf_kharid_maskoni.grid(row=2,column=1,padx=15,pady=5)
+kaf_combo_kharid_maskoni=ttk.Combobox(option_frame_options_kharid_maskoni2)
+kaf_combo_kharid_maskoni["values"] = ("سرامیک","موزاییک","پارکت")
+kaf_combo_kharid_maskoni.grid(row=2,column=0,padx=15,pady=5)
+
+toilet_kharid_maskoni=tk.Label(option_frame_options_kharid_maskoni2,text="سرویس بهداشتی",background="#025578",fg="#ffffff")
+toilet_kharid_maskoni.grid(row=3,column=1,padx=5,pady=5)
+toilet_combo_kharid_maskoni=ttk.Combobox(option_frame_options_kharid_maskoni2)
+toilet_combo_kharid_maskoni["values"] = ("ایرانی","فرنگی","هردو")
+toilet_combo_kharid_maskoni.grid(row=3,column=0,padx=15,pady=5)
+
+zakhire_options_kharid_maskini=tk.Button(option_file_frame_kharid_maskoni,text="ذخیره",command=None,background="#079BDB",fg="#ffffff",width=8)
+zakhire_options_kharid_maskini.place(x=170,y=330)
+
+back_to_home_kharid_maskoni=tk.Button(option_file_frame_kharid_maskoni,text="بازگشت",command=back_to_kharid_maskoni_page,background="#079BDB",fg="#ffffff",width=8)
+back_to_home_kharid_maskoni.place(x=95,y=330)
 #endregion
 # ----------------------اجرای برنامه-------------------
 #region
