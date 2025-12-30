@@ -688,7 +688,7 @@ def home_true_false1(): # برای فعال یا غیر فعال کردن ویج
         sanad_bagh_combo.config(state="normal")
         option_forosh_bagh_zamin_combo.config(state="normal")
         mojavez_sakht_ejareh_bagh_zamin.config(state="normal")
-        mohavate_sazi_check_btn_forosh_bagh_zamin.config(state="normal")
+        mohavate_ejareh_bagh_zamin.config(state="normal")
     else:
         metraj_vila_bagh_entry.config(state="disabled")
         sal_sakht_vila_bagh_entry.config(state="disabled")
@@ -698,7 +698,8 @@ def home_true_false1(): # برای فعال یا غیر فعال کردن ویج
         sanad_bagh_combo.config(state="disabled")
         option_forosh_bagh_zamin_combo.config(state="disabled")
         mojavez_sakht_ejareh_bagh_zamin.config(state="disabled")
-        divar_ejareh_bagh_zamin.config(state="disabled")
+        mohavate_ejareh_bagh_zamin.config(state="disabled")
+
         
 def home_true_false2(): #برای فعال یا غیر فعال کردن ویجت های خونه باغ در فروش
     if var0.get()==1:
@@ -709,8 +710,9 @@ def home_true_false2(): #برای فعال یا غیر فعال کردن ویج�
         hamam_forosh_bagh_zamin_combo.config(state="normal")
         sanad_forosh_bagh_zamin_combo.config(state="normal")
         option_forosh_bagh_zamin_combo.config(state="normal")
-        mojavez_golkhane_zamin_forosh_bagh_zamin.config(state="normal")
         divar_forosh_bagh_zamin.config(state="normal")
+        mojavez_sakht_check_btn_forosh_bagh_zamin.config(state="normal")
+        mohavate_sazi_check_btn_forosh_bagh_zamin.config(state="normal")
     else:
         metraj_vila_forosh_bagh_zamin_entry.config(state="disabled")
         sal_sakht_vila_forosh_bagh_zamin_entry.config(state="disabled")
@@ -719,9 +721,9 @@ def home_true_false2(): #برای فعال یا غیر فعال کردن ویج�
         hamam_forosh_bagh_zamin_combo.config(state="disabled")
         sanad_forosh_bagh_zamin_combo.config(state="disabled")
         option_forosh_bagh_zamin_combo.config(state="disabled")
-        mojavez_golkhane_zamin_forosh_bagh_zamin.config(state="disabled")
         mojavez_sakht_check_btn_forosh_bagh_zamin.config(state="disabled")
-def home_true_false3(): #برای فعال یا غیر فعال کردن ویجت های خونه باغ در فروش
+        mohavate_sazi_check_btn_forosh_bagh_zamin.config(state="disabled")
+def home_true_false3(): #برای فعال یا غیر فعال کردن ویجت های خونه باغ در خرید
     if var0.get()==1:
         metraj_vila_kharid_bagh_zamin_entry.config(state="normal")
         sal_sakht_vila_kharid_bagh_zamin_entry.config(state="normal")
@@ -730,8 +732,9 @@ def home_true_false3(): #برای فعال یا غیر فعال کردن ویج�
         hamam_kharid_bagh_zamin_combo.config(state="normal")
         sanad_kharid_bagh_zamin_combo.config(state="normal")
         option_kharid_bagh_zamin_combo.config(state="normal")
-        mojavez_golkhane_zamin_kharid_bagh_zamin.config(state="normal")
         divar_kharid_bagh_zamin.config(state="normal")
+        mojavez_sakht_check_btn_kharid_bagh_zamin.config(state="normal")
+        mohavate_sazi_check_btn_kharid_bagh_zamin.config(state="normal")
     else:
         metraj_vila_kharid_bagh_zamin_entry.config(state="disabled")
         sal_sakht_vila_kharid_bagh_zamin_entry.config(state="disabled")
@@ -740,8 +743,8 @@ def home_true_false3(): #برای فعال یا غیر فعال کردن ویج�
         hamam_kharid_bagh_zamin_combo.config(state="disabled")
         sanad_kharid_bagh_zamin_combo.config(state="disabled")
         option_kharid_bagh_zamin_combo.config(state="disabled")
-        mojavez_golkhane_zamin_kharid_bagh_zamin.config(state="disabled")
         mojavez_sakht_check_btn_kharid_bagh_zamin.config(state="disabled")
+        mohavate_sazi_check_btn_kharid_bagh_zamin.config(state="disabled")
 def choos_kesht(event):
     a=kesht_ejareh_bagh_zamin_combo.get()
     if a=="بدون کشت":
@@ -1541,7 +1544,7 @@ mojavez_sakht_ejareh_bagh_zamin.grid(padx=10,pady=5,row=14,column=4)
 mohavate_ejareh_bagh_zamin=tk.Checkbutton(option_frame_options_ejareh_bagh_zamin,text="محوطه سازی",background="#d6d0d0",state="disabled")
 mohavate_ejareh_bagh_zamin.grid(padx=10,pady=5,row=14,column=3)
 
-divar_ejareh_bagh_zamin=tk.Checkbutton(option_frame_options_ejareh_bagh_zamin,text="دیوار کشی",background="#d6d0d0",state="disabled")
+divar_ejareh_bagh_zamin=tk.Checkbutton(option_frame_options_ejareh_bagh_zamin,text="دیوار کشی",background="#d6d0d0")
 divar_ejareh_bagh_zamin.grid(padx=10,pady=5,row=14,column=2)
 
 zakhire_option_ejareh_bagh_zamin=tk.Button(option_file_frame_ejareh_bagh_zamin,text="ذخیره",background="#079BDB",fg="#ffffff",width=8)
@@ -2914,7 +2917,7 @@ plus_button_kharid_bagh_zamin=tk.Button(option_frame_options_kharid_bagh_zamin,i
 plus_button_kharid_bagh_zamin.pack()
 
 option_file_frame_kharid_bagh_zamin=tk.Toplevel(kharid_bagh_zamin,background="#bbfbd1")
-option_file_frame_kharid_bagh_zamin.title(" امکانات فروش باغ/زمین")
+option_file_frame_kharid_bagh_zamin.title(" امکانات خرید باغ/زمین")
 option_file_frame_kharid_bagh_zamin.geometry("690x630")
 option_file_frame_kharid_bagh_zamin.pack_propagate(False)
 option_file_frame_kharid_bagh_zamin.withdraw()
