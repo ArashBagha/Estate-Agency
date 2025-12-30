@@ -61,6 +61,8 @@ def save_ejareh_karghah():# ذخیره پنجره اجاره کارگاه
     pass
 def save_forosh_karghah():# ذخیره پنجره فروش کارگاه 
     pass
+def save_kharid_karghah():# ذخیره پنجره خرید کارگاه
+    pass
 #endregion
 #===================================================
 #----------توابع نگه داری امکانات فایل ها-----------
@@ -157,6 +159,10 @@ def open_option10():
 def open_option11():
     option_file_frame_kharid_bagh_zamin.deiconify()
     kharid_bagh_zamin.withdraw()
+
+def open_option12():
+    option_file_frame_kharid_kargah.deiconify()
+    kharid_kargah.withdraw()
 
 #endregion
 #=======================================================
@@ -264,7 +270,6 @@ def back_home_forosh_karghah():
     mablagh_pish_forosh_kargah_entry.delete(0,tk.END)
     gheimat_har_metr_forosh_kargah_entry.delete(0,tk.END) 
     delete_root()
-
 #EMAD
 #----------------------------برگشت از صفحه اجاره کارگاه------------------
 def back_to_ejareh_karghah():
@@ -282,6 +287,26 @@ def back_home_kharid_bagh():
     tedad_derakht_kharid_bagh_zamin_entry.delete(0,tk.END)
     metraj_vila_kharid_bagh_zamin_entry.delete(0,tk.END)
     sal_sakht_vila_kharid_bagh_zamin_entry.delete(0,tk.END)
+    delete_root()
+#-----------------------------برگشت از صفحه خرید کارگاه--------------------
+def back_home_kharid_kargah():
+    kharid_kargah.withdraw()   
+    root.deiconify()
+    metraj_kharid_kargah_entry.delete(0,tk.END)
+    loctaion_kharid_kargah_entry.delete(0,tk.END)
+    gheimat_har_metr_kharid_kargah_entry.delete(0,tk.END)
+    mablagh_pish_kharid_kargah_entry.delete(0,tk.END)
+    delete_root()
+#----------------------------برگشت از صفحه خرید مسکونی-------------------
+def back_home_kharid_maskoni():
+    root.deiconify()
+    kharid_maskoni_page.withdraw()
+    sal_sakht_kharid_maskoni_entry.delete(0,tk.END)
+    addrres_kharid_maskoni_entry.delete(0,tk.END)
+    tabaghe_kharid_maskoni_entry.delete(0,tk.END)
+    vahed_kharid_maskoni_entry.delete(0,tk.END)
+    otagh_kharid_maskoni_entry.delete(0,tk.END)
+    gheimat_kharid_maskoni_entry.delete(0,tk.END)
     delete_root()
 #=========================================================
 #--------برگشت از امکانات فایل ها به صفحه اصلی ثبتی-------
@@ -330,6 +355,10 @@ def back_to_kharid_edari_tejari():
 def  back_to_kharid_bagh_zamin():
      option_file_frame_kharid_bagh_zamin.withdraw()
      kharid_bagh_zamin.deiconify()
+#-------------------برگشت خرید کارگاه---------------------------
+def  back_to_kharid_kargah():
+     option_file_frame_kharid_kargah.withdraw()
+     kharid_kargah.deiconify()
 #----------برگشت باکس ها(نوع ملک)-------------
 def back_forosh_exit():
     box_forosh.withdraw()
@@ -411,7 +440,12 @@ def kharid_bagh_zamin():
     root.withdraw()
     kharid_bagh_zamin.deiconify()
     box_kharid.grab_release()   
-
+#------بستن باکس و باز کردن صفحه خرید کارگاه-----------
+def kharid_kargah():
+    box_kharid.withdraw()
+    root.withdraw()
+    kharid_kargah.deiconify()
+    box_kharid.grab_release()   
 #تابع رادیو باتن باز و بسته کردن صفحات فروش
 def sabt_radio_frosh():
     selected2 = forosh_radio_value.get()
@@ -493,7 +527,7 @@ def sabt_radio_kharid():
     elif selected==6:
         box_kharid.withdraw()
         root.withdraw()
-        #kharid_karghah.deiconify()خریدکارگاه سبحان
+        kharid_kargah.deiconify()
         box_kharid.grab_release()
 
             
@@ -2638,7 +2672,7 @@ gheimat_kharid_maskoni.grid(padx=8,pady=15,sticky="e",row=6,column=1)
 gheimat_kharid_maskoni_entry=tk.Entry(rehn_page_frame_kharid_maskoni,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),)
 gheimat_kharid_maskoni_entry.grid(padx=8,pady=15,sticky="w",row=6,column=0)
 
-back_to_home_kharid_maskoni=tk.Button(kharid_maskoni_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_forosh_maskoni)
+back_to_home_kharid_maskoni=tk.Button(kharid_maskoni_page,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_kharid_maskoni)
 back_to_home_kharid_maskoni.place(x=650,y=535)
 
 zakhire_kharid_maskoni=tk.Button(kharid_maskoni_page,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_forosh_maskkoni)
@@ -3154,6 +3188,170 @@ bardasht_zamin_kharid_bagh_zamin.grid(padx=10,pady=6,row=7,column=2)
 
 dam_zamin_kharid_bagh_zamin=tk.Checkbutton(option_frame_option2_kharid_bagh_zamin,text="اجازه ورود دام",background="#d6d0d0")
 dam_zamin_kharid_bagh_zamin.grid(padx=10,pady=6,row=7,column=3)
+
+#-------------------پنجره خرید کارگاه------------------------
+#region
+kharid_kargah= tk.Toplevel(root)
+kharid_kargah.title("خرید کارگاه")
+kharid_kargah.geometry("800x600")
+kharid_kargah.withdraw()
+kharid_kargah.configure(bg="#0F6E6E")
+
+kharid_kargah_frame=tk.Frame(kharid_kargah,width=490,height=800,bg="#5d6059",border=2)
+kharid_kargah_frame.place(x=500,y=90)
+
+karbari_zamin_kharid_kargah=tk.Label(kharid_kargah_frame,text="کاربری زمین",bg="#0F6E6E",fg="#ffffff",width=10)
+karbari_zamin_kharid_kargah.grid(padx=8,pady=15,sticky="e",row=0,column=1)
+
+kharid_kargah_lable=tk.Label(kharid_kargah_frame,text=" کارگاه ",bg="#C2C2C2",fg="#313131",width=20)
+kharid_kargah_lable.grid(padx=8,pady=15,sticky="e",row=0,column=0)
+
+kharid_kargah_lable=tk.Label(kharid_kargah_frame,text="متراژ",bg="#0F6E6E",fg="#ffffff",width=10)
+kharid_kargah_lable.grid(padx=8,pady=15,sticky="e",row=1,column=1)
+
+metraj_kharid_kargah_entry=tk.Entry(kharid_kargah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10),textvariable="متر مربع")
+metraj_kharid_kargah_entry.grid(padx=8,pady=15,sticky="w",row=1,column=0)
+
+loctaion_kharid_kargah_lable=tk.Label(kharid_kargah_frame,text="منطقه و ادرس ",bg="#0F6E6E",fg="#ffffff",width=10)
+loctaion_kharid_kargah_lable.grid(padx=8,pady=15,sticky="e",row=2,column=1)
+
+loctaion_kharid_kargah_entry=tk.Entry(kharid_kargah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
+loctaion_kharid_kargah_entry.grid(padx=8,pady=15,sticky="w",row=2,column=0)
+
+mablagh_pish_kharid_kargah_lable=tk.Label(kharid_kargah_frame,text='ودیعه',bg="#0F6E6E",fg="#ffffff",width=10)
+mablagh_pish_kharid_kargah_lable.grid(padx=8,pady=15,sticky="e",row=3,column=1)
+
+mablagh_pish_kharid_kargah_entry=tk.Entry(kharid_kargah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
+mablagh_pish_kharid_kargah_entry.grid(padx=8,pady=15,sticky="w",row=3,column=0)
+
+gheimat_har_metr_kharid_kargah_lable=tk.Label(kharid_kargah_frame,text='قیمت هر متر',bg="#0F6E6E",fg="#ffffff",width=10)
+gheimat_har_metr_kharid_kargah_lable.grid(padx=8,pady=15,sticky="e",row=4,column=1)
+
+gheimat_har_metr_kharid_kargah_entry=tk.Entry(kharid_kargah_frame,bg="#C2C2C2", fg="#180202",font=("Shabnam", 10))
+gheimat_har_metr_kharid_kargah_entry.grid(padx=8,pady=15,sticky="w",row=4,column=0)
+
+photo_box_kharid_kargah=tk.Frame(kharid_kargah,width=410,height=450,background="#e4dde3")
+photo_box_kharid_kargah.place(x=50,y=40)
+
+photo_lbl2_kharid_kargah = tk.Label(photo_box_kharid_kargah, text="[تصویر ملک]", bg="gray", width=50, height=15)
+photo_lbl2_kharid_kargah.place(x=30,y=45)
+add_img_btn_kharid_kargah = tk.Button(photo_box_kharid_kargah, text="افزودن تصویر", bg="#007acc", fg="white",command=open_file,height=3,width=13)
+add_img_btn_kharid_kargah.place(x=40,y=330)
+
+back_to_home_kharid_kargah=tk.Button(kharid_kargah,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_home_kharid_kargah)
+back_to_home_kharid_kargah.place(x=320,y=520)
+
+zakhire_kharid_kargah=tk.Button(kharid_kargah,text="ذخیره",bg="#13f",fg="white",width=12,height=2,command=save_kharid_karghah)
+zakhire_kharid_kargah.place(x=220,y=520)
+#endregion
+#---------------------پنجره امکانات اجاره کارگاه---------------------
+#region
+option_frame_kharid_kargah=tk.Frame(kharid_kargah,width=300,height=30,background="#bbfbd1")
+option_frame_kharid_kargah.place(x=550,y=450)
+
+option_frame_kharid_kargah_lable=tk.Label(option_frame_kharid_kargah,text='افزودن امکانات فایل',font=("Shabnam",10,"bold"),background="#FFFFFF",fg="#000000")
+option_frame_kharid_kargah_lable.pack(side="right",padx=1)
+
+button_lable_kharid_kargah=tk.Label(option_frame_kharid_kargah)
+button_lable_kharid_kargah.pack(side="left",padx=1)
+plus_button_kharid_kargah=tk.Button(option_frame_kharid_kargah,image=plus,command=open_option12,border=0)
+plus_button_kharid_kargah.pack()
+
+option_file_frame_kharid_kargah=tk.Toplevel(kharid_kargah,background="#bbfbd1")
+option_file_frame_kharid_kargah.title(" امکانات خرید کارگاه")
+option_file_frame_kharid_kargah.geometry("500x450")
+option_file_frame_kharid_kargah.pack_propagate(False)
+option_file_frame_kharid_kargah.withdraw()
+mini_frame_kharid_kargah=tk.Frame(option_file_frame_kharid_kargah)
+mini_frame_kharid_kargah.place(x=290,y=20)
+
+
+option_frame_asli_kharid_kargah=tk.Frame(option_file_frame_kharid_kargah,width=400,height=400,background="#bbfbd1")
+option_frame_asli_kharid_kargah.place(x=60,y=60)
+
+sal_sakht_kharid_kargah_lable=tk.Label(option_frame_asli_kharid_kargah,bg="#0F6E6E",fg="#ffffff",width=13,text="سال ساخت")
+sal_sakht_kharid_kargah_lable.grid(padx=10,pady=5,row=0,column=1)
+
+sal_sakht_kharid_kargah_entry=tk.Entry(option_frame_asli_kharid_kargah,width=10,bg="#ffffff",fg="#000000")
+sal_sakht_kharid_kargah_entry.grid(padx=10,pady=5,row=0,column=0)
+
+vaziat_bagh_kharid_kargah=tk.Label(option_frame_asli_kharid_kargah,bg="#0F6E6E",fg="#ffffff",width=15,text="وضعیت برق")
+vaziat_bagh_kharid_kargah.grid(padx=10,pady=5,row=1,column=1)
+
+vaziat_bargh_kharid_kargah_combo=ttk.Combobox(option_frame_asli_kharid_kargah)
+vaziat_bargh_kharid_kargah_combo["values"]=("برق شهری","سه فاز","تک فاز")
+vaziat_bargh_kharid_kargah_combo.set("برق شهری")
+vaziat_bargh_kharid_kargah_combo.grid(padx=10,pady=5,row=1,column=0)
+
+garmayesh_kharid_kargah=tk.Label(option_frame_asli_kharid_kargah,bg="#0F6E6E",fg="#ffffff",width=15,text="سیستم گرمایش")
+garmayesh_kharid_kargah.grid(padx=10,pady=5,row=2,column=1)
+
+garmayesh_type_kharid_kargah_combo=ttk.Combobox(option_frame_asli_kharid_kargah)
+garmayesh_type_kharid_kargah_combo["values"]=("بخاری ","شوفاژ ","فن کوئل(گرما) ")
+garmayesh_type_kharid_kargah_combo.set(" بخاری")
+garmayesh_type_kharid_kargah_combo.grid(padx=10,pady=3,row=2,column=0)
+
+sarmayesh_kharid_kargah=tk.Label(option_frame_asli_kharid_kargah,bg="#0F6E6E",fg="#ffffff",width=15,text="سیستم سرمایش ")
+sarmayesh_kharid_kargah.grid(padx=10,pady=5,row=3,column=1)
+
+sarmayesh_fan_kharid_kargah=tk.Checkbutton(option_frame_asli_kharid_kargah,text="تهویه(فن)",background="#d6d0d0")
+sarmayesh_fan_kharid_kargah.grid(padx=0,pady=5,row=4,column=0)
+
+sarmayesh_panke_kharid_kargah=tk.Checkbutton(option_frame_asli_kharid_kargah,text="پنکه سقفی",background="#d6d0d0")
+sarmayesh_panke_kharid_kargah.grid(padx=0,pady=5,row=4,column=1)
+
+sarmayesh_kooler_abi_kharid_kargah=tk.Checkbutton(option_frame_asli_kharid_kargah,text="کولر آبی",background="#d6d0d0")
+sarmayesh_kooler_abi_kharid_kargah.grid(padx=0,pady=5,row=5,column=0)
+
+sarmayesh_kooler_gazi_kharid_kargah=tk.Checkbutton(option_frame_asli_kharid_kargah,text="کولر گازی",background="#d6d0d0")
+sarmayesh_kooler_gazi_kharid_kargah.grid(padx=0,pady=5,row=5,column=1)
+
+vaziat_ab_kharid_kargah=tk.Label(option_frame_asli_kharid_kargah,bg="#0F6E6E",fg="#ffffff",width=13,text=" وضعیت آب")
+vaziat_ab_kharid_kargah.grid(padx=10,pady=5,row=6,column=1)
+
+vaziat_ab_kharid_kargah_combo=ttk.Combobox(option_frame_asli_kharid_kargah,width=35)
+vaziat_ab_kharid_kargah_combo["values"]=(" آب مستقیم لوله کشی (بدون فشار) " ," آب مستقیم لوله کشی (همراه موتور فشار) ","دارای منبع(همراه موتور فشار)","دارای منبع(بدون فشار)")
+vaziat_ab_kharid_kargah_combo.set(" آب مستقیم لوله کشی (بدون فشار) ")
+vaziat_ab_kharid_kargah_combo.grid(padx=10,pady=5,row=6,column=0)
+
+abzar_kharid_kargah=tk.Label(option_frame_asli_kharid_kargah,bg="#0F6E6E",fg="#ffffff",width=15,text=" ابزار صنعتی ")
+abzar_kharid_kargah.grid(padx=10,pady=5,row=7,column=1)
+
+abzaar_kharid_kargah_combo=ttk.Combobox(option_frame_asli_kharid_kargah,width=23)
+abzaar_kharid_kargah_combo["values"]=("(کارگاه خالی) بدون دستگاه ","دارای دستگاه های تولیدی")
+abzaar_kharid_kargah_combo.set("(کارگاه خالی) بدون دستگاه ")
+abzaar_kharid_kargah_combo.grid(padx=10,pady=5,row=7,column=0)
+
+toilet_kharid_kargah=tk.Label(option_frame_asli_kharid_kargah,bg="#0F6E6E",fg="#ffffff",width=15,text="سرویس بهداشتی")
+toilet_kharid_kargah.grid(padx=10,pady=5,row=8,column=1)
+
+toilet_kharid_kargah_combo=ttk.Combobox(option_frame_asli_kharid_kargah)
+toilet_kharid_kargah_combo["values"]=("دارد","ندارد")
+toilet_kharid_kargah_combo.set("دارد")
+toilet_kharid_kargah_combo.grid(padx=10,pady=5,row=8,column=0)
+
+hamam_kharid_kargah=tk.Label(option_frame_asli_kharid_kargah,bg="#0F6E6E",fg="#ffffff",width=13,text="حمام")
+hamam_kharid_kargah.grid(padx=10,pady=5,row=9,column=1)
+
+hamam_kharid_kargah__combo=ttk.Combobox(option_frame_asli_kharid_kargah)
+hamam_kharid_kargah__combo["values"]=("ندارد","دارد")
+hamam_kharid_kargah__combo.set("ندارد")
+hamam_kharid_kargah__combo.grid(padx=10,pady=5,row=9,column=0)
+
+otagh_kharid_kargah=tk.Label(option_frame_asli_kharid_kargah,bg="#0F6E6E",fg="#ffffff",width=17,text="اتاق رخت کن و استراحت")
+otagh_kharid_kargah.grid(padx=10,pady=5,row=10,column=1)
+
+otagh_kharid_kargah_combo=ttk.Combobox(option_frame_asli_kharid_kargah)
+otagh_kharid_kargah_combo["values"]=("ندارد","دارد")
+otagh_kharid_kargah_combo.set("ندارد")
+otagh_kharid_kargah_combo.grid(padx=10,pady=5,row=10,column=0)
+
+zakhire_options_kharid_kargah=tk.Button(option_file_frame_kharid_kargah,text="ذخیره",background="#079BDB",fg="#ffffff",width=8)
+zakhire_options_kharid_kargah.place(x=170,y=420)
+
+back_to_kharid_kargah=tk.Button(option_file_frame_kharid_kargah,text="بازگشت",command=back_to_kharid_kargah,background="#079BDB",fg="#ffffff",width=8)
+back_to_kharid_kargah.place(x=95,y=420)
+#endregion
 #endregion
 #############################################################################
 # ----------------------اجرای برنامه-------------------
