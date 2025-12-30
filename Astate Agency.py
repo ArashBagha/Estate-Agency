@@ -112,7 +112,8 @@ def rahn():
     box_rehn_ejareh.grab_set()
 
 def mosharecat():
-    pass
+    box_mosharekat.deiconify()
+    box_mosharekat.grab_set()
 #endregion
 #---------------------------توابع باز و بستن کردن امکانات فایل ها---------------------------
 #region
@@ -249,7 +250,6 @@ def back_home_forosh_bagh():
     delete_root()
 #=========================================================
 #----------------------- برگشت از صفحه اجاره کارگاه--------------------
-#region
 def back_home_ejareh_karghah():
     ejareh_karghah.withdraw()
     root.deiconify()
@@ -258,10 +258,7 @@ def back_home_ejareh_karghah():
     gheimat_har_metr_ejareh_kargah_entry.delete(0,tk.END)
     mablagh_pish_ejareh_kargah_entry.delete(0,tk.END) 
     delete_root()
-
-#bagha
 #----------------------- برگشت از صفحه فروش کارگاه--------------------
-#region
 def back_home_forosh_karghah():
     forosh_karghah.withdraw()
     root.deiconify()
@@ -270,7 +267,6 @@ def back_home_forosh_karghah():
     mablagh_pish_forosh_kargah_entry.delete(0,tk.END)
     gheimat_har_metr_forosh_kargah_entry.delete(0,tk.END) 
     delete_root()
-#EMAD
 #----------------------------برگشت از صفحه اجاره کارگاه------------------
 def back_to_ejareh_karghah():
     option_file_frame_ejareh_bagh_zamin.withdraw()
@@ -346,7 +342,6 @@ def  back_to_forosh_karghah():
 def back_to_kharid_maskoni_page():
     option_file_frame_kharid_maskoni.withdraw()
     kharid_maskoni_page.deiconify()
-#---------------------------برگشت از صفحه خرید اداری/تجاری--------------------
 #--------برگشت خرید اداری/تجاری----------------- 
 def back_to_kharid_edari_tejari():
     option_file_frame_kharid_edari_tejari.withdraw()
@@ -371,6 +366,10 @@ def back_rehn_ejareh_exit():
 def back_kharid_exit():
     box_kharid.withdraw()
     box_kharid.grab_release()
+
+def back_mosharekat_exit():
+    box_mosharekat.withdraw()
+    box_mosharekat.grab_release()
 
 #============================================
 #--------باز و بسته کردن بین باکس ها----------------
@@ -446,6 +445,8 @@ def kharid_kargah():
     root.withdraw()
     kharid_kargah.deiconify()
     box_kharid.grab_release()   
+
+#-------------رادیو باتن باکس-------------------
 #تابع رادیو باتن باز و بسته کردن صفحات فروش
 def sabt_radio_frosh():
     selected2 = forosh_radio_value.get()
@@ -530,9 +531,24 @@ def sabt_radio_kharid():
         kharid_kargah.deiconify()
         box_kharid.grab_release()
 
+#تابع رادیو باتن باز و بسته کردن صفحات مشارکت
+def sabt_radio_mosharekat():
+    selected = mosharekat_radio_value.get()
+
+    if selected==0:
+        box_mosharekat.withdraw()
+        root.withdraw()
+        #mosharekat_sakht_page.deiconify()
+        box_mosharekat.grab_release()
+        
+    elif selected==2:
+        box_mosharekat.withdraw()
+        root.withdraw()
+        #pishforosh_page.deiconify()
+        box_mosharekat.grab_release()
             
 #=======================================================
-#---------------خرید/جابه جایی کاربری باغ و زمین در قسمت های فروش/اجاره-------------
+#---------------/جابه جایی کاربری باغ و زمین در قسمت های فروش/خرید/اجاره-------------
 def change_bagh_zamin1(event):
     co=karbari_zamin_combo.get()
     if co=="باغ":
@@ -1086,6 +1102,33 @@ zakhire_radio_box_kharid.place(x=60,y=210)
 box_kharid.protocol("WM_DELETE_WINDOW", lambda: None)
 box_kharid.resizable(False, False)
 #endregion 
+#----------------------------------نوع انتخاب ثبتی فایل برای پنجره های مشارکت-----------------
+#region
+box_mosharekat=tk.Toplevel(root)
+box_mosharekat.title("انتخاب نوع ملک مشارکت")
+box_mosharekat.geometry("350x300")
+box_mosharekat.withdraw()
+box_mosharekat.configure(bg="#0F6E6E")
+
+# یک متغیر مشترک برای همه رادیوباتن‌ها
+mosharekat_radio_value = tk.IntVar(value=0)  # مقدار پیش‌فرض -1 یعنی هیچکدام انتخاب نشده
+
+mosharekat_sakht_radio = tk.Radiobutton(box_mosharekat, value=0, text="مشارکت در ساخت", background="#0F6E6E", variable=mosharekat_radio_value, font=("Shabnam",11))
+mosharekat_sakht_radio.place(x=200,y=50)
+
+mosharekat_pishforosh_radio = tk.Radiobutton(box_mosharekat, value=2, text="پیش فروش",
+bg="#0F6E6E", variable=mosharekat_radio_value, font=("Shabnam",11))
+mosharekat_pishforosh_radio.place(x=200,y=90)
+
+back_to_home_box_mosharekat=tk.Button(box_mosharekat,text="بازگشت",bg="#13f",fg="white",width=12,height=2,command=back_mosharekat_exit)
+back_to_home_box_mosharekat.place(x=140,y=210)
+
+zakhire_radio_box_mosharekat=tk.Button(box_mosharekat,text="ادامه",bg="#13f",fg="white",width=12,height=2,command=sabt_radio_mosharekat)
+zakhire_radio_box_mosharekat.place(x=60,y=210)
+
+box_mosharekat.protocol("WM_DELETE_WINDOW", lambda: None)
+box_mosharekat.resizable(False, False)
+#endregion
 #-----------------پنجره های ثبتی بخش رهن و اجاره----------------------------
 #-------------------------------------------پنجره اجاره مسکونی----------------
 #region
@@ -1226,7 +1269,6 @@ save_optoin_ejareh_maskoni.place(x=170,y=330)
 back_to_ejare_maskoni=tk.Button(option_file_frame_ejareh_maskoni,text="بازگشت",command=back_to_ejareh_maskoni_page,background="#079BDB",fg="#ffffff",width=8)
 back_to_ejare_maskoni.place(x=95,y=330)
 #endregion
-
 #------------------------پنجره اجاره اداری/تجاری--------------------
 #region
 ejareh_edari_tejari = tk.Toplevel(root)
@@ -2269,7 +2311,6 @@ dam_zamin_forosh_bagh_zamin=tk.Checkbutton(option_frame_option2_forosh_bagh_zami
 dam_zamin_forosh_bagh_zamin.grid(padx=10,pady=6,row=7,column=3)
 #endregion
 #############################################################################
-#bagha
 #-------------------پنجره اجاره کارگاه------------------------
 #region
 ejareh_karghah = tk.Toplevel(root)
@@ -3188,7 +3229,7 @@ bardasht_zamin_kharid_bagh_zamin.grid(padx=10,pady=6,row=7,column=2)
 
 dam_zamin_kharid_bagh_zamin=tk.Checkbutton(option_frame_option2_kharid_bagh_zamin,text="اجازه ورود دام",background="#d6d0d0")
 dam_zamin_kharid_bagh_zamin.grid(padx=10,pady=6,row=7,column=3)
-
+#endregion
 #-------------------پنجره خرید کارگاه------------------------
 #region
 kharid_kargah= tk.Toplevel(root)
@@ -3352,7 +3393,7 @@ zakhire_options_kharid_kargah.place(x=170,y=420)
 back_to_kharid_kargah=tk.Button(option_file_frame_kharid_kargah,text="بازگشت",command=back_to_kharid_kargah,background="#079BDB",fg="#ffffff",width=8)
 back_to_kharid_kargah.place(x=95,y=420)
 #endregion
-#endregion
+
 #############################################################################
 # ----------------------اجرای برنامه-------------------
 #region
