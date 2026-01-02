@@ -4,7 +4,7 @@
 #region
 import tkinter as tk
 from tkinter import ttk
-from tkinter import filedialog,messagebox,font
+from tkinter import filedialog,messagebox,font,scrolledtext
 import subprocess
 import os
 #endregion
@@ -3392,6 +3392,92 @@ zakhire_options_kharid_kargah.place(x=170,y=420)
 
 back_to_kharid_kargah=tk.Button(option_file_frame_kharid_kargah,text="بازگشت",command=back_to_kharid_kargah,background="#079BDB",fg="#ffffff",width=8)
 back_to_kharid_kargah.place(x=95,y=420)
+#endregion
+#پنجره مشارکت در ساخت و ساز
+#---------------------------------------------------------------
+#region
+mosharecat_window=tk.Toplevel(root,background="#adf6ed")
+mosharecat_window.geometry("800x600")
+mosharecat_window.title("پنجره مشارکت در ساخت و ساز")
+mosharecat_window.pack_propagate(False)
+mosharecat_window.rowconfigure(0, weight=1)
+mosharecat_window.columnconfigure(0, weight=1)
+
+
+#فریم اول مشخصات ملک
+
+melk_mosharecat_data=tk.Frame(mosharecat_window,bg="#f4fefd",height=600,width=1000)
+melk_mosharecat_data.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
+
+# ستون‌ها برای گسترش Entry/Combobox
+melk_mosharecat_data.columnconfigure(0, weight=1)
+melk_mosharecat_data.columnconfigure(1, weight=0)
+
+melk_mosharecat_data.pack_propagate(False)
+
+type_melk_mosharecat=tk.Label(melk_mosharecat_data,text="نوع ملک",bg="#efefef" ,fg="#355f4b",width=10)
+type_melk_mosharecat.grid(padx=5,pady=10,row=0,column=1)
+
+type_melk_mosharecat_combo=ttk.Combobox(melk_mosharecat_data)
+type_melk_mosharecat_combo["values"]=(' ',"کلنگی","زمین","ویلایی","آپارتمان")
+type_melk_mosharecat_combo.set(' ')
+type_melk_mosharecat_combo.grid(padx=5,pady=10,row=0,column=0)
+
+address_melk_moshrecat=tk.Label(melk_mosharecat_data,text="آدرس دقیق",bg="#e5e5e5",fg="#355f4b",width=10)
+address_melk_moshrecat.grid(padx=5,pady=10,row=1,column=1)
+
+address_melk_moshrecat_entry=scrolledtext.ScrolledText(melk_mosharecat_data,width=30,height=8)
+address_melk_moshrecat_entry.grid(padx=5,pady=2,row=1,column=0)
+
+metraj_melk_moshrecat=tk.Label(melk_mosharecat_data,text="متراژ",bg="#e5e5e5",fg="#355f4b",width=10)
+metraj_melk_moshrecat.grid(padx=5,pady=10,row=2,column=1)
+
+metraj_melk_moshrecat_entry=tk.Entry(melk_mosharecat_data,bg="#e5e5e5",fg="#355f4b")
+metraj_melk_moshrecat_entry.grid(padx=5,pady=10,row=2,column=0)
+
+arzzamin_melk_moshrecat=tk.Label(melk_mosharecat_data,text="عرض زمین",bg="#e5e5e5",fg="#355f4b",width=10)
+arzzamin_melk_moshrecat.grid(padx=5,pady=10,row=3,column=1)
+
+arzzamin_melk_moshrecat_entry=tk.Entry(melk_mosharecat_data,bg="#e5e5e5",fg="#355f4b")
+arzzamin_melk_moshrecat_entry.grid(padx=5,pady=10,row=3,column=0)
+
+located_melk_mosharecat=tk.Label(melk_mosharecat_data,text="موقعیت ملک",bg="#e5e5e5",fg="#355f4b",width=10)
+located_melk_mosharecat.grid(padx=5,pady=10,row=4,column=1)
+
+located_melk_mosharecat_combo=ttk.Combobox(melk_mosharecat_data)
+located_melk_mosharecat_combo["values"]=(' شمالی',"جنوبی","دونبش","سرنبش")
+located_melk_mosharecat_combo.set( "شمالی")
+located_melk_mosharecat_combo.grid(padx=5,pady=10,row=4,column=0)
+
+karbary_melk_mosharecat=tk.Label(melk_mosharecat_data,text="کاربری",bg="#e5e5e5",fg="#355f4b",width=10)
+karbary_melk_mosharecat.grid(padx=5,pady=10,row=5,column=1)
+
+karbary_melk_mosharecat_combo=ttk.Combobox(melk_mosharecat_data)
+karbary_melk_mosharecat_combo["values"]=("مسکونی","تجاری","هردو")
+karbary_melk_mosharecat_combo.set( "مسکونی")
+karbary_melk_mosharecat_combo.grid(padx=5,pady=10,row=5,column=0)
+
+sanad_melk_mosharecat=tk.Label(melk_mosharecat_data,text="وضعیت سند",bg="#e5e5e5",fg="#355f4b",width=10)
+sanad_melk_mosharecat.grid(padx=5,pady=10,row=6,column=1)
+
+sanad_melk_mosharecat_combo=ttk.Combobox(melk_mosharecat_data)
+sanad_melk_mosharecat_combo["values"]=("تک برگ","قول نامه","ثبتی","نامشخص")
+sanad_melk_mosharecat_combo.set( "تک برگ")
+sanad_melk_mosharecat_combo.grid(padx=5,pady=10,row=6,column=0)
+
+edame_moshrecat_melk1=tk.Button(melk_mosharecat_data,text="ذخیره",background="#079BDB",fg="#ffffff",width=8,command=None)
+edame_moshrecat_melk1.place(x=200,y=500)
+
+back_to_root=tk.Button(melk_mosharecat_data,text="برگشت به صفحه اصلی",command=None,background="#079BDB",fg="#ffffff",width=17)
+back_to_root.place(x=50,y=500)
+
+
+
+
+
+
+
+
 #endregion
 
 #############################################################################
