@@ -3406,7 +3406,7 @@ mosharecat_window.columnconfigure(0, weight=1)
 
 #فریم اول مشخصات ملک
 
-melk_mosharecat_data=tk.Frame(mosharecat_window,bg="#f4fefd",height=600,width=1000)
+melk_mosharecat_data=tk.Frame(mosharecat_window,bg="#b2c4ff",height=600,width=1000)
 melk_mosharecat_data.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
 
 # ستون‌ها برای گسترش Entry/Combobox
@@ -3415,7 +3415,7 @@ melk_mosharecat_data.columnconfigure(1, weight=0)
 
 melk_mosharecat_data.pack_propagate(False)
 
-type_melk_mosharecat=tk.Label(melk_mosharecat_data,text="نوع ملک",bg="#efefef" ,fg="#355f4b",width=10)
+type_melk_mosharecat=tk.Label(melk_mosharecat_data,text="نوع ملک",bg="#efefef" ,fg="black",width=10)
 type_melk_mosharecat.grid(padx=5,pady=10,row=0,column=1)
 
 type_melk_mosharecat_combo=ttk.Combobox(melk_mosharecat_data)
@@ -3423,25 +3423,25 @@ type_melk_mosharecat_combo["values"]=(' ',"کلنگی","زمین","ویلایی"
 type_melk_mosharecat_combo.set(' ')
 type_melk_mosharecat_combo.grid(padx=5,pady=10,row=0,column=0)
 
-address_melk_moshrecat=tk.Label(melk_mosharecat_data,text="آدرس دقیق",bg="#e5e5e5",fg="#355f4b",width=10)
+address_melk_moshrecat=tk.Label(melk_mosharecat_data,text="آدرس دقیق",bg="#e5e5e5",fg="black",width=10)
 address_melk_moshrecat.grid(padx=5,pady=10,row=1,column=1)
 
 address_melk_moshrecat_entry=scrolledtext.ScrolledText(melk_mosharecat_data,width=30,height=8)
 address_melk_moshrecat_entry.grid(padx=5,pady=2,row=1,column=0)
 
-metraj_melk_moshrecat=tk.Label(melk_mosharecat_data,text="متراژ",bg="#e5e5e5",fg="#355f4b",width=10)
+metraj_melk_moshrecat=tk.Label(melk_mosharecat_data,text="متراژ",bg="#e5e5e5",fg="black",width=10)
 metraj_melk_moshrecat.grid(padx=5,pady=10,row=2,column=1)
 
-metraj_melk_moshrecat_entry=tk.Entry(melk_mosharecat_data,bg="#e5e5e5",fg="#355f4b")
+metraj_melk_moshrecat_entry=tk.Entry(melk_mosharecat_data,bg="#e5e5e5",fg="black")
 metraj_melk_moshrecat_entry.grid(padx=5,pady=10,row=2,column=0)
 
-arzzamin_melk_moshrecat=tk.Label(melk_mosharecat_data,text="عرض زمین",bg="#e5e5e5",fg="#355f4b",width=10)
+arzzamin_melk_moshrecat=tk.Label(melk_mosharecat_data,text="عرض زمین",bg="#e5e5e5",fg="black",width=10)
 arzzamin_melk_moshrecat.grid(padx=5,pady=10,row=3,column=1)
 
-arzzamin_melk_moshrecat_entry=tk.Entry(melk_mosharecat_data,bg="#e5e5e5",fg="#355f4b")
+arzzamin_melk_moshrecat_entry=tk.Entry(melk_mosharecat_data,bg="#e5e5e5",fg="black")
 arzzamin_melk_moshrecat_entry.grid(padx=5,pady=10,row=3,column=0)
 
-located_melk_mosharecat=tk.Label(melk_mosharecat_data,text="موقعیت ملک",bg="#e5e5e5",fg="#355f4b",width=10)
+located_melk_mosharecat=tk.Label(melk_mosharecat_data,text="موقعیت ملک",bg="#e5e5e5",fg="black",width=10)
 located_melk_mosharecat.grid(padx=5,pady=10,row=4,column=1)
 
 located_melk_mosharecat_combo=ttk.Combobox(melk_mosharecat_data)
@@ -3449,7 +3449,7 @@ located_melk_mosharecat_combo["values"]=(' شمالی',"جنوبی","دونبش"
 located_melk_mosharecat_combo.set( "شمالی")
 located_melk_mosharecat_combo.grid(padx=5,pady=10,row=4,column=0)
 
-karbary_melk_mosharecat=tk.Label(melk_mosharecat_data,text="کاربری",bg="#e5e5e5",fg="#355f4b",width=10)
+karbary_melk_mosharecat=tk.Label(melk_mosharecat_data,text="کاربری",bg="#e5e5e5",fg="black",width=10)
 karbary_melk_mosharecat.grid(padx=5,pady=10,row=5,column=1)
 
 karbary_melk_mosharecat_combo=ttk.Combobox(melk_mosharecat_data)
@@ -3457,7 +3457,7 @@ karbary_melk_mosharecat_combo["values"]=("مسکونی","تجاری","هردو")
 karbary_melk_mosharecat_combo.set( "مسکونی")
 karbary_melk_mosharecat_combo.grid(padx=5,pady=10,row=5,column=0)
 
-sanad_melk_mosharecat=tk.Label(melk_mosharecat_data,text="وضعیت سند",bg="#e5e5e5",fg="#355f4b",width=10)
+sanad_melk_mosharecat=tk.Label(melk_mosharecat_data,text="وضعیت سند",bg="#e5e5e5",fg="black",width=10)
 sanad_melk_mosharecat.grid(padx=5,pady=10,row=6,column=1)
 
 sanad_melk_mosharecat_combo=ttk.Combobox(melk_mosharecat_data)
@@ -3471,6 +3471,68 @@ edame_moshrecat_melk1.place(x=200,y=500)
 back_to_root=tk.Button(melk_mosharecat_data,text="برگشت به صفحه اصلی",command=None,background="#079BDB",fg="#ffffff",width=17)
 back_to_root.place(x=50,y=500)
 
+#---------------------------------------------------------------------------
+#---------------------------- و سازنده فریم دوم مشخصات مالک--------------------------------------
+malek_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=600,width=1000)
+malek_mosharecat_frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
+
+malek_mosharecat_frame.columnconfigure(0, weight=1)
+malek_mosharecat_frame.columnconfigure(1, weight=0)
+
+malek_mosharecat_frame.pack_propagate(False)
+
+name_malek_mosharecat=tk.Label(malek_mosharecat_frame,text="نام مالک/مالکان",bg="#efefef" ,fg="black",width=13)
+name_malek_mosharecat.grid(padx=5,pady=10,row=0,column=1)
+
+name_malek_mosharecat_entry=scrolledtext.ScrolledText(malek_mosharecat_frame,width=30,height=5)
+name_malek_mosharecat_entry.grid(padx=5,pady=10,row=0,column=0)
+
+number_malek_mosharecat=tk.Label(malek_mosharecat_frame,text="شماره تماس مالک/نماینده ",bg="#efefef" ,fg="black",width=18)
+number_malek_mosharecat.grid(padx=5,pady=10,row=1,column=1)
+
+number_malek_mosharecat_entry=tk.Entry(malek_mosharecat_frame,bg="#e5e5e5",fg="black")
+number_malek_mosharecat_entry.grid(padx=5,pady=10,row=1,column=0)
+
+tedad_malek_mosharecat=tk.Label(malek_mosharecat_frame,text="تعداد مالک",bg="#efefef" ,fg="black",width=13)
+tedad_malek_mosharecat.grid(padx=5,pady=10,row=2,column=1)
+
+tedad_malek_mosharecat_entry=tk.Entry(malek_mosharecat_frame,bg="#e5e5e5",fg="black")
+tedad_malek_mosharecat_entry.grid(padx=5,pady=10,row=2,column=0)
+
+type_malekiyat_mosharecat=tk.Label(malek_mosharecat_frame,text="نوع مالکیت",bg="#efefef" ,fg="black",width=13)
+type_malekiyat_mosharecat.grid(padx=5,pady=10,row=3,column=1)
+
+type_malekiyat_mosharecat_combo=ttk.Combobox(malek_mosharecat_frame)
+type_malekiyat_mosharecat_combo["values"]=("شش دانگ","مشاع")
+type_malekiyat_mosharecat_combo.set( "شش دانگ")
+type_malekiyat_mosharecat_combo.grid(padx=5,pady=10,row=3,column=0)
+
+#بعد میتوان درصد مشارکت هم اضافه کرد ولی باید به تایید جمع برسه
+#-------------قسمت مشخصات سازنده-----------------------
+#این فیلدها اجباری نیست چراکه ممکنه هن.ز سازنده تعیین نشده باشه
+name_sazandeh_moshrecat=tk.Label(malek_mosharecat_frame,text="نام سازنده/شرکت",bg="#efefef" ,fg="black",width=13)
+name_sazandeh_moshrecat.grid(padx=5,pady=10,row=4,column=1)
+
+name_sazandeh_moshrecat_entry=tk.Entry(malek_mosharecat_frame,bg="#e5e5e5",fg="black")
+name_sazandeh_moshrecat_entry.grid(padx=5,pady=10,row=4,column=0)
+
+number_sazandeh_moshrecat=tk.Label(malek_mosharecat_frame,text="شماره تماس",bg="#efefef" ,fg="black",width=13)
+number_sazandeh_moshrecat.grid(padx=5,pady=10,row=5,column=1)
+
+number_sazandeh_moshrecat_entry=tk.Entry(malek_mosharecat_frame,bg="#e5e5e5",fg="black")
+number_sazandeh_moshrecat_entry.grid(padx=5,pady=10,row=5,column=0)
+
+sazandeh_info_moshrecat=tk.Label(malek_mosharecat_frame,text="سابقه کوتاه سازنده",bg="#efefef" ,fg="black",width=15)
+sazandeh_info_moshrecat.grid(padx=5,pady=10,row=6,column=1)
+
+sazandeh_info_mosharecat_entry=scrolledtext.ScrolledText(malek_mosharecat_frame,width=30,height=8)
+sazandeh_info_mosharecat_entry.grid(padx=5,pady=10,row=6,column=0)
+
+edame_moshrecat_malek=tk.Button(malek_mosharecat_frame,text="ادامه",background="#079BDB",fg="#ffffff",width=8,command=None)
+edame_moshrecat_malek.place(x=200,y=500)
+
+back_to_melk_mosharecat=tk.Button(malek_mosharecat_frame,text="برگشت ",command=None,background="#079BDB",fg="#ffffff",width=17)
+back_to_melk_mosharecat.place(x=50,y=500)
 
 
 
