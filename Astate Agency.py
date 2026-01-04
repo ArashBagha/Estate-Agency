@@ -535,11 +535,18 @@ def sabt_radio_kharid():
 def sabt_radio_mosharekat():
     selected = mosharekat_radio_value.get()
 
-    if selected==0:
+    if selected == 0:
         box_mosharekat.withdraw()
-        root.withdraw()
-        #mosharekat_sakht_page.deiconify()
         box_mosharekat.grab_release()
+
+        root.withdraw()
+        mosharecat_window.deiconify()
+
+        for f in frames:
+            f.grid_forget()
+
+        frames[0].grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+
         
     elif selected==2:
         box_mosharekat.withdraw()
@@ -819,7 +826,9 @@ def add_option2():
     if op2 and op2 not in selected_option2:
         selected_option2.append(op2)
         add_option_button_forosh_bagh_zamin.config(text=','.join(selected_option2))
-#----------------------------------------------------------------------
+#endregion
+#region
+#----------------------------توابع بخش مشارکت------------------------------------------
 #----------------------------تابع اپدیت اسلایدر سهم----------
 def update_percent(value):
     owner = int(value)
@@ -827,7 +836,151 @@ def update_percent(value):
     owner_label.config(text=f"مالک: {owner}%")
     builder_label.config(text=f"سازنده: {builder}%")
 
+#------------------------تابع مدیریت فریم های مشارکت--------------
+current_step = 0
 
+def show_step(index):
+    for f in frames:
+        f.grid_forget()
+    frames[index].grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+def change_frame_melk():
+    global current_step
+    a = address_melk_moshrecat_entry.get("1.0", "end").strip()
+    b = metraj_melk_moshrecat_entry.get().strip()
+    c = arzzamin_melk_moshrecat_entry.get().strip()
+    if not a or not b or not c:
+        error_mosharecat.config(
+            text="لطفاً همه فیلدهای مشخصات ملک را کامل کنید",
+            fg="red")
+        return   
+    if current_step < len(frames) - 1:
+        current_step += 1
+        show_step(current_step)
+
+def change_frame_malek():
+    global current_step
+
+    a=name_malek_mosharecat_entry.get("1.0","end").strip()
+    b=number_malek_mosharecat_entry.get()
+    c=tedad_malek_mosharecat_entry.get()
+    d=name_sazandeh_moshrecat_entry.get()
+    e=sazandeh_info_mosharecat_entry.get("1.0","end").strip()
+    g=number_sazandeh_moshrecat_entry.get()
+
+    if not a or not b or not c or not d or not e or not g:
+        error_mosharecat.config(text="لطفاً همه فیلدهای مشخصات ملک را کامل کنید",fg="red")
+        return
+    else:
+        error_mosharecat.config(text='')
+    if current_step < len(frames) -1:
+        current_step +=1
+        show_step(current_step)
+
+def change_frame_sharayet():
+    global current_step
+
+    a=mablagh_avaz_moshrecat_entry.get()
+    b=tedad_tabaghe_moshrecat_entry.get()
+    c=tedad_vahed_moshrecat_entry.get()
+    d=sahm_tabaghe_mosharecat_malek_entry.get()
+    e=sahm_vahed_moshrecat_malek_entry.get()
+    f=sahm_tabaghe_mosharecat_sa_entry.get()
+    g=sahm_vahed_moshrecat_sa_entry.get()
+    h=tahatar_text_mosharecat_entry.get("1.0","end").strip()
+    i=tahatar_value_mosharecat_entry.get()
+    if not a or not b or not c or not d or not e or not f or not g or not h or not i:
+        error_mosharecat.config(text="لطفاً همه فیلدهای مشخصات ملک را کامل کنید",fg="red")
+        return
+    else:
+        error_mosharecat.config(text="")
+    if current_step < len(frames) -1:
+        current_step +=1
+        show_step(current_step)
+def tayid_final_mosharecat():#این تابع حین اتصال دیتا بیس تکمیل میشود
+    a=building_time_mosharecat_entry.get()
+    b=ending_time_mosharecat_entry.get()
+    c=starting_time_mosharecat_entry.get()
+    d=fasgh_mosharecat_entry.get()
+    e=takhir_mosharecat_entry.get()
+    f=end_text_mosharecat_entry.get("1.0","end").strip()
+    if not a or not b or not c or not d or not e or not f:
+        error_mosharecat.config(text="لطفاً همه فیلدهای مشخصات ملک را کامل کنید",fg="red")
+        return
+    else:
+        error_mosharecat.config(text="")
+    if current_step < len(frames) -1:
+        current_step +=1
+        show_step(current_step)
+#---------------------------------توابع برگشت مشارکت-----------------------
+def back_root_mosharecat():
+    a = address_melk_moshrecat_entry.delete("1.0","end")
+    b = metraj_melk_moshrecat_entry.delete(0,tk.END)
+    c = arzzamin_melk_moshrecat_entry.delete(0,tk.END)
+    d=name_malek_mosharecat_entry.delete("1.0","end")
+    e=number_malek_mosharecat_entry.delete(0,tk.END)
+    f=tedad_malek_mosharecat_entry.delete(0,tk.END)
+    g=name_sazandeh_moshrecat_entry.delete(0,tk.END)
+    h=sazandeh_info_mosharecat_entry.delete("1.0","end")
+    i=number_sazandeh_moshrecat_entry.delete(0,tk.END)
+    j=mablagh_avaz_moshrecat_entry.delete(0,tk.END)
+    k=tedad_tabaghe_moshrecat_entry.delete(0,tk.END)
+    l=tedad_vahed_moshrecat_entry.delete(0,tk.END)
+    m=sahm_tabaghe_mosharecat_malek_entry.delete(0,tk.END)
+    n=sahm_vahed_moshrecat_malek_entry.delete(0,tk.END)
+    o=sahm_tabaghe_mosharecat_sa_entry.delete(0,tk.END)
+    p=sahm_vahed_moshrecat_sa_entry.delete(0,tk.END)
+    q=tahatar_text_mosharecat_entry.delete("1.0","end")
+    r=tahatar_value_mosharecat_entry.delete(0,tk.END) 
+    t=building_time_mosharecat_entry.delete(0,tk.END)
+    u=ending_time_mosharecat_entry.delete(0,tk.END)
+    v=starting_time_mosharecat_entry.delete(0,tk.END)
+    w=fasgh_mosharecat_entry.delete(0,tk.END)
+    x=takhir_mosharecat_entry.delete(0,tk.END)
+    y=end_text_mosharecat_entry.delete("1.0","end")
+
+    mosharecat_window.withdraw()
+    box_mosharekat.deiconify()
+###################################################
+#---------------------------------------------------
+#-----------تابع برگشت فریم ih------------------
+def back_to_melk():#برگشت فریم مالک به ملک
+    global current_step
+
+    if current_step > 0:
+        current_step -= 1
+        show_step(current_step)
+def back_to_malek():#برگشت فریم شرایط به مالک
+    global current_step
+
+    if current_step > 0:
+        current_step -= 1
+        show_step(current_step)
+def back_to_sharayet():#برگشت فریم ساخت به شرایط
+    global current_step
+
+    if current_step > 0:
+        current_step -= 1
+        show_step(current_step)
+#------------------------------------------------------------------
+#######################################################
+#---------------------------------تابع سوییچ بین نوع مشارکت---------------------------
+def change_type_mosharecat(event):
+    combo_value = sharayet_mosharecat_type_combo.get()
+
+    if combo_value == "مشارکت در ساخت":
+        mablagh_avaz_moshrecat_entry.config(state="disabled")
+        tahatar_text_mosharecat_entry.config(state="disabled")
+        tahatar_value_mosharecat_entry.config(state="disabled")
+
+    elif combo_value == "مشارکت با بلاعوض":
+         mablagh_avaz_moshrecat_entry.config(state="normal")
+         tahatar_text_mosharecat_entry.config(state="disabled")
+         tahatar_value_mosharecat_entry.config(state="disabled")
+
+    elif combo_value == "مشارکت + تهاتر":
+         mablagh_avaz_moshrecat_entry.config(state="disabled")
+         tahatar_text_mosharecat_entry.config(state="normal")
+         tahatar_value_mosharecat_entry.config(state="normal")
 
 
 
@@ -3411,12 +3564,22 @@ mosharecat_window.title("پنجره مشارکت در ساخت و ساز")
 mosharecat_window.pack_propagate(False)
 mosharecat_window.rowconfigure(0, weight=1)
 mosharecat_window.columnconfigure(0, weight=1)
+mosharecat_window.withdraw()
 
-
-#فریم اول مشخصات ملک
-
+#گرید کردن تمام  فریم ها--------------
 melk_mosharecat_data=tk.Frame(mosharecat_window,bg="#b2c4ff",height=600,width=1000)
-melk_mosharecat_data.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
+malek_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=600,width=1000)
+sharayet_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=600,width=1000)
+bulid_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=600,width=1000)
+frames=[melk_mosharecat_data,malek_mosharecat_frame,sharayet_mosharecat_frame,bulid_mosharecat_frame]
+for f in frames:
+    f.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+
+
+
+
+#melk_mosharecat_data=tk.Frame(mosharecat_window,bg="#b2c4ff",height=600,width=1000)
+#melk_mosharecat_data.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
 
 # ستون‌ها برای گسترش Entry/Combobox
 melk_mosharecat_data.columnconfigure(0, weight=1)
@@ -3474,16 +3637,16 @@ sanad_melk_mosharecat_combo["values"]=("تک برگ","قول نامه","ثبتی
 sanad_melk_mosharecat_combo.set( "تک برگ")
 sanad_melk_mosharecat_combo.grid(padx=5,pady=10,row=6,column=0)
 
-edame_moshrecat_melk1=tk.Button(melk_mosharecat_data,text="ذخیره",background="#079BDB",fg="#ffffff",width=8,command=None)
+edame_moshrecat_melk1=tk.Button(melk_mosharecat_data,text="ادامه",background="#079BDB",fg="#ffffff",width=8,command=change_frame_melk)
 edame_moshrecat_melk1.place(x=200,y=500)
 
-back_to_root=tk.Button(melk_mosharecat_data,text="برگشت به صفحه اصلی",command=None,background="#079BDB",fg="#ffffff",width=17)
+back_to_root=tk.Button(melk_mosharecat_data,text="برگشت به صفحه اصلی",command=back_root_mosharecat,background="#079BDB",fg="#ffffff",width=17)
 back_to_root.place(x=50,y=500)
 
 #---------------------------------------------------------------------------
 #---------------------------- و سازنده فریم دوم مشخصات مالک--------------------------------------
-malek_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=600,width=1000)
-malek_mosharecat_frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
+#malek_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=600,width=1000)
+#malek_mosharecat_frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
 
 malek_mosharecat_frame.columnconfigure(0, weight=1)
 malek_mosharecat_frame.columnconfigure(1, weight=0)
@@ -3537,15 +3700,15 @@ sazandeh_info_moshrecat.grid(padx=5,pady=10,row=6,column=1)
 sazandeh_info_mosharecat_entry=scrolledtext.ScrolledText(malek_mosharecat_frame,width=30,height=8)
 sazandeh_info_mosharecat_entry.grid(padx=5,pady=10,row=6,column=0)
 
-edame_moshrecat_malek=tk.Button(malek_mosharecat_frame,text="ادامه",background="#079BDB",fg="#ffffff",width=8,command=None)
+edame_moshrecat_malek=tk.Button(malek_mosharecat_frame,text="ادامه",background="#079BDB",fg="#ffffff",width=8,command=change_frame_malek)
 edame_moshrecat_malek.place(x=200,y=500)
 
-back_to_melk_mosharecat=tk.Button(malek_mosharecat_frame,text="برگشت ",command=None,background="#079BDB",fg="#ffffff",width=17)
+back_to_melk_mosharecat=tk.Button(malek_mosharecat_frame,text="برگشت ",command=back_to_melk,background="#079BDB",fg="#ffffff",width=17)
 back_to_melk_mosharecat.place(x=50,y=500)
 #---------------------------------------------------------------------------
 #---------------------------- شرایط مشارکت در ساخت---------------
-sharayet_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=750,width=1000)
-sharayet_mosharecat_frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
+#sharayet_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=750,width=1000)
+#sharayet_mosharecat_frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
 
 sharayet_mosharecat_frame.columnconfigure(0, weight=1)
 sharayet_mosharecat_frame.columnconfigure(1, weight=0)
@@ -3554,10 +3717,13 @@ sharayet_mosharecat_frame.pack_propagate(False)
 sharayet_mosharecat_type=tk.Label(sharayet_mosharecat_frame,text="نوع مشارکت",bg="#efefef" ,fg="black",width=13)
 sharayet_mosharecat_type.grid(padx=5,pady=10,row=0,column=4)
 
+
 sharayet_mosharecat_type_combo=ttk.Combobox(sharayet_mosharecat_frame)
 sharayet_mosharecat_type_combo["values"]=("مشارکت در ساخت","مشارکت با بلاعوض","مشارکت + تهاتر")
 sharayet_mosharecat_type_combo.set( "مشارکت در ساخت")
 sharayet_mosharecat_type_combo.grid(padx=10,pady=10,row=0,column=3)
+sharayet_mosharecat_type_combo.bind("<<ComboboxSelected>>",change_type_mosharecat)
+
 
 owner_percent = tk.IntVar(value=50)
 owner_slider = tk.Scale(sharayet_mosharecat_frame,from_=0,to=100,orient="horizontal",variable=owner_percent,
@@ -3602,7 +3768,7 @@ tajhiz_sazandeh_moshrecat.grid(row=3, column=0,padx=10,pady=10)
 mablagh_avaz_moshrecat=tk.Label(sharayet_mosharecat_frame,text="مبلغ بلاعوض",fg="black",bg="#efefef")
 mablagh_avaz_moshrecat.grid(row=4, column=4,padx=10,pady=10)
 
-mablagh_avaz_moshrecat_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="#efefef",width=13)
+mablagh_avaz_moshrecat_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="white",width=13)
 mablagh_avaz_moshrecat_entry.grid(row=4, column=3,padx=10,pady=10)
 
 time_mablagh_mosharecat=tk.Label(sharayet_mosharecat_frame,text="زمان پرداخت",fg="black",bg="#efefef")
@@ -3666,18 +3832,19 @@ tahatar_text_mosharecat_entry.grid(padx=11,pady=10,row=9,column=3)
 tahatar_value_mosharecat=tk.Label(sharayet_mosharecat_frame,text="ارزش تقریبی تهاتر",fg="black",bg="#efefef",width=18)
 tahatar_value_mosharecat.grid(row=9, column=2,padx=10,pady=10)
 
-tahatar_value_mosharecat_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="#efefef",width=13)
+tahatar_value_mosharecat_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="white",width=13)
 tahatar_value_mosharecat_entry.grid(row=9, column=1,padx=10,pady=10)
 
-edame_moshrecat_sharayet=tk.Button(sharayet_mosharecat_frame,text="ادامه",background="#079BDB",fg="#ffffff",width=8,command=None)
+edame_moshrecat_sharayet=tk.Button(sharayet_mosharecat_frame,text="ادامه",background="#079BDB",fg="#ffffff",width=8,command=change_frame_sharayet)
 edame_moshrecat_sharayet.grid(row=10, column=2,padx=10,pady=10)
 
-back_to_malek_mosharecat=tk.Button(sharayet_mosharecat_frame,text="برگشت ",command=None,background="#079BDB",fg="#ffffff",width=17)
+back_to_malek_mosharecat=tk.Button(sharayet_mosharecat_frame,text="برگشت ",command=back_to_malek,background="#079BDB",fg="#ffffff",width=17)
 back_to_malek_mosharecat.grid(row=10, column=1,padx=10,pady=10)
+change_type_mosharecat(None)
 #--------------------------------------------------------------------------------
 #------------------------------فریم ساخت---------------------------------------
-bulid_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=750,width=1000)
-bulid_mosharecat_frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
+#bulid_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=750,width=1000)
+#bulid_mosharecat_frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
 
 bulid_mosharecat_frame.columnconfigure(0, weight=1)
 bulid_mosharecat_frame.columnconfigure(1, weight=0)
@@ -3771,12 +3938,14 @@ end_text_mosharecat.grid(row=7, column=3,padx=10,pady=10)
 end_text_mosharecat_entry=scrolledtext.ScrolledText(bulid_mosharecat_frame,width=35,height=10)
 end_text_mosharecat_entry.grid(padx=10,pady=10,row=7,column=2)
 
-tayied_mosharecat=tk.Button(bulid_mosharecat_frame,text="ثبت نهایی",background="#079BDB",fg="#ffffff",width=8,command=None)
+tayied_mosharecat=tk.Button(bulid_mosharecat_frame,text="ثبت نهایی",background="#079BDB",fg="#ffffff",width=8,command=tayid_final_mosharecat)
 tayied_mosharecat.grid(row=8, column=2,padx=10,pady=10)
 
-back_to_sharayet_mosharecat=tk.Button(bulid_mosharecat_frame,text="برگشت ",command=None,background="#079BDB",fg="#ffffff",width=17)
+back_to_sharayet_mosharecat=tk.Button(bulid_mosharecat_frame,text="برگشت ",command=back_to_sharayet,background="#079BDB",fg="#ffffff",width=17)
 back_to_sharayet_mosharecat.grid(row=8, column=1,padx=10,pady=10)
 
+error_mosharecat=tk.Label(mosharecat_window,fg="red",font=("Arial",14))
+error_mosharecat.pack()
 
 
 
