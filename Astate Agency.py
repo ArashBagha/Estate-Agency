@@ -819,6 +819,15 @@ def add_option2():
     if op2 and op2 not in selected_option2:
         selected_option2.append(op2)
         add_option_button_forosh_bagh_zamin.config(text=','.join(selected_option2))
+#----------------------------------------------------------------------
+#----------------------------تابع اپدیت اسلایدر سهم----------
+def update_percent(value):
+    owner = int(value)
+    builder = 100 - owner
+    owner_label.config(text=f"مالک: {owner}%")
+    builder_label.config(text=f"سازنده: {builder}%")
+
+
 
 
 
@@ -3397,7 +3406,7 @@ back_to_kharid_kargah.place(x=95,y=420)
 #---------------------------------------------------------------
 #region
 mosharecat_window=tk.Toplevel(root,background="#adf6ed")
-mosharecat_window.geometry("800x600")
+mosharecat_window.geometry("800x680")
 mosharecat_window.title("پنجره مشارکت در ساخت و ساز")
 mosharecat_window.pack_propagate(False)
 mosharecat_window.rowconfigure(0, weight=1)
@@ -3533,6 +3542,140 @@ edame_moshrecat_malek.place(x=200,y=500)
 
 back_to_melk_mosharecat=tk.Button(malek_mosharecat_frame,text="برگشت ",command=None,background="#079BDB",fg="#ffffff",width=17)
 back_to_melk_mosharecat.place(x=50,y=500)
+#---------------------------------------------------------------------------
+#---------------------------- شرایط مشارکت در ساخت---------------
+sharayet_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=750,width=1000)
+sharayet_mosharecat_frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
+
+sharayet_mosharecat_frame.columnconfigure(0, weight=1)
+sharayet_mosharecat_frame.columnconfigure(1, weight=0)
+sharayet_mosharecat_frame.pack_propagate(False)
+
+sharayet_mosharecat_type=tk.Label(sharayet_mosharecat_frame,text="نوع مشارکت",bg="#efefef" ,fg="black",width=13)
+sharayet_mosharecat_type.grid(padx=5,pady=10,row=0,column=3)
+
+sharayet_mosharecat_type_combo=ttk.Combobox(sharayet_mosharecat_frame)
+sharayet_mosharecat_type_combo["values"]=("مشارکت در ساخت","مشارکت با بلاعوض","مشارکت + تهاتر")
+sharayet_mosharecat_type_combo.set( "مشارکت در ساخت")
+sharayet_mosharecat_type_combo.grid(padx=10,pady=10,row=0,column=1)
+
+owner_percent = tk.IntVar(value=50)
+owner_slider = tk.Scale(sharayet_mosharecat_frame,from_=0,to=100,orient="horizontal",variable=owner_percent,
+    label="درصد سهم مالک",
+    length=300)
+owner_slider.grid(row=1, column=2, padx=10, pady=10, columnspan=2)
+
+owner_label = tk.Label(sharayet_mosharecat_frame,text="مالک: 50%",fg="black",bg="#efefef")
+owner_label.grid(row=1, column=1,padx=10,pady=10)
+
+builder_label = tk.Label(sharayet_mosharecat_frame,text="سازنده: 50%",fg="black",bg="#efefef")
+builder_label.grid(row=1, column=0,padx=10,pady=10)
+
+owner_slider.config(command=update_percent)
+avardeh_malek_moshrecat=tk.Label(sharayet_mosharecat_frame,text="اورده مالک",fg="black",bg="#efefef")
+avardeh_malek_moshrecat.grid(row=2, column=4,padx=10,pady=10)
+
+avardeh_malek_zamin_melk=tk.Checkbutton(sharayet_mosharecat_frame,text="زمین/ملک",fg="black",bg="#efefef")
+avardeh_malek_zamin_melk.grid(row=2, column=3,padx=10,pady=10)
+
+parvaneh_malek_moshrecat=tk.Checkbutton(sharayet_mosharecat_frame,text="پروانه ساخت",fg="black",bg="#efefef")
+parvaneh_malek_moshrecat.grid(row=2, column=2,padx=10,pady=10)
+
+mony_malek_moshrecat=tk.Checkbutton(sharayet_mosharecat_frame,text="پول نقد",fg="black",bg="#efefef")
+mony_malek_moshrecat.grid(row=2,column=1,padx=10,pady=10)
+
+avardeh_sazandeh_moshrecat=tk.Label(sharayet_mosharecat_frame,text="آورده سازنده",fg="black",bg="#efefef")
+avardeh_sazandeh_moshrecat.grid(row=3, column=4,padx=10,pady=10)
+
+mojavez_sazandeh_moshrecat=tk.Checkbutton(sharayet_mosharecat_frame,text="اخذ مجوز ها",fg="black",bg="#efefef")
+mojavez_sazandeh_moshrecat.grid(row=3, column=3,padx=10,pady=10)
+
+cust_sazandeh_moshrecat=tk.Checkbutton(sharayet_mosharecat_frame,text="هزینه ساخت ",fg="black",bg="#efefef")
+cust_sazandeh_moshrecat.grid(row=3, column=2,padx=10,pady=10)
+
+control_sazandeh_moshrecat=tk.Checkbutton(sharayet_mosharecat_frame,text="مدیریت پروژه",fg="black",bg="#efefef")
+control_sazandeh_moshrecat.grid(row=3, column=1,padx=10,pady=10)
+
+tajhiz_sazandeh_moshrecat=tk.Checkbutton(sharayet_mosharecat_frame,text="تجهیز پروژه",fg="black",bg="#efefef")
+tajhiz_sazandeh_moshrecat.grid(row=3, column=0,padx=10,pady=10)
+
+mablagh_avaz_moshrecat=tk.Label(sharayet_mosharecat_frame,text="مبلغ بلاعوض",fg="black",bg="#efefef")
+mablagh_avaz_moshrecat.grid(row=4, column=4,padx=10,pady=10)
+
+mablagh_avaz_moshrecat_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="#efefef",width=13)
+mablagh_avaz_moshrecat_entry.grid(row=4, column=3,padx=10,pady=10)
+
+time_mablagh_mosharecat=tk.Label(sharayet_mosharecat_frame,text="زمان پرداخت",fg="black",bg="#efefef")
+time_mablagh_mosharecat.grid(row=5, column=4,padx=10,pady=10)
+
+time_mablagh_mosharecat_combo=ttk.Combobox(sharayet_mosharecat_frame)
+time_mablagh_mosharecat_combo["values"]=( "حین عقد قرار داد","مرحله ای")
+time_mablagh_mosharecat_combo.set( "حین عقد قرار داد")
+time_mablagh_mosharecat_combo.grid(padx=10,pady=10,row=5,column=3)
+
+taraf_mablagh_mosharecat=tk.Label(sharayet_mosharecat_frame,text=":پرداخت به",fg="black",bg="#efefef")
+taraf_mablagh_mosharecat.grid(row=5, column=2,padx=10,pady=10)
+
+taraf_mablagh_mosharecat_combo=ttk.Combobox(sharayet_mosharecat_frame)
+taraf_mablagh_mosharecat_combo["values"]=( "مالک","مالکین")
+taraf_mablagh_mosharecat_combo.set( "مالک")
+taraf_mablagh_mosharecat_combo.grid(padx=10,pady=10,row=5,column=1)
+
+tedad_tabaghe_mosharecat=tk.Label(sharayet_mosharecat_frame,text="تعداد طبقات قابل ساخت",fg="black",bg="#efefef",width=18)
+tedad_tabaghe_mosharecat.grid(row=6, column=4,padx=10,pady=10)
+
+tedad_tabaghe_moshrecat_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="#efefef",width=13)
+tedad_tabaghe_moshrecat_entry.grid(row=6, column=3,padx=10,pady=10)
+
+tedad_vahed_mosharecat=tk.Label(sharayet_mosharecat_frame,text="تعداد واحد",fg="black",bg="#efefef",width=18)
+tedad_vahed_mosharecat.grid(row=6, column=2,padx=10,pady=10)
+
+tedad_vahed_moshrecat_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="#efefef",width=13)
+tedad_vahed_moshrecat_entry.grid(row=6, column=1,padx=10,pady=10)
+
+sahm_tabaghe_mosharecat_malek=tk.Label(sharayet_mosharecat_frame,text="سهم طبقه مالک",fg="black",bg="#efefef",width=18)
+sahm_tabaghe_mosharecat_malek.grid(row=7, column=4,padx=10,pady=10)
+
+sahm_tabaghe_mosharecat_malek_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="#efefef",width=13)
+sahm_tabaghe_mosharecat_malek_entry.grid(row=7, column=3,padx=10,pady=10)
+
+sahm_vahed_mosharecat_malek=tk.Label(sharayet_mosharecat_frame,text="سهم واحد مالک",fg="black",bg="#efefef",width=18)
+sahm_vahed_mosharecat_malek.grid(row=7, column=2,padx=10,pady=10)
+
+sahm_vahed_moshrecat_malek_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="#efefef",width=13)
+sahm_vahed_moshrecat_malek_entry.grid(row=7, column=1,padx=10,pady=10)
+
+sahm_tabaghe_mosharecat_sa=tk.Label(sharayet_mosharecat_frame,text="سهم طبقه سازنده",fg="black",bg="#efefef",width=18)
+sahm_tabaghe_mosharecat_sa.grid(row=8, column=4,padx=10,pady=10)
+
+sahm_tabaghe_mosharecat_sa_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="#efefef",width=13)
+sahm_tabaghe_mosharecat_sa_entry.grid(row=8, column=3,padx=10,pady=10)
+
+sahm_vahed_mosharecat_sa=tk.Label(sharayet_mosharecat_frame,text="سهم واحد سازنده",fg="black",bg="#efefef",width=18)
+sahm_vahed_mosharecat_sa.grid(row=8, column=2,padx=10,pady=10)
+
+sahm_vahed_moshrecat_sa_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="#efefef",width=13)
+sahm_vahed_moshrecat_sa_entry.grid(row=8, column=1,padx=10,pady=10)
+
+tahatar_text_mosharecat=tk.Label(sharayet_mosharecat_frame,text="توضیح تهاتر",fg="black",bg="#efefef",width=18)
+tahatar_text_mosharecat.grid(row=9, column=4,padx=10,pady=10)
+
+tahatar_text_mosharecat_entry=scrolledtext.ScrolledText(sharayet_mosharecat_frame,width=30,height=5)
+tahatar_text_mosharecat_entry.grid(padx=11,pady=10,row=9,column=3)
+
+tahatar_value_mosharecat=tk.Label(sharayet_mosharecat_frame,text="ارزش تقریبی تهاتر",fg="black",bg="#efefef",width=18)
+tahatar_value_mosharecat.grid(row=9, column=2,padx=10,pady=10)
+
+tahatar_value_mosharecat_entry=tk.Entry(sharayet_mosharecat_frame,fg="black",bg="#efefef",width=13)
+tahatar_value_mosharecat_entry.grid(row=9, column=1,padx=10,pady=10)
+
+edame_moshrecat_sharayet=tk.Button(sharayet_mosharecat_frame,text="ادامه",background="#079BDB",fg="#ffffff",width=8,command=None)
+edame_moshrecat_sharayet.grid(row=10, column=2,padx=10,pady=10)
+
+back_to_malk_mosharecat=tk.Button(sharayet_mosharecat_frame,text="برگشت ",command=None,background="#079BDB",fg="#ffffff",width=17)
+back_to_malk_mosharecat.grid(row=10, column=1,padx=10,pady=10)
+#--------------------------------------------------------------------------------
+#------------------------------فریم ساخت---------------------------------------
 
 
 
