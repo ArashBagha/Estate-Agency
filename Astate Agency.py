@@ -3552,24 +3552,24 @@ sharayet_mosharecat_frame.columnconfigure(1, weight=0)
 sharayet_mosharecat_frame.pack_propagate(False)
 
 sharayet_mosharecat_type=tk.Label(sharayet_mosharecat_frame,text="نوع مشارکت",bg="#efefef" ,fg="black",width=13)
-sharayet_mosharecat_type.grid(padx=5,pady=10,row=0,column=3)
+sharayet_mosharecat_type.grid(padx=5,pady=10,row=0,column=4)
 
 sharayet_mosharecat_type_combo=ttk.Combobox(sharayet_mosharecat_frame)
 sharayet_mosharecat_type_combo["values"]=("مشارکت در ساخت","مشارکت با بلاعوض","مشارکت + تهاتر")
 sharayet_mosharecat_type_combo.set( "مشارکت در ساخت")
-sharayet_mosharecat_type_combo.grid(padx=10,pady=10,row=0,column=1)
+sharayet_mosharecat_type_combo.grid(padx=10,pady=10,row=0,column=3)
 
 owner_percent = tk.IntVar(value=50)
 owner_slider = tk.Scale(sharayet_mosharecat_frame,from_=0,to=100,orient="horizontal",variable=owner_percent,
     label="درصد سهم مالک",
     length=300)
-owner_slider.grid(row=1, column=2, padx=10, pady=10, columnspan=2)
+owner_slider.grid(row=1, column=3, padx=10, pady=10, columnspan=2)
 
 owner_label = tk.Label(sharayet_mosharecat_frame,text="مالک: 50%",fg="black",bg="#efefef")
-owner_label.grid(row=1, column=1,padx=10,pady=10)
+owner_label.grid(row=1, column=2,padx=10,pady=10)
 
 builder_label = tk.Label(sharayet_mosharecat_frame,text="سازنده: 50%",fg="black",bg="#efefef")
-builder_label.grid(row=1, column=0,padx=10,pady=10)
+builder_label.grid(row=1, column=1,padx=10,pady=10)
 
 owner_slider.config(command=update_percent)
 avardeh_malek_moshrecat=tk.Label(sharayet_mosharecat_frame,text="اورده مالک",fg="black",bg="#efefef")
@@ -3672,13 +3672,110 @@ tahatar_value_mosharecat_entry.grid(row=9, column=1,padx=10,pady=10)
 edame_moshrecat_sharayet=tk.Button(sharayet_mosharecat_frame,text="ادامه",background="#079BDB",fg="#ffffff",width=8,command=None)
 edame_moshrecat_sharayet.grid(row=10, column=2,padx=10,pady=10)
 
-back_to_malk_mosharecat=tk.Button(sharayet_mosharecat_frame,text="برگشت ",command=None,background="#079BDB",fg="#ffffff",width=17)
-back_to_malk_mosharecat.grid(row=10, column=1,padx=10,pady=10)
+back_to_malek_mosharecat=tk.Button(sharayet_mosharecat_frame,text="برگشت ",command=None,background="#079BDB",fg="#ffffff",width=17)
+back_to_malek_mosharecat.grid(row=10, column=1,padx=10,pady=10)
 #--------------------------------------------------------------------------------
 #------------------------------فریم ساخت---------------------------------------
+bulid_mosharecat_frame=tk.Frame(mosharecat_window,bg="#b2c4ff",height=750,width=1000)
+bulid_mosharecat_frame.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
 
+bulid_mosharecat_frame.columnconfigure(0, weight=1)
+bulid_mosharecat_frame.columnconfigure(1, weight=0)
+bulid_mosharecat_frame.pack_propagate(False)
 
+level_bulid_mosharecat=tk.Label(bulid_mosharecat_frame,text="کیفیت ساخت",fg="black",bg="#efefef",width=18)
+level_bulid_mosharecat.grid(row=0, column=3,padx=10,pady=10)
 
+level_bulid_mosharecat_combo=ttk.Combobox(bulid_mosharecat_frame)
+level_bulid_mosharecat_combo["value"]=("معمولی","خوب","لوکس")
+level_bulid_mosharecat_combo.set("معمولی")
+level_bulid_mosharecat_combo.grid(row=0, column=2,padx=10,pady=10)
+
+scelet_bulid_mosharecat=tk.Label(bulid_mosharecat_frame,text="نوع اسکلت",fg="black",bg="#efefef",width=18)
+scelet_bulid_mosharecat.grid(row=0, column=1,padx=10,pady=10)
+
+scelet_bulid_mosharecat_combo=ttk.Combobox(bulid_mosharecat_frame)
+scelet_bulid_mosharecat_combo["value"]=("بتنی","فلزی")
+scelet_bulid_mosharecat_combo.set("فلزی")
+scelet_bulid_mosharecat_combo.grid(row=0, column=0,padx=10,pady=10)
+
+nama_bulid_mosharecat=tk.Label(bulid_mosharecat_frame,text="نوع نما",fg="black",bg="#efefef",width=18)
+nama_bulid_mosharecat.grid(row=1, column=3,padx=10,pady=10)
+
+nama_bulid_mosharecat_combo=ttk.Combobox(bulid_mosharecat_frame)
+nama_bulid_mosharecat_combo["value"]=("سنگی","شیشه","ترکیبی")
+nama_bulid_mosharecat_combo.set("سنگی")
+nama_bulid_mosharecat_combo.grid(row=1, column=2,padx=10,pady=10)
+
+number_parking_mosharecat=tk.Label(bulid_mosharecat_frame,text="تعداد پارکینگ",fg="black",bg="#efefef",width=18)
+number_parking_mosharecat.grid(row=1, column=1,padx=10,pady=10)
+
+number_parking_mosharecat_entry=tk.Entry(bulid_mosharecat_frame,fg="black",bg="#efefef",width=13)
+number_parking_mosharecat_entry.grid(row=1, column=0,padx=10,pady=10)
+
+anbari_build_mosharecat=tk.Checkbutton(bulid_mosharecat_frame,text="انباری",image=warehouse_pic)
+anbari_build_mosharecat.grid(row=2, column=3,padx=10,pady=10)
+
+elavator_build_mosharecat=tk.Checkbutton(bulid_mosharecat_frame,text="آسانسور",image=elvator_pic)
+elavator_build_mosharecat.grid(row=2, column=2,padx=10,pady=10)
+
+building_time_mosharecat=tk.Label(bulid_mosharecat_frame,text="زمان ساخت به ماه",fg="black",bg="#efefef",width=18)
+building_time_mosharecat.grid(row=3, column=3,padx=10,pady=10)
+
+building_time_mosharecat_entry=tk.Entry(bulid_mosharecat_frame,fg="black",bg="#efefef",width=13)
+building_time_mosharecat_entry.grid(row=3, column=2,padx=10,pady=10)
+
+starting_time_mosharecat=tk.Label(bulid_mosharecat_frame,text="زمان شروع",fg="black",bg="#efefef",width=18)
+starting_time_mosharecat.grid(row=3, column=1,padx=10,pady=10)
+
+starting_time_mosharecat_entry=tk.Entry(bulid_mosharecat_frame,fg="black",bg="#efefef",width=13)
+starting_time_mosharecat_entry.grid(row=3, column=0,padx=10,pady=10)
+
+ending_time_mosharecat=tk.Label(bulid_mosharecat_frame,text="زمان پایان تقریبی",fg="black",bg="#efefef",width=18)
+ending_time_mosharecat.grid(row=4, column=3,padx=10,pady=10)
+
+ending_time_mosharecat_entry=tk.Entry(bulid_mosharecat_frame,fg="black",bg="#efefef",width=13)
+ending_time_mosharecat_entry.grid(row=4, column=2,padx=10,pady=10)
+
+takhir_mosharecat=tk.Label(bulid_mosharecat_frame,text="جریمه تاخیر",fg="black",bg="#efefef",width=18)
+takhir_mosharecat.grid(row=4, column=1,padx=10,pady=10)
+
+takhir_mosharecat_entry=tk.Entry(bulid_mosharecat_frame,fg="black",bg="#efefef",width=13)
+takhir_mosharecat_entry.grid(row=4, column=0,padx=10,pady=10)
+
+fasgh_mosharecat=tk.Label(bulid_mosharecat_frame,text="جریمه فسخ",fg="black",bg="#efefef",width=18)
+fasgh_mosharecat.grid(row=5, column=3,padx=10,pady=10)
+
+fasgh_mosharecat_entry=tk.Entry(bulid_mosharecat_frame,fg="black",bg="#efefef",width=13)
+fasgh_mosharecat_entry.grid(row=5, column=2,padx=10,pady=10)
+
+davari_mosharecat=tk.Label(bulid_mosharecat_frame,text="داوری و حل اختلاف",fg="black",bg="#efefef",width=20)
+davari_mosharecat.grid(row=5, column=1,padx=10,pady=10)
+
+davari_mosharecat_combo=ttk.Combobox(bulid_mosharecat_frame)
+davari_mosharecat_combo["value"]=("داوری","دادگاه")
+davari_mosharecat_combo.set("دادگاه")
+davari_mosharecat_combo.grid(row=5, column=0,padx=10,pady=10)
+
+mozakereh_mosharecat=tk.Label(bulid_mosharecat_frame,text="شرایط مذاکره",fg="black",bg="#efefef",width=20)
+mozakereh_mosharecat.grid(row=6, column=3,padx=10,pady=10)
+
+mozakereh_mosharecat_combo=ttk.Combobox(bulid_mosharecat_frame)
+mozakereh_mosharecat_combo["value"]=("دارد","ندارد")
+mozakereh_mosharecat_combo.set("دارد")
+mozakereh_mosharecat_combo.grid(row=6, column=2,padx=10,pady=10)
+
+end_text_mosharecat=tk.Label(bulid_mosharecat_frame,text="توضیحات تکمیلی",fg="black",bg="#efefef",width=20)
+end_text_mosharecat.grid(row=7, column=3,padx=10,pady=10)
+
+end_text_mosharecat_entry=scrolledtext.ScrolledText(bulid_mosharecat_frame,width=35,height=10)
+end_text_mosharecat_entry.grid(padx=10,pady=10,row=7,column=2)
+
+tayied_mosharecat=tk.Button(bulid_mosharecat_frame,text="ثبت نهایی",background="#079BDB",fg="#ffffff",width=8,command=None)
+tayied_mosharecat.grid(row=8, column=2,padx=10,pady=10)
+
+back_to_sharayet_mosharecat=tk.Button(bulid_mosharecat_frame,text="برگشت ",command=None,background="#079BDB",fg="#ffffff",width=17)
+back_to_sharayet_mosharecat.grid(row=8, column=1,padx=10,pady=10)
 
 
 
