@@ -1391,9 +1391,6 @@ option_frame_ejare_maskoni.place(x=525,y=500)
 add_option_frame_ejare_maskoni=tk.Label(option_frame_ejare_maskoni,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 add_option_frame_ejare_maskoni.pack(side="right",padx=1)
 
-button_label_ejare_maskoni=tk.Label(option_frame_ejare_maskoni)
-button_label_ejare_maskoni.pack(side="left",padx=1)
-
 plus_button_ejare_maskoni=tk.Button(option_frame_ejare_maskoni,image=plus,command=open_option1,border=0)
 plus_button_ejare_maskoni.pack()
 
@@ -1542,8 +1539,6 @@ option_frame_ejareh_edari_tejari.place(x=250,y=373)
 option_label_ejareh_edari_tejari=tk.Label(option_frame_ejareh_edari_tejari,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 option_label_ejareh_edari_tejari.pack(side="right",padx=1)
 
-button_label_ejareh_edari_tejari=tk.Label(option_frame_ejareh_edari_tejari)
-button_label_ejareh_edari_tejari.pack(side="left",padx=1)
 plus_button_ejareh_edari_tejari=tk.Button(option_frame_ejareh_edari_tejari,image=plus,command=open_option3,border=0)
 plus_button_ejareh_edari_tejari.pack(side="right",padx=1)
 
@@ -1675,8 +1670,6 @@ option_frame_ejareh_bagh_zamin.place(x=550,y=510)
 option_label_ejareh_bagh_zamin=tk.Label(option_frame_ejareh_bagh_zamin,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 option_label_ejareh_bagh_zamin.pack(side="right",padx=1)
 
-button_label_ejareh_bagh_zamin=tk.Label(option_frame_ejareh_bagh_zamin)
-button_label_ejareh_bagh_zamin.pack(side="left",padx=1)
 plus_button_ejareh_bagh_zamin=tk.Button(option_frame_ejareh_bagh_zamin,image=plus,command=open_option5,border=0)
 plus_button_ejareh_bagh_zamin.pack()
 
@@ -2010,8 +2003,6 @@ option_frame_options_forosh_maskoni.place(x=520,y=460)
 option_label_forosh_maskoni=tk.Label(option_frame_options_forosh_maskoni,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 option_label_forosh_maskoni.pack(side="right",padx=1)
 
-button_label_forosh_maskoni=tk.Label(option_frame_options_forosh_maskoni)
-button_label_forosh_maskoni.pack(side="left",padx=1)
 plus_button_forosh_maskoni=tk.Button(option_frame_options_forosh_maskoni,image=plus,command=open_option2,border=0)
 plus_button_forosh_maskoni.pack()
 
@@ -2161,8 +2152,6 @@ option_frame_options_forosh_edari_tejari.place(x=250,y=373)
 option_label_forosh_edari_tejari=tk.Label(option_frame_options_forosh_edari_tejari,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 option_label_forosh_edari_tejari.pack(side="right",padx=1)
 
-button_label_forosh_eedari_tejari=tk.Label(option_frame_options_forosh_edari_tejari)
-button_label_forosh_eedari_tejari.pack(side="left",padx=1)
 plus_button_forosh_eedari_tejari=tk.Button(option_frame_options_forosh_edari_tejari,image=plus,command=open_option4,border=0)
 plus_button_forosh_eedari_tejari.pack()
 
@@ -2294,8 +2283,6 @@ option_frame_options_forosh_bagh_zamin.place(x=550,y=510)
 option_label_forosh_bagh_zamin=tk.Label(option_frame_options_forosh_bagh_zamin,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 option_label_forosh_bagh_zamin.pack(side="right",padx=1)
 
-button_label_forosh_bagh_zamin=tk.Label(option_frame_options_forosh_bagh_zamin)
-button_label_forosh_bagh_zamin.pack(side="left",padx=1)
 plus_button_forosh_bagh_zamin=tk.Button(option_frame_options_forosh_bagh_zamin,image=plus,command=open_option6,border=0)
 plus_button_forosh_bagh_zamin.pack()
 
@@ -2623,8 +2610,6 @@ option_frame_ejareh_kargah.place(x=550,y=470)
 option_frame_ejareh_kargah_lable=tk.Label(option_frame_ejareh_kargah,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 option_frame_ejareh_kargah_lable.pack(side="right",padx=1)
 
-button_lable_ejareh_kargah=tk.Label(option_frame_ejareh_kargah)
-button_lable_ejareh_kargah.pack(side="left",padx=1)
 plus_button_ejareh_kargah=tk.Button(option_frame_ejareh_kargah,image=plus,command=open_option7,border=0)
 plus_button_ejareh_kargah.pack()
 
@@ -2800,8 +2785,6 @@ option_frame_forosh_kargah.place(x=550,y=450)
 option_frame_lable_forosh_kargah=tk.Label(option_frame_forosh_kargah,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 option_frame_lable_forosh_kargah.pack(side="right",padx=1)
 
-button_label_forosh_kargah=tk.Label(option_frame_forosh_kargah)
-button_label_forosh_kargah.pack(side="left",padx=1)
 plus_button_forosh_kargah=tk.Button(option_frame_forosh_kargah,image=plus,command=open_option8,border=0)
 plus_button_forosh_kargah.pack()
 
@@ -2990,8 +2973,6 @@ option_frame_options_kharid_maskoni.place(x=520,y=460)
 option_label_kharid_maskoni=tk.Label(option_frame_options_kharid_maskoni,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 option_label_kharid_maskoni.pack(side="right",padx=1)
 
-button_label_kharid_maskoni=tk.Label(option_frame_options_kharid_maskoni)
-button_label_kharid_maskoni.pack(side="left",padx=1)
 plus_button_kharid_maskoni=tk.Button(option_frame_options_kharid_maskoni,image=plus,command=open_option9,border=0)
 plus_button_kharid_maskoni.pack()
 
@@ -3145,8 +3126,6 @@ option_frame_options_kharid_edari_tejari.place(x=250,y=373)
 option_label_kharid_edari_tejari=tk.Label(option_frame_options_kharid_edari_tejari,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 option_label_kharid_edari_tejari.pack(side="right",padx=1)
 
-button_label_kharid_eedari_tejari=tk.Label(option_frame_options_kharid_edari_tejari)
-button_label_kharid_eedari_tejari.pack(side="left",padx=1)
 plus_button_kharid_eedari_tejari=tk.Button(option_frame_options_kharid_edari_tejari,image=plus,command=open_option10,border=0)
 plus_button_kharid_eedari_tejari.pack()
 
@@ -3269,8 +3248,6 @@ option_frame_options_kharid_bagh_zamin.place(x=550,y=510)
 option_label_kharid_bagh_zamin=tk.Label(option_frame_options_kharid_bagh_zamin,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 option_label_kharid_bagh_zamin.pack(side="right",padx=1)
 
-button_label_kharid_bagh_zamin=tk.Label(option_frame_options_kharid_bagh_zamin)
-button_label_kharid_bagh_zamin.pack(side="left",padx=1)
 plus_button_kharid_bagh_zamin=tk.Button(option_frame_options_kharid_bagh_zamin,image=plus,command=open_option11,border=0)
 plus_button_kharid_bagh_zamin.pack()
 
@@ -3583,8 +3560,6 @@ option_frame_kharid_kargah.place(x=550,y=450)
 option_frame_kharid_kargah_lable=tk.Label(option_frame_kharid_kargah,text='افزودن امکانات فایل',font=("Shabnam",12,"bold"),background="#021728",fg="#00BFFF")
 option_frame_kharid_kargah_lable.pack(side="right",padx=1)
 
-button_lable_kharid_kargah=tk.Label(option_frame_kharid_kargah)
-button_lable_kharid_kargah.pack(side="left",padx=1)
 plus_button_kharid_kargah=tk.Button(option_frame_kharid_kargah,image=plus,command=open_option12,border=0)
 plus_button_kharid_kargah.pack()
 
